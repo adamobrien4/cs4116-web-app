@@ -1,5 +1,7 @@
 <?php
 
+include "./includes/global_vars.php";
+
 session_start();
 
 ?>
@@ -12,9 +14,9 @@ session_start();
 
 <body>
     <ul>
-        <li><a href="http://localhost/cs4116/login-register.php">Login / Register</a></li>
-        <li><a href="http://localhost/cs4116/profile.php">Profile Page</a></li>
-        <?php if(isset($_SESSION['email'])){ print "<li><a href='http://localhost/cs4116/logout.php'>Logout</a></li>"; } ?>
+        <li><a href="<?php echo $website_home; ?>login-register.php">Login / Register</a></li>
+        <li><a href="<?php echo $website_home; ?>profile.php">Profile Page</a></li>
+        <?php if(isset($_SESSION['email'])){ print "<li><a href='{?php echo $website_home; ?>logout.php'>Logout</a></li>"; } ?>
     </ul>
 </body>
 

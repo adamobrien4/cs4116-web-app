@@ -1,0 +1,14 @@
+
+<?php
+$website_home = "http://localhost/cs4116-web-app/";
+
+$db_host = NULL;
+$db_user = NULL;
+$db_password = NULL;
+$db_name = NULL;
+
+if($db_name == NULL || $db_user == NULL || $db_host == NULL) {
+    die("Please update ../includes/global_vars.php to continue");
+}
+
+?>
