@@ -11,7 +11,7 @@ if( isset($_POST['email']) && isset($_POST['psw1']) && isset($_POST['psw2']) ) {
     $psw_encrypt = sha1($psw2);
 
     if( $psw1 == $psw2 ) {
-        $query = "INSERT INTO users (email, password) VALUES ('{$email}', '{$psw_encrypt}')";
+        $query = "INSERT INTO users (email, password) VALUES ('" . $email . "', '" . $psw_encrypt . "')";
 
         print $query;
 
