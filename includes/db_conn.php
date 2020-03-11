@@ -1,8 +1,6 @@
 <?php
 
-include "./global_vars.php";
-
-$db_conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+$db_conn = mysqli_connect('localhost', 'root', '', 'cs4116');
 
 if( mysqli_connect_errno() ) {
     die("Failed to connect to DB");
