@@ -1,6 +1,6 @@
 <?php
 
-header('Location:http://localhost/cs4116-web-app/login.php');
+header('Location:http://hive.csis.ul.ie/cs4116/17226864/login.php');
 exit();
 
 ?>

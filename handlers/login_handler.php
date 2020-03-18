@@ -23,8 +23,10 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
 
-        header("http://localhost/cs4116-web-app/profile/ ");
+        header("location: http://hive.csis.ul.ie/cs4116/17226864/profile/ ");
     }
+} else {
+    die("Required data not found");
 }
 
 ?>

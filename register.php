@@ -33,10 +33,10 @@ login_check(0);
 						<input type="email" class="form-control form-control-sm" name="email" placeholder="Email">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control form-control-sm" name="psw" placeholder="Password">
+						<input type="password" class="form-control form-control-sm" name="psw1" placeholder="Password">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control form-control-sm" name="psw_repeat" placeholder="Password Repeat">
+						<input type="password" class="form-control form-control-sm" name="psw2" placeholder="Password Repeat">
 					</div>
 
 					<input type="submit" class="col-10 btn btn-sm btn-outline-primary" value="Register">
