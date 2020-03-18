@@ -1,6 +1,9 @@
 <?php
 
-header('Location:http://hive.csis.ul.ie/cs4116/17226864/login.php');
+include_once('vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable(__DIR__)->load();
+
+header("Location:{$_ENV['site_home']}login.php");
 exit();
 
 ?>

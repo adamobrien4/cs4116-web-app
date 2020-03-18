@@ -1,5 +1,8 @@
 <?php
 
+include_once('vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable(__DIR__)->load();
+
 include "./includes/login_check.php";
 
 login_check(0);

@@ -1,5 +1,8 @@
 <?php
 
+include_once('../vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable('../')->load();
+
 include '../includes/db_conn.php';
 include '../includes/login_check.php';
 
@@ -15,7 +18,9 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $query = "Select user_id, email, password FROM users WHERE email = '" . $_POST['email'] . "' AND password = '" . $psw_encrypt . "'";
 
-    if( $res = mysqli_query($db_conn, $query) ) {
+    $res = mysqli_query($db_conn, $query);
+
+    if( mysqli_num_rows($res) > 0 ) {
         // Found user
         $user = mysqli_fetch_assoc($res);
 
@@ -23,7 +28,9 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
 
-        header("location: http://hive.csis.ul.ie/cs4116/17226864/profile/ ");
+        header("location: {$_ENV['site_home']}profile/");
+    } else {
+        header("location: {$_ENV['site_home']}login.php");
     }
 } else {
     die("Required data not found");

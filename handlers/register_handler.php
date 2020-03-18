@@ -1,5 +1,8 @@
 <?php
 
+include_once('../vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable('../')->load();
+
 include "../includes/db_conn.php";
 
 if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['psw1']) && isset($_POST['psw2']) ) {
@@ -17,7 +20,7 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
 
         if( mysqli_query($db_conn, $query) ) {
             print "Account created";
-            header("location: http://hive.csis.ul.ie/cs4116/17226864/");
+            header("location: {$_ENV['site_home']}");
         } else {
             die("An error occurred.");
         }
