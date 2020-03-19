@@ -1,7 +1,7 @@
 <?php
 
-include_once('../vendor/autoload.php');
-\Dotenv\Dotenv::createImmutable('../')->load();
+include_once('./vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
 include "./includes/session_manager.php";
 

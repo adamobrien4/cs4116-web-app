@@ -16,7 +16,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $psw_encrypt = sha1($psw);
 
-    $query = "Select user_id, email, password FROM users WHERE email = '" . $_POST['email'] . "' AND password = '" . $psw_encrypt . "'";
+    $query = "Select user_id, email, password FROM users WHERE email = '{$_POST['email']}' AND password = '{$psw_encrypt}'";
 
     $res = mysqli_query($db_conn, $query);
 

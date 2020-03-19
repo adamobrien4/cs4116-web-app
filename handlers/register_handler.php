@@ -17,10 +17,21 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
 
     if( $psw1 == $psw2 ) {
         $query = "INSERT INTO users (firstname, lastname, email, password) VALUES ('{$fn}', '{$ln}', '{$email}', '{$psw_encrypt}')";
+        $res = mysqli_query($db_conn, $query);
+        $insert_id = mysqli_insert_id($db_conn);
 
-        if( mysqli_query($db_conn, $query) ) {
-            print "Account created";
-            header("location: {$_ENV['site_home']}");
+        if( $insert_id ) {
+
+            $prof_query = "INSERT INTO profiles (user_id, completed) VALUES ('{$insert_id}', 0)";
+            $res = mysqli_query($db_conn, $prof_query);
+            $prof_insert_id = mysqli_insert_id($db_conn);
+
+            if( $prof_insert_id ){
+                print "Account created";
+                header("location: {$_ENV['site_home']}");
+            } else {
+                die("Profile not created");
+            }
         } else {
             die("An error occurred.");
         }

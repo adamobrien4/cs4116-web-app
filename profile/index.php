@@ -1,6 +1,25 @@
 <?php
 
+include_once('../vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable('../')->load();
 
+include '../includes/db_conn.php';
+include '../includes/login_check.php';
+include '../includes/helper_functions.php';
+
+// Allow only logged in users to visit this page
+login_check(1);
+
+
+// Retrieve profile data from current user
+$user_profile_data = get_profile_data($db_conn, $_SESSION['user_id']);
+
+if( $user_profile_data == null) {
+	// User profile not found
+	echo "User profile not found";
+} else {
+	var_dump($user_profile_data);
+}
 
 ?>
 
@@ -16,6 +35,11 @@
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script>
+		var user_profile_data = <?php echo json_encode($user_profile_data) ?>;
+	</script>
+
 	<script src="./profile.js"></script>
 </head>
 <body>
@@ -36,34 +60,34 @@
 			<div class="col-lg-4">
 				<form action="index.php" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control form-control-sm" name="firstname" placeholder="First Name">
+						<input type="text" class="form-control form-control-sm" name="firstname" id="firstname" placeholder="First Name">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control form-control-sm" name="lastname" placeholder="Last Name">
+						<input type="text" class="form-control form-control-sm" name="lastname" id="lastname" placeholder="Last Name">
 					</div>
 					<div class="form-group">
-						<input type="number" class="form-control form-control-sm" name="age" placeHolder="Age">
+						<input type="number" class="form-control form-control-sm" name="age" id="age" placeHolder="Age">
 					</div>
 					<fieldset>
-						<legend>Select a Gender: </legend>
-						<label for="gender-1">Male</label>
-						<input type="radio" name="gender" id="gender-1">
-						<label for="gender-2">Female</label>
-						<input type="radio" name="gender" id="gender-2">
+						<legend>I am a: </legend>
+						<label for="gender-m">Male</label>
+						<input type="radio" name="gender" id="gender-m">
+						<label for="gender-f">Female</label>
+						<input type="radio" name="gender" id="gender-f">
 					</fieldset>
 					<fieldset>
-						<legend>Seeking: </legend>
-						<label for="seeking-1">Male</label>
-						<input type="radio" name="seeking" id="seeking-1">
-						<label for="seeking-2">Female</label>
-						<input type="radio" name="seeking" id="seeking-2">
+						<legend>Seeking a: </legend>
+						<label for="seeking-m">Male</label>
+						<input type="radio" name="seeking" id="seeking-m">
+						<label for="seeking-f">Female</label>
+						<input type="radio" name="seeking" id="seeking-f">
 					</fieldset>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<textarea name="description" name="description" cols="30" rows="10"></textarea>
+						<textarea name="description" name="description" id="description" cols="30" rows="10"></textarea>
 					</div>
 
-					<button type="submit" class="btn btn-sm btn-outline-primary">Update Changes</button>
+					<button type="submit" class="btn btn-sm btn-outline-primary">Submit Changes</button>
 				</form>
 			</div>
 		</div>
