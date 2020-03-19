@@ -26,6 +26,12 @@ if (isset($_GET['status'])) {
 	$status = true;
 }
 
+$interests = array(
+	array('name'=>'Bicycle'),
+	array('name'=>'Hiking'),
+	array('name'=>'Snooker')
+);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +52,7 @@ if (isset($_GET['status'])) {
 	<script>
 		var user_profile_data = <?php echo json_encode($user_profile_data) ?>;
 
-		<?php if ($status) { ?> show_updated_notification(); <?php } ?>
+		<?php if ($status) { ?> ;show_updated_notification(); <?php } ?>
 	</script>
 </head>
 
@@ -64,8 +70,22 @@ if (isset($_GET['status'])) {
 					<label class="custom-file-label" for="customFile">Choose Profile Picture</label>
 					<button type="submit">Update Profile Picture</button>
 				</form>
+
+				<h1>Interests</h1>
+				<form action="profile_handler.php" method="post">
+					<h2>Checkbox</h2>
+					<fieldset>
+						<legend>Interests: </legend>
+						<?php foreach($interests as $key => $interest) {
+							print "<label for='checkbox-{$key}'>{$interest['name']}</label><input type='checkbox' name='checkbox-{$key}' id='checkbox-{$key}'>";
+						} ?>
+					</fieldset>
+
+					<button type="submit" class="btn btn-sm btn-outline-primary">Submit Changes</button>
+				</form>
 			</div>
 			<div class="col-lg-4">
+				<h1>Profile / Account Details</h1>
 				<form action="profile_handler.php" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control form-control-sm" name="firstname" id="firstname" placeholder="First Name">

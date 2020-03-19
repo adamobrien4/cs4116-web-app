@@ -1,5 +1,6 @@
 $( function() {
-    //$('input[type="radio"]').checkboxradio();
+    //alert("Checking");
+    $('input[type=checkbox]').checkboxradio();
 
     // Populate form with users data
     $('#firstname').val(user_profile_data.firstname);

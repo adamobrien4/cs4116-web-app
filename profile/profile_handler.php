@@ -27,24 +27,36 @@ if( $user_data ) {
     $desc_check = $description != $user_data['description'];
 
     if( $fn_check || $ln_check ) {
-        $query = "UPDATE users SET ";
+
+        // TODO : I have no clue what the hell is going on here. It clears the firstname and lastname whenever you try and edit either the first or last name.
+
+        echo "<h1>Running fn ln update</h1><br>";
+        $acc_query = "UPDATE users SET ";
         if( $fn_check ) {
-            $query .= "firstname = '{$firstname}',";
+            $acc_query .= "firstname = '{$firstname}',";
         }
         if( $ln_check ) {
-            $query .= "lastname = '{$lastname}',";
+            $acc_query .= "lastname = '{$lastname}',";
         }
 
-        $query = rtrim($query, ',') . " WHERE user_id = {$_SESSION['user_id']}";
-        echo $query . "<br>";
-        mysqli_query($db_conn, $query);
+        $acc_query = rtrim($acc_query, ',') . " WHERE user_id = {$_SESSION['user_id']}";
+        
 
-        if( mysqli_affected_rows($db_conn) ){
+        $f = "UPDATE users SET firstname = 'Adam',lastname = 'OBrien' WHERE user_id = 8";
+        echo $f . "<br>";
+        echo $acc_query . "<br>";
+
+        mysqli_query($db_conn, $acc_query);
+
+        if( mysqli_affected_rows($db_conn) > 0 ){
+            echo "<h2>Updated account</h2><br>";
             // echo "User account updated";
         } else {
             die("User account not updated");
         }
     }
+
+    die("Done");
 
     if( $age_check || $gender_check || $seeking_check || $desc_check ) {
         $query = "UPDATE profiles SET ";
@@ -73,8 +85,8 @@ if( $user_data ) {
         }
     }
 
-    header("location: {$_ENV['site_home']}profile?status=1");
-
+    //header("location: {$_ENV['site_home']}profile?status=1");
+    echo "Done!";
 }
 
 ?>
