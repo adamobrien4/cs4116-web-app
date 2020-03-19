@@ -19,3 +19,7 @@ $( function() {
         $('#seeking-f').prop('checked', true);
     }
 });
+
+function show_updated_notification() {
+    alert("Your account has been updated.");
+}

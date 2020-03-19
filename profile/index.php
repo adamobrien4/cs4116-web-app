@@ -14,17 +14,23 @@ login_check(1);
 // Retrieve profile data from current user
 $user_profile_data = get_profile_data($db_conn, $_SESSION['user_id']);
 
-if( $user_profile_data == null) {
+if ($user_profile_data == null) {
 	// User profile not found
 	echo "User profile not found";
 } else {
-	var_dump($user_profile_data);
+	//var_dump($user_profile_data);
+}
+
+$status = false;
+if (isset($_GET['status'])) {
+	$status = true;
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,13 +41,15 @@ if( $user_profile_data == null) {
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="./profile.js"></script>
 
 	<script>
 		var user_profile_data = <?php echo json_encode($user_profile_data) ?>;
-	</script>
 
-	<script src="./profile.js"></script>
+		<?php if ($status) { ?> show_updated_notification(); <?php } ?>
+	</script>
 </head>
+
 <body>
 	<div class="container-fluid">
 		<div class="row">
@@ -58,7 +66,7 @@ if( $user_profile_data == null) {
 				</form>
 			</div>
 			<div class="col-lg-4">
-				<form action="index.php" method="post">
+				<form action="profile_handler.php" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control form-control-sm" name="firstname" id="firstname" placeholder="First Name">
 					</div>
@@ -71,16 +79,16 @@ if( $user_profile_data == null) {
 					<fieldset>
 						<legend>I am a: </legend>
 						<label for="gender-m">Male</label>
-						<input type="radio" name="gender" id="gender-m">
+						<input type="radio" name="gender" id="gender-m" value="male">
 						<label for="gender-f">Female</label>
-						<input type="radio" name="gender" id="gender-f">
+						<input type="radio" name="gender" id="gender-f" value="female">
 					</fieldset>
 					<fieldset>
 						<legend>Seeking a: </legend>
 						<label for="seeking-m">Male</label>
-						<input type="radio" name="seeking" id="seeking-m">
+						<input type="radio" name="seeking" id="seeking-m" value="male">
 						<label for="seeking-f">Female</label>
-						<input type="radio" name="seeking" id="seeking-f">
+						<input type="radio" name="seeking" id="seeking-f" value="female">
 					</fieldset>
 					<div class="form-group">
 						<label for="description">Description</label>
@@ -93,4 +101,5 @@ if( $user_profile_data == null) {
 		</div>
 	</div>
 </body>
+
 </html>
