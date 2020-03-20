@@ -8,6 +8,32 @@ include_once('../vendor/autoload.php');
 include "../includes/db_conn.php";
 include "../includes/helper_functions.php";
 
+if( isset($_POST['interests']) ) {
+    $interests = $_POST['interests'];
+
+    $d_query = "DELETE FROM interests WHERE user_id = {$_SESSION['user_id']}";
+
+    if( mysqli_query($db_conn, $d_query) ){
+        // Successful delete
+        $query = "INSERT INTO interests (user_id, interest_id, rank) VALUES ";
+
+        foreach($interests as $k => $el) {
+            $query .= "({$_SESSION['user_id']}, ".$el.", ".$k."),";
+        }
+
+        $query = rtrim($query, ',');
+
+        mysqli_query($db_conn, $query);
+
+        if( mysqli_affected_rows($db_conn) > 0 ) {
+            // Successful insert
+            die("ok");
+        }
+    }
+}
+
+die("Nope");
+
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
 $age = $_POST['age'];

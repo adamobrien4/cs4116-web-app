@@ -56,7 +56,7 @@ function get_user_interests($db_conn, $user_id) {
         while( $row = mysqli_fetch_assoc($res) ) {
             array_push($r, $row['interest_id']);
         }
-        $res->free();
+        $res->free(); 
         return $r;
     } else {
         return false;

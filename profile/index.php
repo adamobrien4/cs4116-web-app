@@ -58,13 +58,18 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 		var user_profile_data = <?php echo json_encode($user_profile_data) ?>;
 
 		var available_interests = <?php echo json_encode($available_interests); ?>;
-		var user_interests = <?php echo json_encode($user_interests); ?>;
+		var user_interests_php = <?php echo json_encode($user_interests); ?>;
+		var user_interests = [];
+		
+		if(user_interests_php.length) {
+			user_interests = user_interests_php.map(Number);
+		}
 
 		/* user_interests
 			index = ranking : 0 is best, 1 is second ... 4 is last
 			value = interest_id
 		*/
-		
+
 		<?php if ($status) { ?>;
 			show_updated_notification();
 		<?php } ?>
@@ -87,19 +92,17 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 				</form>
 
 				<h1>Interests</h1>
-				<form action="profile_handler.php" method="post">
-					<h2>Checkbox</h2>
-					<fieldset>
-						<legend>Interests: </legend>
-						<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addInterestsMenu" aria-expanded="false" aria-controls="addInterestsMenu">
-							Add an interest
-						</button>
-						<div id="addInterestsMenu" class="collapse"></div>
-						<ul class="list-group clearfix" id="interests-list"></ul>
-					</fieldset>
+				<h2>Checkbox</h2>
+				<fieldset>
+					<legend>Interests: </legend>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addInterestsMenu" aria-expanded="false" aria-controls="addInterestsMenu">
+						Add an interest
+					</button>
+					<div id="addInterestsMenu" class="collapse"></div>
+					<ul class="list-group clearfix" id="interests-list"></ul>
+				</fieldset>
 
-					<button type="submit" class="btn btn-sm btn-outline-primary">Submit Changes</button>
-				</form>
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick='submitInterests()'>Submit Interests</button>
 			</div>
 			<div class="col-lg-4">
 				<h1>Profile / Account Details</h1>
