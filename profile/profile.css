@@ -1,0 +1,11 @@
+.collapse.show {
+    visibility: visible;
+}
+
+.grid-square {
+    display: inline-block;
+    background-color: #fff;
+    border: solid 1px rgb(0,0,0,0.2);
+    padding: 4px;
+    margin: 4px;
+}

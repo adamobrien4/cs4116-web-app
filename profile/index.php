@@ -26,11 +26,8 @@ if (isset($_GET['status'])) {
 	$status = true;
 }
 
-$interests = array(
-	array('name'=>'Bicycle'),
-	array('name'=>'Hiking'),
-	array('name'=>'Snooker')
-);
+$available_interests = get_available_interests($db_conn);
+$user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 
 ?>
 
@@ -45,14 +42,32 @@ $interests = array(
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+	<!-- material icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" href="profile.css">
+
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="module" src="../node_modules/sortablejs/sortable.js"></script>
 	<script src="./profile.js"></script>
 
 	<script>
 		var user_profile_data = <?php echo json_encode($user_profile_data) ?>;
 
-		<?php if ($status) { ?> ;show_updated_notification(); <?php } ?>
+		var available_interests = <?php echo json_encode($available_interests); ?>;
+		var user_interests = <?php echo json_encode($user_interests); ?>;
+
+		/* user_interests
+			index = ranking : 0 is best, 1 is second ... 4 is last
+			value = interest_id
+		*/
+		
+		<?php if ($status) { ?>;
+			show_updated_notification();
+		<?php } ?>
 	</script>
 </head>
 
@@ -76,9 +91,11 @@ $interests = array(
 					<h2>Checkbox</h2>
 					<fieldset>
 						<legend>Interests: </legend>
-						<?php foreach($interests as $key => $interest) {
-							print "<label for='checkbox-{$key}'>{$interest['name']}</label><input type='checkbox' name='checkbox-{$key}' id='checkbox-{$key}'>";
-						} ?>
+						<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addInterestsMenu" aria-expanded="false" aria-controls="addInterestsMenu">
+							Add an interest
+						</button>
+						<div id="addInterestsMenu" class="collapse"></div>
+						<ul class="list-group clearfix" id="interests-list"></ul>
 					</fieldset>
 
 					<button type="submit" class="btn btn-sm btn-outline-primary">Submit Changes</button>
