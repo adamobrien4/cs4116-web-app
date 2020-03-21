@@ -53,10 +53,10 @@ function get_user_interests($db_conn, $user_id) {
     $res = mysqli_query($db_conn, $query);
 
     if( mysqli_num_rows($res) > 0 ) {
-        while( $row = mysqli_fetch_assoc($res) ) {
-            array_push($r, $row['interest_id']);
+        while( $row = mysqli_fetch_assoc($res) ) { //returns $res as an associative array right? but why exactly does it need to be that way?
+            array_push($r, $row['interest_id']); //where does array_push merge $r and $row['interest_id'] to?
         }
-        $res->free(); 
+        $res->free(); //do you need to free the space? run  
         return $r;
     } else {
         return false;
@@ -77,6 +77,25 @@ function check_profile_status($db_conn, $user_id) {
         // No data found
         return FALSE;
     }
+}
+
+
+// Gets a list of all the traits for this user
+function get_user_traits($dbconn, $user_id) {
+    $traits = array();
+    $query = "SELECT trait_id FROM traits WHERE user_id = {$_SESSION['user_id']}";
+    $res = mysqli_query($db_conn, $query);
+
+    if( mysqli_num_rows($res) > 0 ) {
+        while( $row = mysqli_fetch_assoc($res) ) {
+            array_push($traits, $row['trait_id']);
+        }
+        $res->free(); 
+        return $traits;
+    } else {
+        return false;
+    }
+    
 }
 
 ?>
