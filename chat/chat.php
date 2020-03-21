@@ -1,12 +1,4 @@
-@@ -1,15 +1,210 @@
-<? php
 
-    include_once('../vendor/autoload.php');
-    \Dotenv\Dotenv::createImmutable('../')->load();
-
-    include '../includes/db_conn.php';
-    include '../includes/login_check.php';
-    include '../includes/helper_functions.php';
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -23,7 +15,7 @@
    
     </head>
 
-    login_check(1);
+
 <body>
 <div class="bootstrap_chat">
 <div class="container py-5 px-4">
@@ -54,7 +46,7 @@
               </div>
             </a>
 
-?>
+
             <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">
               <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
                 <div class="media-body ml-4">
