@@ -16,7 +16,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $psw_encrypt = sha1($psw);
 
-    $query = "Select user_id, email, password FROM users WHERE email = '{$_POST['email']}' AND password = '{$psw_encrypt}'";
+    $query = "Select user_id, email, password, admin FROM users WHERE email = '{$_POST['email']}' AND password = '{$psw_encrypt}'";
 
     $res = mysqli_query($db_conn, $query);
 
@@ -27,6 +27,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         // Set SESSION variables
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
+        $_SESSION['admin'] = $_SESSION['admin'];
 
         header("location: {$_ENV['site_home']}profile/");
     } else {

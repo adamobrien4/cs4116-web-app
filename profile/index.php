@@ -153,7 +153,7 @@ $user_traits = get_user_traits($db_conn);
 					</fieldset>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<textarea name="description" name="description" id="description" cols="30" rows="10"></textarea>
+						<textarea name="description" class="form-control" id="description" rows="5"></textarea>
 					</div>
 
 					<button type="submit" class="btn btn-sm btn-outline-primary">Submit Changes</button>
