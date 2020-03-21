@@ -15,12 +15,18 @@ $( function() {
 
     // Populate available interests grid
     jQuery.each(available_interests, function(index, el) {
-        $('#addInterestsMenu').append("<div class='grid-square' data-toggle='tooltip' data-placement='right' title='"+ el.name +"' onclick='addInterest("+ index +")'><span class='material-icons'>"+ el.icon +"</span></div>");
+        $('#addInterestsMenu').append(`<div class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addInterest(${index})'><i class='fas ${el.icon}'></i></div>`);
     });
-    $('[data-toggle="tooltip"]').tooltip()
+
+    // Populate available traits grid
+    jQuery.each(available_traits, function(index, el) {
+        $('#addTraitsMenu').append(`<div class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addTrait(${index})'><i class='fas ${el.icon}'></i></div>`);
+    });
+    $('[data-toggle="tooltip"]').tooltip();
 
 
     populate_user_interests_list();
+    populate_user_traits_list();
 
     populate_data_fields();
 });
@@ -29,7 +35,15 @@ function populate_user_interests_list() {
     $('#interests-list').empty();
     jQuery.each(user_interests, function(i, val) {
         var interest = available_interests[val];
-        $('#interests-list').append("<li class='list-group-item' id='interest-item-"+val+"'><div class='input-group'><div class='input-group-prepend'><span class='material-icons btn btn-outline-dark'>"+ interest.icon +"</span></div><span class='form-control'>"+ interest.name +"</span><div class='input-group-append'><button class='btn btn-outline-danger material-icons' type='button' onclick='removeInterest("+ val +")'>delete</button></div></div></li>")
+        $('#interests-list').append(`<li class='list-group-item' id='interest-item-${val}' style='cursor: grab;'><div class='input-group'><div class='input-group-prepend'></span><span class='btn btn-outline-dark fas ${interest.icon}'></span></div><span class='form-control'>${interest.name}</span><div class='input-group-append'><button class='btn btn-outline-danger' type='button' onclick='removeInterest(${val})'><i class='fas fa-trash'></i></button></div></div></li>`)
+    });
+}
+
+function populate_user_traits_list() {
+    $('#traits-list').empty();
+    jQuery.each(user_traits, function(i, val) {
+        var trait = available_traits[val];
+        $('#traits-list').append(`<li class='list-group-item' id='trait-item-${val}'><div class='input-group'><div class='input-group-prepend'><span class='btn btn-outline-dark fas ${trait.icon}'></span></div><span class='form-control'>${trait.name}</span><div class='input-group-append'><button class='btn btn-outline-danger' type='button' onclick='removeTrait(${val})'><i class='fas fa-trash'></i></button></div></div></li>`)
     });
 }
 
@@ -69,6 +83,10 @@ function show_updated_notification() {
 }
 
 function addInterest(interest_id) {
+    if( user_interests.length >= 5 ){
+        alert("Only 5 interests at a time.");
+        return;
+    }
     for(var iid of user_interests) {
         if(iid == interest_id) {
             // Duplicate interest not allowed
@@ -81,14 +99,39 @@ function addInterest(interest_id) {
     populate_user_interests_list();
 }
 
+function addTrait(trait_id) {
+    if( user_traits.length >= 5 ){
+        alert("Only 5 traits at a time.");
+        return;
+    }
+    for(var tid of user_traits) {
+        if(tid == trait_id) {
+            // Duplicate interest not allowed
+            $('#trait-item-' + trait_id).effect('shake');
+            return;
+        }
+    }
+
+    user_traits.push(trait_id);
+    populate_user_traits_list();
+}
+
 function removeInterest(interest_id) {
-    // TODO : Fix bug that is deleting the incorrect value from the user_interests array
     jQuery.each(user_interests, function(i, val) {
         if(val == interest_id) {
             user_interests.splice(i,1);
         }
     });
     populate_user_interests_list();
+}
+
+function removeTrait(trait_id) {
+    jQuery.each(user_traits, function(i, val) {
+        if(val == trait_id) {
+            user_traits.splice(i,1);
+        }
+    });
+    populate_user_traits_list();
 }
 
 function submitInterests() {
@@ -102,6 +145,21 @@ function submitInterests() {
         },
         error: (xhr, status, e) => {
             alert("There was an error. Please try updating your interests again.");
+        }
+    });
+}
+
+function submitTraits() {
+    alert("Submitting Traits");
+
+    $.ajax('profile_handler.php', {
+        type: 'POST',
+        data: {'traits': user_traits},
+        success: (data, status, xhr) => {
+            alert("Traits have been sucessfully updated!");
+        },
+        error: (xhr, status, e) => {
+            alert("There was an error. Please try updating your traits again.");
         }
     });
 }

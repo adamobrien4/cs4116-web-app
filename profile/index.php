@@ -26,8 +26,13 @@ if (isset($_GET['status'])) {
 	$status = true;
 }
 
+// Get interest information
 $available_interests = get_available_interests($db_conn);
-$user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
+$user_interests = get_user_interests($db_conn);
+
+// Get trait information
+$available_traits = get_available_traits($db_conn);
+$user_traits = get_user_traits($db_conn);
 
 ?>
 
@@ -42,9 +47,6 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-	<!-- material icons -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 	<link rel="stylesheet" href="profile.css">
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -52,6 +54,8 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script type="module" src="../node_modules/sortablejs/sortable.js"></script>
+	<!-- Fontawesome Icons -->
+	<script src="https://kit.fontawesome.com/3aa3856778.js" crossorigin="anonymous"></script>
 	<script src="./profile.js"></script>
 
 	<script>
@@ -60,8 +64,8 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 		var available_interests = <?php echo json_encode($available_interests); ?>;
 		var user_interests_php = <?php echo json_encode($user_interests); ?>;
 		var user_interests = [];
-		
-		if(user_interests_php.length) {
+		// Convert interests array from string to Number
+		if(user_interests_php.length > 0) {
 			user_interests = user_interests_php.map(Number);
 		}
 
@@ -69,6 +73,14 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 			index = ranking : 0 is best, 1 is second ... 4 is last
 			value = interest_id
 		*/
+
+		var available_traits = <?php echo json_encode($available_traits) ?>;
+		var user_traits_php = <?php echo json_encode($user_traits) ?>;
+		var user_traits = [];
+		// Convert traits array from string to Number
+		if(user_traits_php.length > 0) {
+			user_traits = user_traits_php.map(Number);
+		}
 
 		<?php if ($status) { ?>;
 			show_updated_notification();
@@ -79,9 +91,7 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-4">
-				Navigation Pane
-			</div>
+			<?php include_once('../html_includes/navigation_pane.php'); ?>
 			<div class="col-lg-4">
 				<div style="width: 100px; height: 100px; border: solid 2px green;">
 				</div>
@@ -101,8 +111,19 @@ $user_interests = get_user_interests($db_conn, $_SESSION['user_id']);
 					<div id="addInterestsMenu" class="collapse"></div>
 					<ul class="list-group clearfix" id="interests-list"></ul>
 				</fieldset>
-
 				<button type="button" class="btn btn-sm btn-outline-primary" onclick='submitInterests()'>Submit Interests</button>
+
+				<h1>Traits</h1>
+				<h2>Checkbox</h2>
+				<fieldset>
+					<legend>Traits: </legend>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addTraitsMenu" aria-expanded="false" aria-controls="addTraitsMenu">
+						Add a Trait
+					</button>
+					<div id="addTraitsMenu" class="collapse"></div>
+					<ul class="list-group clearfix" id="traits-list"></ul>
+				</fieldset>
+				<button type="button" class="btn btn-sm btn-outline-primary" onclick='submitTraits()'>Submit Traits</button>
 			</div>
 			<div class="col-lg-4">
 				<h1>Profile / Account Details</h1>

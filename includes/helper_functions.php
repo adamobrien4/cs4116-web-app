@@ -29,6 +29,7 @@ function get_profile_data($db_conn, $user_id) {
     }
 }
 
+// Gets a list of all available interests from the database
 function get_available_interests($db_conn) {
     $r = array();
     $query = "SELECT interest_id, name, icon FROM available_interests";
@@ -46,21 +47,56 @@ function get_available_interests($db_conn) {
     }
 }
 
+// Gets a list of available traits from the database
+function get_available_traits($db_conn) {
+    $r = array();
+    $query = "SELECT trait_id, name, icon FROM available_traits";
+
+    $res = mysqli_query($db_conn, $query);
+
+    if( mysqli_num_rows($res) > 0 ){
+        while( $row = mysqli_fetch_assoc($res) ) {
+            $r[$row['trait_id']] = array('name' => $row['name'], 'icon' => $row['icon']);
+        }
+        $res->free();
+        return $r;
+    } else {
+        return false;
+    }
+}
+
 // Gets a list of all the interests for this user
-function get_user_interests($db_conn, $user_id) {
+function get_user_interests($db_conn) {
     $r = array();
     $query = "SELECT interest_id, rank FROM interests WHERE user_id = {$_SESSION['user_id']}";
     $res = mysqli_query($db_conn, $query);
 
     if( mysqli_num_rows($res) > 0 ) {
-        while( $row = mysqli_fetch_assoc($res) ) { //returns $res as an associative array right? but why exactly does it need to be that way?
-            array_push($r, $row['interest_id']); //where does array_push merge $r and $row['interest_id'] to?
+        while( $row = mysqli_fetch_assoc($res) ) {
+            array_push($r, $row['interest_id']);
         }
-        $res->free(); //do you need to free the space? run  
+        $res->free();
         return $r;
     } else {
         return false;
     }
+}
+
+// Gets a list of all the traits for this user
+function get_user_traits($db_conn) {
+    $traits = array();
+    $query = "SELECT trait_id FROM traits WHERE user_id = {$_SESSION['user_id']}";
+    $res = mysqli_query($db_conn, $query);
+
+    if( mysqli_num_rows($res) > 0 ) {
+        while( $row = mysqli_fetch_assoc($res) ) {
+            array_push($traits, $row['trait_id']);
+        }
+        $res->free(); 
+        return $traits;
+    } else {
+        return false;
+    } 
 }
 
 // Returns whether the users profile is completed or not
@@ -77,25 +113,6 @@ function check_profile_status($db_conn, $user_id) {
         // No data found
         return FALSE;
     }
-}
-
-
-// Gets a list of all the traits for this user
-function get_user_traits($dbconn, $user_id) {
-    $traits = array();
-    $query = "SELECT trait_id FROM traits WHERE user_id = {$_SESSION['user_id']}";
-    $res = mysqli_query($db_conn, $query);
-
-    if( mysqli_num_rows($res) > 0 ) {
-        while( $row = mysqli_fetch_assoc($res) ) {
-            array_push($traits, $row['trait_id']);
-        }
-        $res->free(); 
-        return $traits;
-    } else {
-        return false;
-    }
-    
 }
 
 ?>
