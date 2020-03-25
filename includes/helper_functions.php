@@ -118,9 +118,17 @@ function check_profile_status($db_conn, $user_id) {
 
 //Returns a user's profile picture
 function get_user_profile_picture($db_conn, $user_id){
-$query = "SELECT photo FROM profiles WHERE user_id = {$user_id}";
+    $query = "SELECT photo FROM profiles WHERE user_id = {$user_id} LIMIT 1";
 
-return mysqli_query($db_conn, $query);
+    $res = mysqli_query($db_conn, $query);
+
+    if( mysqli_num_rows($res) > 0 ) {
+        // Found users profile picture link
+        $row = mysqli_fetch_assoc($res);
+
+        return $row['photo'];
+    }
+    return null;
 }
 
 

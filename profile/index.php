@@ -49,11 +49,13 @@ $user_traits = get_user_traits($db_conn);
 
 	<link rel="stylesheet" href="profile.css">
 
+	<link rel="stylesheet" href="../html_includes/css/navigation_sidebar.css"/>
+
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script type="module" src="../node_modules/sortablejs/sortable.js"></script>
+	<script type="module" src="../node_modules/sortablejs/Sortable.js"></script>
 	<!-- Fontawesome Icons -->
 	<script src="https://kit.fontawesome.com/3aa3856778.js" crossorigin="anonymous"></script>
 	<script src="./profile.js"></script>
