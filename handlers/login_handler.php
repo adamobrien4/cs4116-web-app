@@ -27,7 +27,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         // Set SESSION variables
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['admin'] = $_SESSION['admin'];
+        $_SESSION['admin'] = $user['admin'];
 
         header("location: {$_ENV['site_home']}profile/");
     } else {
