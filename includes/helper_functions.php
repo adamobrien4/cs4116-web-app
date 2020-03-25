@@ -124,5 +124,4 @@ return mysqli_query($db_conn, $query);
 }
 
 
-
 ?>
