@@ -49,6 +49,7 @@ function populate_user_traits_list() {
 }
 
 function populate_data_fields() {
+    console.log(user_profile_data);
     // Populate form with users data
     $('#firstname').val(user_profile_data.firstname);
     $('#lastname').val(user_profile_data.lastname);

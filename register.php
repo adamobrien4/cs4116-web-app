@@ -24,21 +24,21 @@ login_check(0);
 			<div id="login" class="contentbox">
 				<div class="loginbox">
 				<h1 class="headertext">DatingSucks</h1>
-					<form class="col-10 mx-auto" action="./handlers/login_handler.php" method="post">
+					<form class="col-10 mx-auto" action="./handlers/register_handler.php" method="post">
 						<div class="pass">
-							<input type="name" class="field" name="email" placeholder="Firstname">
+							<input type="name" class="field" name="firstname" placeholder="Firstname">
 						</div>
 						<div class="form-group">
-							<input type="name" class="field" name="password" placeholder="Lastname">
+							<input type="name" class="field" name="lastname" placeholder="Lastname">
 						</div>
 						<div class="form-group">
-							<input type="email" class="field" name="password" placeholder="Email">
+							<input type="email" class="field" name="email" placeholder="Email">
 						</div>
 						<div class="form-group">
-							<input type="password" class="field" name="password" placeholder="Password">
+							<input type="password" class="field" name="psw1" placeholder="Password">
 						</div>
 						<div class="form-group">
-							<input type="password" class="field" name="password" placeholder="Repeat password">
+							<input type="password" class="field" name="psw2" placeholder="Repeat password">
 						</div>
 						<input type="submit" class="btn" value="Register">
 					</form>	

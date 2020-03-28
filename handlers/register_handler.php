@@ -21,7 +21,6 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
         $insert_id = mysqli_insert_id($db_conn);
 
         if( $insert_id ) {
-
             $prof_query = "INSERT INTO profiles (user_id, completed) VALUES ('{$insert_id}', 0)";
             $res = mysqli_query($db_conn, $prof_query);
             $prof_insert_id = mysqli_insert_id($db_conn);
