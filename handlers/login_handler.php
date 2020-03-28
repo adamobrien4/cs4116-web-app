@@ -11,7 +11,7 @@ login_check(0);
 
 if( isset($_POST['email']) && isset($_POST['password']) ) {
 
-    $email = $_POST['email'];
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $psw = $_POST['password'];
 
     $psw_encrypt = sha1($psw);

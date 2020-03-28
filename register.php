@@ -16,7 +16,6 @@ login_check(0);
 	<link rel="stylesheet" href="webstyle.css">
 </head>
 
-
 <body>
 	<div class="container-fluid">
 		<div class="main">

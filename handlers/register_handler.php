@@ -7,9 +7,9 @@ include "../includes/db_conn.php";
 
 if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['psw1']) && isset($_POST['psw2']) ) {
 
-    $fn = addslashes($_POST['firstname']);
-    $ln = addslashes($_POST['lastname']);
-    $email = $_POST['email'];
+    $fn = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['firstname']);
+    $ln = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['lastname']);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $psw1 = $_POST['psw1'];
     $psw2 = $_POST['psw2'];
 
@@ -27,7 +27,7 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
 
             if( $prof_insert_id ){
                 print "Account created";
-                header("location: {$_ENV['site_home']}/login.php?n=register_success");
+                header("location: {$_ENV['site_home']}login.php?n=register_success");
             } else {
                 die("Profile not created");
             }

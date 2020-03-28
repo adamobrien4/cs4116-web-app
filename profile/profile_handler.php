@@ -70,12 +70,12 @@ if( isset($_POST['traits']) ) {
 
 if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age']) && isset($_POST['gender']) && isset($_POST['seeking']) && isset($_POST['description']) ) {
 
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $age = $_POST['age'];
-    $gender = $_POST['gender'];
-    $seeking = $_POST['seeking'];
-    $description = $_POST['description'];
+    $firstname = preg_replace("/[^a-zA-Z]+/", "", $_POST['firstname']);
+    $lastname = preg_replace("/[^a-zA-Z]+/", "", $_POST['lastname']);
+    $age = preg_replace("/[^0-9]+/", "", $_POST['age']);
+    $gender = preg_replace("/[^a-z]+/", "", $_POST['gender']);
+    $seeking = preg_replace("/[^a-z]+/", "", $_POST['seeking']);
+    $description = preg_replace("/[^a-zA-Z0-9 ]+/", "", $_POST['description']);
 
     $user_data = get_profile_data($db_conn, $_SESSION['user_id']);
 
