@@ -132,5 +132,4 @@ function get_user_profile_picture($db_conn, $user_id){
 }
 
 
-
 ?>
