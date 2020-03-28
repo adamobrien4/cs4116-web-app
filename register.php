@@ -40,7 +40,7 @@ login_check(0);
 						<div class="form-group">
 							<input type="password" class="field" name="psw2" placeholder="Repeat password">
 						</div>
-						<input type="submit" class="btn" value="Register">
+						<input type="submit" class="cbtn" value="Register">
 					</form>	
 					<div class = "registerinfo">
 						<label class = "registertext">Already have an account? </label>
@@ -82,7 +82,7 @@ login_check(0);
 						</div>
 
 						<div >
-							<button type="submit" class="btn" name="save">Find Users(no logic)</button>
+							<button type="submit" class="cbtn" name="save">Find Users(no logic)</button>
 						</div>
 					</form>
 				</div>

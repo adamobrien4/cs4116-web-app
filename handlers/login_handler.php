@@ -31,10 +31,10 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
         header("location: {$_ENV['site_home']}profile/");
     } else {
-        header("location: {$_ENV['site_home']}login.php");
+        header("location: {$_ENV['site_home']}login.php?n=creds_incorrect");
     }
 } else {
-    die("Required data not found");
+    header("location: {$_ENV['site_home']}login.php?n=login_error");
 }
 
 ?>

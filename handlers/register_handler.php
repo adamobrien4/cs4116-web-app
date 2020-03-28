@@ -27,7 +27,7 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
 
             if( $prof_insert_id ){
                 print "Account created";
-                header("location: {$_ENV['site_home']}");
+                header("location: {$_ENV['site_home']}/login.php?n=register_success");
             } else {
                 die("Profile not created");
             }

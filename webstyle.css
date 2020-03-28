@@ -93,7 +93,7 @@ a:hover {
     color: rgb(218, 218, 218);
 }
 
-.btn{
+.cbtn{
     background-color: #3498db;
     color: white;
     border: 1.5px;
@@ -107,13 +107,13 @@ a:hover {
     box-shadow: 0 3px 5px rgba(0,0 ,0,.2);
 }
 
-.btn:hover{
+.cbtn:hover{
     background: rgb(255, 255, 255);
     color: #3498db;
     border: none;
 }
 
-.btn:hover{
+.cbtn:hover{
     background: rgb(255, 255, 255);
     color: #3498db;
     outline: none;
