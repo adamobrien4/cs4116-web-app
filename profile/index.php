@@ -187,9 +187,9 @@ $user_traits = get_user_traits($db_conn);
 </div>
 </div>
 
-    <script src="..\assets/js/jquery.min.js"></script>
-    <script src="..\assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="..\assets/js/Sidebar-Menu.js"></script>
+<script src="..\assets/js/jquery.min.js"></script>
+<script src="..\assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="..\assets/js/Sidebar-Menu.js"></script>
 </body>
 
 </html>
