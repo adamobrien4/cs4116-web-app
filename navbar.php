@@ -19,7 +19,7 @@
 
 
 
-            <?php if($_SESSION['admin'] == 1){ echo '<li><a style="color:pink" href="' . $_ENV['site_home'] . 'admin ">ADMIN </a></li>';} ?>  
+            <?php if($_SESSION['admin'] == 1){ echo '<li><a style="color:pink" href="' . $_ENV['site_home'] . 'admin ">ADMIN </a></li>';} ?>
 
         </ul>
     </div>
