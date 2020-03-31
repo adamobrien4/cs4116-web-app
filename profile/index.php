@@ -44,17 +44,14 @@ $user_traits = get_user_traits($db_conn);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Profile</title>
-    <link rel="stylesheet" href="..\assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="..\assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu-1.css">
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="..\assets/css/styles.css">
 
-    <!-- this css needs to not be commented as it overrides the css that's imported from /assets -- it also works now if its uncommented idk
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
--->
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     <link rel="stylesheet" href="profile.css">
 
@@ -107,11 +104,11 @@ $user_traits = get_user_traits($db_conn);
         <?php include('..\navbar.php'); ?>
 
         <div class="page-content-wrapper">
-            <div class="container-fluid"><a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
+            <div class="container-fluid">
+                <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
 
                 <div class="row">
-
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div style="width: 100px; height: 100px; border: solid 2px green;">
                         </div>
                         <form action="index.php" method="post">
@@ -145,7 +142,7 @@ $user_traits = get_user_traits($db_conn);
                         <button type="button" class="btn btn-sm btn-outline-primary" onclick='submitTraits()'>Submit Traits</button>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <h1>Profile / Account Details</h1>
                         <form action="profile_handler.php" method="post">
                             <div class="form-group">

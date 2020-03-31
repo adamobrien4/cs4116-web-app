@@ -13,10 +13,8 @@
         <li><a href=" <?php echo $_ENV['site_home'] ?>chat">CHAT </a></li>
         <li><a href="<?php echo $_ENV['site_home'] ?>profile">PROFILE </a></li>
 
-
-
         <?php if ($_SESSION['admin'] == 1) {
-            echo '<li><a style="color:pink" href="' . $_ENV['site_home'] . 'admin ">ADMIN </a></li>';
+            echo '<li><a style="color:pink" href="' . $_ENV['site_home'] . 'admin ">ADMIN</a></li>';
         } ?>
 
     </ul>
