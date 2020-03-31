@@ -19,11 +19,23 @@ login_check(1);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="..\assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="..\assets/fonts/font-awesome.min.css">
+
+
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu-1.css">
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="..\assets/css/styles.css">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
 
 
 
@@ -32,10 +44,12 @@ login_check(1);
 
 <body>
 
-<?php include ('..\navbar.php'); ?>
+<div id="wrapper">
+    <?php include('..\navbar.php'); ?>
 
-<div class="page-content-wrapper">
-    <div class="container-fluid"><a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
+    <div class="page-content-wrapper">
+        <div class="container-fluid">
+            <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
 
         <h1>Admin Portal</h1>
 
@@ -48,14 +62,10 @@ login_check(1);
 
     </div>
 
-    <script src="..\assets/js/jquery.min.js"></script>
-    <script src="..\assets/bootstrap/js/bootstrap.min.js"></script>
+
     <script src="..\assets/js/Sidebar-Menu.js"></script>
+
 </div>
-
-
-
-
 
 </body>
 </html>
