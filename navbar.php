@@ -13,7 +13,7 @@
             <?php if(isset($_SESSION['user_id'])){ echo '<li><a href="' . $_ENV['site_home'] . '/logout.php">LOGOUT</a></li>'; } ?>
 
             <li><a href="<?php echo $_ENV['site_home'] ?>">HOME</a></li>
-            <li><a href="#">SEARCH </a></li>
+            <li><a href="<?php echo $_ENV['site_home'] ?>search"">SEARCH </a></li>
             <li><a href="<?php echo $_ENV['site_home'] ?>chat">CHAT </a></li>
             <li><a href="<?php echo $_ENV['site_home'] ?>profile">PROFILE </a></li>
 
