@@ -11,8 +11,6 @@ include '../includes/helper_functions.php';
 login_check(1);
 
 
-// Retrieve profile data from current user
-$user_profile_data = get_profile_data($db_conn, $_SESSION['user_id']);
 
 ?>
 <!DOCTYPE html>
