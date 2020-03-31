@@ -11,22 +11,37 @@ $notification_title = null;
 $notification_message = null;
 $notification_type = "primary";
 
-if(isset($_GET['n'])) {
-	switch($_GET['n']) {
+if (isset($_GET['n'])) {
+	switch ($_GET['n']) {
 		case "register_success":
 			$notification_title = "Registration Successful";
 			$notification_message = "You have sucessfully registered!";
-		break;
+			break;
 		case "creds_incorrect":
 			$notification_title = "Incorrect Details";
 			$notification_message = "The details you entered did not match an account.<br>Please try again, or register for a new account.";
 			$notification_type = "warning";
-		break;
+			break;
 		case "login_error":
 			$notification_title = "Try Again";
 			$notification_message = "An error occurred, please try again.";
 			$notification_type = "warning";
-		break;
+			break;
+		case "invalid_gender":
+			$notification_message = "Invalid gender. Please try again";
+			$notification_title = "Form Error";
+			$notification_type = "danger";
+			break;
+		case "invalid_seeking":
+			$notification_message = "Invalid seeking option. Please try again";
+			$notification_title = "Form Error";
+			$notification_type = "danger";
+			break;
+		case "invalid_age":
+			$notification_message = "Invalid age (18-75 only). Please try again";
+			$notification_title = "Form Error";
+			$notification_type = "danger";
+			break;
 	}
 }
 
@@ -49,22 +64,22 @@ if(isset($_GET['n'])) {
 
 <body>
 
-	<?php if($notification_message) { ?>
-	<div id="myModal" class="modal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title"><?php echo $notification_title; ?></h5>
-				</div>
-				<div class="modal-body">
-					<p><?php echo $notification_message; ?></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-<?php echo $notification_type; ?>" onclick="$('#myModal').modal('hide')">Okay</button>
+	<?php if ($notification_message) { ?>
+		<div id="myModal" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"><?php echo $notification_title; ?></h5>
+					</div>
+					<div class="modal-body">
+						<p><?php echo $notification_message; ?></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-<?php echo $notification_type; ?>" onclick="$('#myModal').modal('hide')">Okay</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<?php } ?>
 
 	<div class="container-fluid">
@@ -91,33 +106,25 @@ if(isset($_GET['n'])) {
 			<div id="formbox" class="contentbox">
 				<div class="browsebox">
 					<h1 class="headertext">Browse</h1>
-					<form id="form" action="" method="POST">
+					<form id="form" action="./handlers/register_handler.php" method="POST">
 						<div>
-							<select class="optionbox">
-								<option style="color: rgb(218, 218, 218)" class="dropdownfade" value="Gender" disabled selected>LOAD FROM DATABASE?</option>
-								<option value="male"> x </option>
-								<option value="female"> y </option>
+							<label for="gender">I am a:</label>
+							<select class="optionbox" name="gender">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
 							</select>
 						</div>
 
 						<div>
-							<select class="optionbox">
-								<option style="color: rgb(218, 218, 218)" class="dropdownfade" value="Gender" disabled selected>LOAD FROM DATABASE?</option>
-								<option value="male"> x </option>
-								<option value="female"> y </option>
+							<label for="seeking">Seeking a:</label>
+							<select class="optionbox" name="seeking">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
 							</select>
 						</div>
 
 						<div>
-							<select class="optionbox">
-								<option style="color: rgb(218, 218, 218)" class="dropdownfade" value="Gender" disabled selected>LOAD FROM DATABASE?</option>
-								<option value="male"> x </option>
-								<option value="female"> y </option>
-							</select>
-						</div>
-
-						<div>
-							<input style=" color: #3498db" class="field" type="text" placeholder="INT AGE" id="age" name="age" value=""><br>
+							<input class="field" type="text" placeholder="Age" id="age" name="age"><br>
 						</div>
 
 						<div>

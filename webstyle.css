@@ -119,3 +119,7 @@ a:hover {
     outline: none;
     border: none;
 }
+
+label {
+    display: block !important;
+}
