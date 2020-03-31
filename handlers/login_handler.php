@@ -16,7 +16,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $psw_encrypt = sha1($psw);
 
-    $query = "Select user_id, email, password, admin FROM users WHERE email = '{$_POST['email']}' AND password = '{$psw_encrypt}'";
+    $query = "Select firstname, lastname, user_id, email, password, admin FROM users WHERE email = '{$_POST['email']}' AND password = '{$psw_encrypt}'";
 
     $res = mysqli_query($db_conn, $query);
 
@@ -25,6 +25,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         $user = mysqli_fetch_assoc($res);
 
         // Set SESSION variables
+        $_SESSION['fullname'] = $user['firstname'] . ' ' . $user['lastname'];
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['admin'] = $user['admin'];
