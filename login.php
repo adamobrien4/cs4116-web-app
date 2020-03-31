@@ -15,7 +15,7 @@ if (isset($_GET['n'])) {
 	switch ($_GET['n']) {
 		case "register_success":
 			$notification_title = "Registration Successful";
-			$notification_message = "You have sucessfully registered!";
+			$notification_message = "You have sucessfully registered! Please login to begin searching";
 			break;
 		case "creds_incorrect":
 			$notification_title = "Incorrect Details";

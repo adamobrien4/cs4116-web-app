@@ -9,7 +9,7 @@
             echo '<li><a href="' . $_ENV['site_home'] . '/logout.php">LOGOUT</a></li>';
         } ?>
 
-        <li><a href="<?php echo $_ENV['site_home'] ?>">HOME</a></li>
+        <li><a href="<?php echo $_ENV['site_home'] ?>home">HOME</a></li>
         <li><a href="<?php echo $_ENV['site_home'] ?>search"">SEARCH </a></li>
         <li><a href=" <?php echo $_ENV['site_home'] ?>chat">CHAT </a></li>
         <li><a href="<?php echo $_ENV['site_home'] ?>profile">PROFILE </a></li>
