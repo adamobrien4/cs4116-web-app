@@ -1,4 +1,20 @@
+<?php
 
+include_once('../vendor/autoload.php');
+\Dotenv\Dotenv::createImmutable('../')->load();
+
+include '../includes/db_conn.php';
+include '../includes/login_check.php';
+include '../includes/helper_functions.php';
+
+// Allow only logged in users to visit this page
+login_check(1);
+
+
+// Retrieve profile data from current user
+$user_profile_data = get_profile_data($db_conn, $_SESSION['user_id']);
+
+?>
 <!DOCTYPE html>
 <html lang = "en">
     <head>
