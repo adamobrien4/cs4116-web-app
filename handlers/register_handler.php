@@ -49,6 +49,8 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
 
             if( $prof_insert_id ){
                 print "Account created";
+                //redirect back to login happens after someone has created the account
+                //login page is brought up and register_success is passed as an argument triggering $notification_message
                 header("location: {$_ENV['site_home']}login.php?n=register_success");
             } else {
                 die("Profile not created");
