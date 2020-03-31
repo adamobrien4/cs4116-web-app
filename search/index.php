@@ -14,6 +14,24 @@ login_check(1);
 $available_interests = get_available_interests($db_conn);
 $available_traits = get_available_traits($db_conn);
 
+$gender = "male";
+$seeking = "female";
+
+// Get user details
+$sql = "SELECT gender, seeking FROM profiles WHERE user_id = {$_SESSION['user_id']}";
+
+$res = mysqli_query($db_conn, $sql);
+if($res) {
+    if(mysqli_num_rows($res) > 0){
+        $row = mysqli_fetch_assoc($res);
+
+        var_dump($row);
+
+        $gender = $row['gender'];
+        $seeking = $row['seeking'];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +68,8 @@ $available_traits = get_available_traits($db_conn);
         var age_range = [25, 30];
         var distance_range = [5, 10];
 
-        var gender = "";
-        var seeking = "";
+        var gender = '<?php echo $gender ?>';
+        var seeking = '<?php echo $seeking ?>';
     </script>
 
     <title>Document</title>

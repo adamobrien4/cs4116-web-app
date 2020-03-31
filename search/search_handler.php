@@ -83,26 +83,30 @@ if (isset($_POST['search_data'])) {
 
             $interest_ids = $search_data['interests'];
 
-            // Interests
-            $query = "SELECT user_id, rank FROM interests WHERE user_id in (";
-            foreach($users as $user => $val) {
-                $query .= "{$user},";
-            }
-            $query = rtrim($query, ",") . ") AND interest_id in (";
-            foreach($interest_ids as $iid) {
-                $query .= "{$iid},";
-            }
-            $query = rtrim($query, ",") . ")";
+            if(count($interest_ids) > 0){
 
-            if( $res = mysqli_query($db_conn, $query) ){
-                if( mysqli_num_rows($res) > 0 ){
-                    while($row = mysqli_fetch_assoc($res)) {
-                        if(!isset($users[$row['user_id']])){ $users[$row['user_id']] = 0; }
-                        $users[$row['user_id']] += (60 - $row['rank'] * 10) / 2;
-                    }
-                } else {
-                    // die('not_found');
+                // Interests
+                $query = "SELECT user_id, rank FROM interests WHERE user_id in (";
+                foreach($users as $user => $val) {
+                    $query .= "{$user},";
                 }
+                $query = rtrim($query, ",") . ") AND interest_id in (";
+                foreach($interest_ids as $iid) {
+                    $query .= "{$iid},";
+                }
+                $query = rtrim($query, ",") . ")";
+
+                if( $res = mysqli_query($db_conn, $query) ){
+                    if( mysqli_num_rows($res) > 0 ){
+                        while($row = mysqli_fetch_assoc($res)) {
+                            if(!isset($users[$row['user_id']])){ $users[$row['user_id']] = 0; }
+                            $users[$row['user_id']] += (60 - $row['rank'] * 10) / 2;
+                        }
+                    } else {
+                        // die('not_found');
+                    }
+                }
+
             }
         }
 
@@ -111,57 +115,64 @@ if (isset($_POST['search_data'])) {
 
             $trait_ids = $search_data['traits'];
 
-            // Traits
-            $query = "SELECT user_id FROM traits WHERE user_id in (";
-            foreach($users as $user => $val) {
-                $query .= "{$user},";
-            }
-            $query = rtrim($query, ",") . ") AND trait_id in (";
-            foreach($trait_ids as $tid) {
-                $query .= "{$tid},";
-            }
-            $query = rtrim($query, ",") . ")";
+            if(count($trait_ids) > 0){
 
-            if( $res = mysqli_query($db_conn, $query) ){
-                if( mysqli_num_rows($res) > 0 ){
-                    while($row = mysqli_fetch_assoc($res)) {
-                        if(!isset($users[$row['user_id']])){ $users[$row['user_id']] = 0; }
-                        $users[$row['user_id']] += 20;
+                // Traits
+                $query = "SELECT user_id FROM traits WHERE user_id in (";
+                foreach($users as $user => $val) {
+                    $query .= "{$user},";
+                }
+                $query = rtrim($query, ",") . ") AND trait_id in (";
+                foreach($trait_ids as $tid) {
+                    $query .= "{$tid},";
+                }
+                $query = rtrim($query, ",") . ")";
+
+                if( $res = mysqli_query($db_conn, $query) ){
+                    if( mysqli_num_rows($res) > 0 ){
+                        while($row = mysqli_fetch_assoc($res)) {
+                            if(!isset($users[$row['user_id']])){ $users[$row['user_id']] = 0; }
+                            $users[$row['user_id']] += 20;
+                        }
+                    } else {
+                        // die('not_found');
+                    }
+                }
+
+            }
+        }
+
+        if( count($users) > 0){
+            // Get the data related to the resulting users
+            $query = "SELECT users.user_id, firstname, lastname, age, gender, seeking, photo FROM users LEFT JOIN profiles ON profiles.user_id=users.user_id WHERE users.user_id in (";
+
+            foreach($users as $key => $value){
+                $query .= "{$key},";
+            }
+
+            $query = rtrim($query, ",") . ")";
+            
+            if($res = mysqli_query($db_conn, $query)){
+
+                $result = [];
+                if(mysqli_num_rows($res) > 0){
+                    while($row = mysqli_fetch_assoc($res)){
+                        $row['score'] = $users[$row['user_id']];
+                        array_push($result, $row);
                     }
                 } else {
-                    // die('not_found');
-                }
-            }
-        }
-
-        // Get the data related to the resulting users
-        $query = "SELECT users.user_id, firstname, lastname, age, gender, seeking, photo FROM users LEFT JOIN profiles ON profiles.user_id=users.user_id WHERE users.user_id in (";
-
-        foreach($users as $key => $value){
-            $query .= "{$key},";
-        }
-
-        $query = rtrim($query, ",") . ")";
-        
-        if($res = mysqli_query($db_conn, $query)){
-
-            $result = [];
-            if(mysqli_num_rows($res) > 0){
-                while($row = mysqli_fetch_assoc($res)){
-                    $row['score'] = $users[$row['user_id']];
-                    array_push($result, $row);
+                    die("not_found");
                 }
             } else {
-                die("not_found");
+                die("error-s : " . $query);
             }
-        } else {
-            die("error-s : " . $query);
-        }
 
-        echo json_encode($result);
-        die();
+            echo json_encode($result);
+            die();
+        }
+    } else {
+        die('error-data_supply');
     }
-    die('error-data_supply');
 }
 
 ?>
