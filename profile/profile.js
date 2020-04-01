@@ -1,10 +1,5 @@
 $( function() {
-    // Turn checkboxes into JQueryUI elements
-    $('input[type=radio]').checkboxradio({
-        create: function( event, ui ) {
-            populate_data_fields();
-        }
-    });
+    populate_data_fields();
 
     // Enable sortable interests list
     var interestsList = document.getElementById('interests-list');
@@ -27,6 +22,8 @@ $( function() {
     });
     $('[data-toggle="tooltip"]').tooltip();
 
+    // Turn checkboxes into JQueryUI elements
+    $('input[type=radio]').checkboxradio();
 
     populate_user_interests_list();
     populate_user_traits_list();

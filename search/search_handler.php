@@ -15,7 +15,13 @@ if (isset($_POST['search_interests'])) {
 
     $term = $_POST['search_interests'];
 
-    $query = "SELECT interest_id FROM available_interests WHERE name LIKE '%{$term}%'";
+    $query = "";
+
+    if($term == "*") {
+        $query = "SELECT interest_id FROM available_interests";
+    } else {
+        $query = "SELECT interest_id FROM available_interests WHERE name LIKE '%{$term}%'";
+    }
 
     $res = mysqli_query($db_conn, $query);
 
@@ -34,7 +40,13 @@ if (isset($_POST['search_traits'])) {
 
     $term = $_POST['search_traits'];
 
-    $query = "SELECT trait_id FROM available_traits WHERE name LIKE '%{$term}%'";
+    $query = "";
+
+    if($term == "*") {
+        $query = "SELECT trait_id FROM available_traits";
+    } else {
+        $query = "SELECT trait_id FROM available_traits WHERE name LIKE '%{$term}%'";
+    }
 
     $res = mysqli_query($db_conn, $query);
 
