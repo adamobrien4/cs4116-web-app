@@ -7,26 +7,31 @@ function get_profile_data($db_conn, $user_id) {
 
     $res = mysqli_query($db_conn, $query);
 
-    if( mysqli_num_rows($res) > 0 ) {
-        // Found data
-        $return = mysqli_fetch_assoc($res);
-    } else {
-        // No data found
-        return null;
+    if($res){
+        if( mysqli_num_rows($res) > 0 ) {
+            // Found data
+            $return = mysqli_fetch_assoc($res);
+        } else {
+            // No data found
+            return null;
+        }
     }
 
 
-    $query = "SELECT age, gender, seeking, description, photo, completed, banned FROM profiles WHERE user_id = {$user_id} LIMIT 1";
+    $query = "SELECT age, gender, seeking, description, completed, banned FROM profiles WHERE user_id = {$user_id} LIMIT 1";
 
     $res = mysqli_query($db_conn, $query);
 
-    if( mysqli_num_rows($res) > 0 ) {
-        // Found data
-        return array_merge($return, mysqli_fetch_assoc($res));
-    } else {
-        // No data found
-        return null;
+    if($res){
+        if( mysqli_num_rows($res) > 0 ) {
+            // Found data
+            return array_merge($return, mysqli_fetch_assoc($res));
+        } else {
+            // No data found
+            return null;
+        }
     }
+    return null;
 }
 
 // Gets a list of all available interests from the database

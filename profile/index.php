@@ -109,13 +109,19 @@ $user_traits = get_user_traits($db_conn);
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <div style="width: 100px; height: 100px; border: solid 2px green;">
+                        <div class="profile-image">
+                            <img id="profile-image-preview" onerror="this.onerror=null; this.src='http:\/\/100dayscss.com/codepen/upload.svg'" src="../assets/uploads/<?php echo $_SESSION['user_id'] ?>.jpg" />
                         </div>
-                        <form action="index.php" method="post">
-                            <input type="file" class="custom-file-input">
-                            <label class="custom-file-label" for="customFile">Choose Profile Picture</label>
-                            <button type="submit">Update Profile Picture</button>
-                        </form>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-outline-success" name="upload-file" id="profile-image-upload-button">Upload file</button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="profile-image-file" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
 
                         <h1>Interests</h1>
                         <h2>Checkbox</h2>
@@ -127,7 +133,7 @@ $user_traits = get_user_traits($db_conn);
                             <div id="addInterestsMenu" class="collapse"></div>
                             <ul class="list-group clearfix" id="interests-list"></ul>
                         </fieldset>
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick='submitInterests()'>Submit Interests</button>
+                        <button type="button" class="btn btn-outline-primary" onclick='submitInterests()'>Submit Interests</button>
 
                         <h1>Traits</h1>
                         <h2>Checkbox</h2>
@@ -139,7 +145,7 @@ $user_traits = get_user_traits($db_conn);
                             <div id="addTraitsMenu" class="collapse"></div>
                             <ul class="list-group clearfix" id="traits-list"></ul>
                         </fieldset>
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick='submitTraits()'>Submit Traits</button>
+                        <button type="button" class="btn btn-outline-primary" onclick='submitTraits()'>Submit Traits</button>
                     </div>
 
                     <div class="col-lg-6">

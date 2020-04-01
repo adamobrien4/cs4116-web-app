@@ -8,20 +8,20 @@ include_once('../vendor/autoload.php');
 include "../includes/db_conn.php";
 include "../includes/helper_functions.php";
 
-if( isset($_POST['interests']) ) {
+if (isset($_POST['interests'])) {
     $interests = $_POST['interests'];
 
-    if( count($interests) > 5 ){
+    if (count($interests) > 5) {
         die("error: too many interests");
     }
 
     $d_query = "DELETE FROM interests WHERE user_id = {$_SESSION['user_id']}";
 
-    if( mysqli_query($db_conn, $d_query) ){
+    if (mysqli_query($db_conn, $d_query)) {
         // Successful delete
         $query = "INSERT INTO interests (user_id, interest_id, rank) VALUES ";
 
-        foreach($interests as $k => $el) {
+        foreach ($interests as $k => $el) {
             $query .= "({$_SESSION['user_id']}, {$el}, {$k}),";
         }
 
@@ -29,7 +29,7 @@ if( isset($_POST['interests']) ) {
 
         mysqli_query($db_conn, $query);
 
-        if( mysqli_affected_rows($db_conn) > 0 ) {
+        if (mysqli_affected_rows($db_conn) > 0) {
             // Successful insert
             die("ok");
         } else {
@@ -38,20 +38,20 @@ if( isset($_POST['interests']) ) {
     }
 }
 
-if( isset($_POST['traits']) ) {
+if (isset($_POST['traits'])) {
     $traits = $_POST['traits'];
 
-    if( count($traits) > 5 ){
+    if (count($traits) > 5) {
         die("error: too many traits");
     }
 
     $d_query = "DELETE FROM traits WHERE user_id = {$_SESSION['user_id']}";
 
-    if( mysqli_query($db_conn, $d_query) ){
+    if (mysqli_query($db_conn, $d_query)) {
         // Successful delete
         $query = "INSERT INTO traits (user_id, trait_id) VALUES ";
 
-        foreach($traits as $el) {
+        foreach ($traits as $el) {
             $query .= "({$_SESSION['user_id']}, {$el}),";
         }
 
@@ -59,7 +59,7 @@ if( isset($_POST['traits']) ) {
 
         mysqli_query($db_conn, $query);
 
-        if( mysqli_affected_rows($db_conn) > 0 ) {
+        if (mysqli_affected_rows($db_conn) > 0) {
             // Successful insert
             die("ok");
         } else {
@@ -68,7 +68,7 @@ if( isset($_POST['traits']) ) {
     }
 }
 
-if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age']) && isset($_POST['gender']) && isset($_POST['seeking']) && isset($_POST['description']) ) {
+if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age']) && isset($_POST['gender']) && isset($_POST['seeking']) && isset($_POST['description'])) {
 
     $firstname = preg_replace("/[^a-zA-Z]+/", "", $_POST['firstname']);
     $lastname = preg_replace("/[^a-zA-Z]+/", "", $_POST['lastname']);
@@ -79,7 +79,7 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
 
     $user_data = get_profile_data($db_conn, $_SESSION['user_id']);
 
-    if( $user_data ) {
+    if ($user_data) {
 
         $fn_check = $firstname != $user_data['firstname'];
         $ln_check = $lastname != $user_data['lastname'];
@@ -88,15 +88,15 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
         $seeking_check = $seeking != $user_data['seeking'];
         $desc_check = $description != $user_data['description'];
 
-        if( $fn_check || $ln_check ) {
+        if ($fn_check || $ln_check) {
 
             // TODO : I have no clue what the hell is going on here. It clears the firstname and lastname whenever you try and edit either the first or last name.
 
             $acc_query = "UPDATE users SET ";
-            if( $fn_check ) {
+            if ($fn_check) {
                 $acc_query .= "firstname = '{$firstname}',";
             }
-            if( $ln_check ) {
+            if ($ln_check) {
                 $acc_query .= "lastname = '{$lastname}',";
             }
 
@@ -105,33 +105,33 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
 
             mysqli_query($db_conn, $acc_query);
 
-            if( mysqli_affected_rows($db_conn) > 0 ){
+            if (mysqli_affected_rows($db_conn) > 0) {
                 // echo "User account updated";
             } else {
                 die("User account not updated");
             }
         }
 
-        if( $age_check || $gender_check || $seeking_check || $desc_check ) {
+        if ($age_check || $gender_check || $seeking_check || $desc_check) {
             $query = "UPDATE profiles SET ";
 
-            if( $age_check ){
+            if ($age_check) {
                 $query .= "age = {$age},";
             }
-            if( $gender_check ){
+            if ($gender_check) {
                 $query .= "gender = '{$gender}',";
             }
-            if( $seeking_check ){
+            if ($seeking_check) {
                 $query .= "seeking = '{$seeking}',";
             }
-            if( $desc_check ){
+            if ($desc_check) {
                 $query .= "description = '{$description}',";
             }
 
             $query = rtrim($query, ',') . " WHERE user_id = {$_SESSION['user_id']}";
             mysqli_query($db_conn, $query);
 
-            if( mysqli_affected_rows($db_conn) ){
+            if (mysqli_affected_rows($db_conn)) {
                 // echo "User profile updated";
             } else {
                 die("User profile not updated");
@@ -141,5 +141,3 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
         die();
     }
 }
-
-?>

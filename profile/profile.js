@@ -1,4 +1,4 @@
-$( function() {
+$(function () {
     populate_data_fields();
 
     // Enable sortable interests list
@@ -12,12 +12,12 @@ $( function() {
     });
 
     // Populate available interests grid
-    jQuery.each(available_interests, function(index, el) {
+    jQuery.each(available_interests, function (index, el) {
         $('#addInterestsMenu').append(`<div class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addInterest(${index})'><i class='fas ${el.icon}'></i></div>`);
     });
 
     // Populate available traits grid
-    jQuery.each(available_traits, function(index, el) {
+    jQuery.each(available_traits, function (index, el) {
         $('#addTraitsMenu').append(`<div class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addTrait(${index})'><i class='fas ${el.icon}'></i></div>`);
     });
     $('[data-toggle="tooltip"]').tooltip();
@@ -25,13 +25,37 @@ $( function() {
     // Turn checkboxes into JQueryUI elements
     $('input[type=radio]').checkboxradio();
 
+    // Handle profile image uploading
+    $("#profile-image-upload-button").click(function () {
+
+        var fd = new FormData();
+        var files = $('#profile-image-file')[0].files[0];
+        fd.append('file', files);
+
+        $.ajax({
+            url: 'upload.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                console.log(response);
+                if (response != "failure") {
+                    $("#profile-image-preview").attr("src", response);
+                } else {
+                    alert('file not uploaded');
+                }
+            }
+        });
+    });
+
     populate_user_interests_list();
     populate_user_traits_list();
 });
 
 function populate_user_interests_list() {
     $('#interests-list').empty();
-    jQuery.each(user_interests, function(i, val) {
+    jQuery.each(user_interests, function (i, val) {
         var interest = available_interests[val];
         $('#interests-list').append(`<li class='list-group-item' id='interest-item-${val}' style='cursor: grab;'><div class='input-group'><div class='input-group-prepend'></span><span class='btn btn-outline-dark fas ${interest.icon}'></span></div><span class='form-control'>${interest.name}</span><div class='input-group-append'><button class='btn btn-outline-danger' type='button' onclick='removeInterest(${val})'><i class='fas fa-trash'></i></button></div></div></li>`)
     });
@@ -39,7 +63,7 @@ function populate_user_interests_list() {
 
 function populate_user_traits_list() {
     $('#traits-list').empty();
-    jQuery.each(user_traits, function(i, val) {
+    jQuery.each(user_traits, function (i, val) {
         var trait = available_traits[val];
         $('#traits-list').append(`<li class='list-group-item' id='trait-item-${val}'><div class='input-group'><div class='input-group-prepend'><span class='btn btn-outline-dark fas ${trait.icon}'></span></div><span class='form-control'>${trait.name}</span><div class='input-group-append'><button class='btn btn-outline-danger' type='button' onclick='removeTrait(${val})'><i class='fas fa-trash'></i></button></div></div></li>`)
     });
@@ -53,15 +77,15 @@ function populate_data_fields() {
     $('#age').val(user_profile_data.age);
     $('#description').val(user_profile_data.description);
 
-    if(user_profile_data.gender == "male") {
+    if (user_profile_data.gender == "male") {
         $('#gender-m').prop('checked', true);
-    } else if(user_profile_data.gender == "female") {
+    } else if (user_profile_data.gender == "female") {
         $('#gender-f').prop('checked', true);
     }
 
-    if(user_profile_data.seeking == "male") {
+    if (user_profile_data.seeking == "male") {
         $('#seeking-m').prop('checked', true);
-    } else if(user_profile_data.seeking == "female") {
+    } else if (user_profile_data.seeking == "female") {
         $('#seeking-f').prop('checked', true);
     }
 }
@@ -82,12 +106,12 @@ function show_updated_notification() {
 }
 
 function addInterest(interest_id) {
-    if( user_interests.length >= 5 ){
+    if (user_interests.length >= 5) {
         alert("Only 5 interests at a time.");
         return;
     }
-    for(var iid of user_interests) {
-        if(iid == interest_id) {
+    for (var iid of user_interests) {
+        if (iid == interest_id) {
             // Duplicate interest not allowed
             $('#interest-item-' + interest_id).effect('shake');
             return;
@@ -99,12 +123,12 @@ function addInterest(interest_id) {
 }
 
 function addTrait(trait_id) {
-    if( user_traits.length >= 5 ){
+    if (user_traits.length >= 5) {
         alert("Only 5 traits at a time.");
         return;
     }
-    for(var tid of user_traits) {
-        if(tid == trait_id) {
+    for (var tid of user_traits) {
+        if (tid == trait_id) {
             // Duplicate interest not allowed
             $('#trait-item-' + trait_id).effect('shake');
             return;
@@ -116,18 +140,18 @@ function addTrait(trait_id) {
 }
 
 function removeInterest(interest_id) {
-    jQuery.each(user_interests, function(i, val) {
-        if(val == interest_id) {
-            user_interests.splice(i,1);
+    jQuery.each(user_interests, function (i, val) {
+        if (val == interest_id) {
+            user_interests.splice(i, 1);
         }
     });
     populate_user_interests_list();
 }
 
 function removeTrait(trait_id) {
-    jQuery.each(user_traits, function(i, val) {
-        if(val == trait_id) {
-            user_traits.splice(i,1);
+    jQuery.each(user_traits, function (i, val) {
+        if (val == trait_id) {
+            user_traits.splice(i, 1);
         }
     });
     populate_user_traits_list();
@@ -138,7 +162,7 @@ function submitInterests() {
 
     $.ajax('profile_handler.php', {
         type: 'POST',
-        data: {'interests': user_interests},
+        data: { 'interests': user_interests },
         success: (data, status, xhr) => {
             alert("Interests have been sucessfully updated!");
         },
@@ -153,7 +177,7 @@ function submitTraits() {
 
     $.ajax('profile_handler.php', {
         type: 'POST',
-        data: {'traits': user_traits},
+        data: { 'traits': user_traits },
         success: (data, status, xhr) => {
             alert("Traits have been sucessfully updated!");
         },
