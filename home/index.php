@@ -29,9 +29,9 @@ login_check(1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link rel="stylesheet" href="..\assets/css/Sidebar-Menu-1.css">
-    <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="..\assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -50,7 +50,7 @@ login_check(1);
 <body>
 
 <div id="wrapper">
-    <?php include('..\navbar.php'); ?>
+    <?php include_once('../navbar.php'); ?>
     <div class="page-content-wrapper">
         <div class="container-fluid">
             <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>

@@ -101,7 +101,7 @@ $user_traits = get_user_traits($db_conn);
 <body>
 
     <div id="wrapper">
-        <?php include('..\navbar.php'); ?>
+        <?php include_once('../navbar.php'); ?>
 
         <div class="page-content-wrapper">
             <div class="container-fluid">

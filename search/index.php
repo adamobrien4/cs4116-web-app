@@ -76,7 +76,7 @@ if($res) {
 
 <body>
     <div id="wrapper">
-        <?php include('..\navbar.php'); ?>
+        <?php include_once('../navbar.php'); ?>
         <div class="page-content-wrapper">
             <div class="container-fluid">
                 <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
