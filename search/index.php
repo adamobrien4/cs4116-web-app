@@ -25,8 +25,6 @@ if($res) {
     if(mysqli_num_rows($res) > 0){
         $row = mysqli_fetch_assoc($res);
 
-        var_dump($row);
-
         $gender = $row['gender'];
         $seeking = $row['seeking'];
     }

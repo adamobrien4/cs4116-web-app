@@ -16,6 +16,7 @@ if (isset($_GET['n'])) {
 		case "register_success":
 			$notification_title = "Registration Successful";
 			$notification_message = "You have sucessfully registered!";
+			$notification_type = "success";
 			break;
 		case "creds_incorrect":
 			$notification_title = "Incorrect Details";
@@ -41,6 +42,11 @@ if (isset($_GET['n'])) {
 			$notification_message = "Invalid age (18-75 only). Please try again";
 			$notification_title = "Form Error";
 			$notification_type = "danger";
+			break;
+		case "logout_suc":
+			$notification_message = "You have been sucessfully logged out.";
+			$notification_title = "Logout Success";
+			$notification_type = "success";
 			break;
 	}
 }

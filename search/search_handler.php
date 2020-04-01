@@ -48,6 +48,44 @@ if (isset($_POST['search_traits'])) {
     die("not_found");
 }
 
+if(isset($_POST['request_connection'])){
+    $uid = preg_replace("/[^0-9]+/", "", $_POST['request_connection']);
+
+    if($uid >= 0) {
+
+        $query = "SELECT connection_id FROM connections WHERE (userA_id = {$_SESSION['user_id']} AND userB_id = {$uid}) OR (userA_id = {$uid} AND userB_id = {$_SESSION['user_id']})";
+
+        $res = mysqli_query($db_conn, $query);
+
+        if($res) {
+            if(mysqli_num_rows($res) > 0){
+                echo "exists";
+                die();
+            }
+        } else {
+            die("error_sf");
+        }
+
+        $timestamp = date('Y-m-d h:i:s');
+
+        $query = "INSERT INTO connections (userA_id, userB_id, timestamp, result) VALUES ({$_SESSION['user_id']}, {$uid}, '{$timestamp}', 'pending')";
+
+        $res = mysqli_query($db_conn, $query);
+
+        if($res) {
+            if(mysqli_affected_rows($db_conn) > 0){
+                // Data inserted
+                die("success");
+            }
+        } else {
+            echo $query;
+            die("error_i");
+        }
+    }
+
+    die("error_unk");
+}
+
 if (isset($_POST['search_data'])) {
     $search_data = $_POST['search_data'];
 

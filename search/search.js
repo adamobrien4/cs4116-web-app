@@ -239,12 +239,42 @@ function populate_results(d) {
                 <div class="col-4">
                     <img src="${user.photo}" class="img-fluid rounded" alt="Profile Picture">
                 </div>
-                <div class="col-8">
+                <div class="col-4">
                     ${user.firstname} - ${user.age}
                     <p><small>${user.gender} -> ${user.seeking}</small></p>
                     <span class="badge badge-info badge-pill">${user.score}</span>
                 </div>
+                    <input type="button" value="Connect!" class="btn btn-primary" id="request-connect-button-${user.user_id}" onclick="requestConnection(${user.user_id})"/> 
             </li>
         `);
+    });
+}
+
+function requestConnection(user_id) {
+    var btn = $("#request-connect-button-" + user_id);
+    btn.prop("disabled", true);
+    btn.css("cursor", "wait");
+
+    $.ajax('search_handler.php', {
+        type: 'POST',
+        data: { 'request_connection': user_id },
+        success: (data, status, xhr) => {
+            btn.css("cursor", "default");
+            if(data == "success"){
+                alert("Success");
+                btn.css("cursor", "not-allowed");
+            } else if(data == "exists") {
+                alert("You have already matches with this user.");
+                btn.css("cursor", "not-allowed");
+            } else {
+                console.log(data);
+                btn.prop('disabled', false);
+            }
+        },
+        error: (xhr, status, e) => {
+            btn.prop('disabled', false);
+            btn.css("cursor", "default");
+            alert("There was an error.");
+        }
     });
 }

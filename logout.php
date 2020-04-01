@@ -7,9 +7,8 @@ include "./includes/session_manager.php";
 
 session_start();
 
-logout();
+session_destroy();
 
-print "<h2>You are logged out!</h2>";
-print "<p><a href='{$_ENV['site_home']}'>Home</a></p>";
+header("location: {$_ENV['site_home']}");
 
 ?>
