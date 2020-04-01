@@ -24,6 +24,7 @@ login_check(1);
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu-1.css">
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="..\assets/css/styles.css">
+    <link rel="stylesheet" href="admin.css">
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -51,16 +52,53 @@ login_check(1);
         <div class="container-fluid">
             <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
 
-        <h1>Admin Portal</h1>
+        <!-- <h1>Admin Portal</h1>
 
         <h4>Create a list of cards of all users -- refer to adobe xd design doc -- admin portal last of the main features to be implemented</h4>
         <h4>Maybe only have display 100 (x) at a time - might be easier on the sql queries</h4>
         <h4>Maybe have a basic search functionality</h4>
+ -->
+        <div class="row user-list">
 
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
 
+                <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a>
+                <p class="user-name"><a href="#">NAME</a>
+                    <span>BIO </span>
+                </p>
+                    <a class="user-delete" href="#">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+      
+            </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+
+            <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a>
+            <p class="user-name"><a href="#">NAME</a>
+                <span>BIO</span>
+            </p>
+                <a class="user-delete" href="#">
+                    <i class="fa fa-remove"></i>
+                </a>
+            </div>
+    
         </div>
 
-    </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+
+                <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a>
+                <p class="user-name"><a href="#">NAME</a>
+                    <span>BIO</span>
+                </p>
+                    <a class="user-delete" href="#">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+      
+            </div>
+
+        </div>
 
 
     <script src="..\assets/js/Sidebar-Menu.js"></script>
