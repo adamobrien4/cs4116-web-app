@@ -37,6 +37,10 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
 
     $psw_encrypt = sha1($psw2);
 
+    if( empty($fn) || empty($ln) || empty($email) || empty($psw1) || empty($psw2) ){
+        die("Account details are empty");
+    }
+
     if( $psw1 == $psw2 ) {
         $query = "INSERT INTO users (firstname, lastname, email, password) VALUES ('{$fn}', '{$ln}', '{$email}', '{$psw_encrypt}')";
         $res = mysqli_query($db_conn, $query);

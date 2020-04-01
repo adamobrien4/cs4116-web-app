@@ -88,19 +88,19 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 					<h1 class="headertext">DatingSucks</h1>
 					<form class="col-10 mx-auto" action="./handlers/register_handler.php" method="post">
 						<div class="pass">
-							<input type="name" class="field" name="firstname" placeholder="Firstname">
+							<input type="name" class="field" name="firstname" placeholder="Firstname" required minlength="1">
 						</div>
 						<div class="form-group">
-							<input type="name" class="field" name="lastname" placeholder="Lastname">
+							<input type="name" class="field" name="lastname" placeholder="Lastname" required minlength="1">
 						</div>
 						<div class="form-group">
-							<input type="email" class="field" name="email" placeholder="Email">
+							<input type="email" class="field" name="email" placeholder="Email" required minlength="5">
 						</div>
 						<div class="form-group">
-							<input type="password" class="field" name="psw1" placeholder="Password">
+							<input type="password" class="field" name="psw1" placeholder="Password" required minlength="6">
 						</div>
 						<div class="form-group">
-							<input type="password" class="field" name="psw2" placeholder="Repeat password">
+							<input type="password" class="field" name="psw2" placeholder="Repeat password" required minlength="6">
 						</div>
 						<input type="submit" class="cbtn" value="Register">
 					</form>
