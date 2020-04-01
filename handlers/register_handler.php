@@ -38,7 +38,8 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
     $psw_encrypt = sha1($psw2);
 
     if( empty($fn) || empty($ln) || empty($email) || empty($psw1) || empty($psw2) ){
-        die("Account details are empty");
+        header('location: ../register.php?n=data_not_supplied');
+        die();
     }
 
     if( $psw1 == $psw2 ) {
@@ -57,16 +58,20 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
                 //login page is brought up and register_success is passed as an argument triggering $notification_message
                 header("location: {$_ENV['site_home']}login.php?n=register_success");
             } else {
-                die("Profile not created");
+                header('location: ../register.php?n=register_error');
+                exit();
             }
         } else {
-            die("An error occurred.");
+            header('location: ../register.php?n=register_error');
+            exit();
         }
     } else {
-        die("Passwords do not match");
+        header('location: ../register.php?n=password_mismatch');
+        die();
     }
 } else {
-    die("Required data not found");
+    header('location: ../register.php?n=data_not_supplied');
+    die();
 }
 
 ?>

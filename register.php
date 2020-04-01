@@ -58,6 +58,30 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 	}
 }
 
+$notification_title = null;
+$notification_message = null;
+$notification_type = "primary";
+
+if (isset($_GET['n'])) {
+	switch ($_GET['n']) {
+		case "data_not_supplied":
+			$notification_message = "Please ensure all fields have been filled out and try again.";
+			$notification_title = "Data not supplied";
+			$notification_type = "warning";
+		break;
+		case "register_error":
+			$notification_message = "An error occurred, please reload the page and try again.";
+			$notification_title = "Registration Error";
+			$notification_type = "danger";
+		break;
+		case "password_mismatch":
+			$notification_message = "Please ensure your passwords match and try again.";
+			$notification_title = "Password Mismatch";
+			$notification_type = "warning";
+		break;
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,12 +90,15 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login - Simple Browse</title>
+	<title>Register your Account</title>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="webstyle.css">
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 	<script>
 		var user_data = <?php echo json_encode($user_data) ?>;
@@ -80,6 +107,25 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 </head>
 
 <body>
+
+	<?php if ($notification_message) { ?>
+		<div id="myModal" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"><?php echo $notification_title; ?></h5>
+					</div>
+					<div class="modal-body">
+						<p><?php echo $notification_message; ?></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-<?php echo $notification_type; ?>" onclick="$('#myModal').modal('hide')">Okay</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+
 	<div class="container-fluid">
 		<div class="main">
 
@@ -127,6 +173,12 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 
 		</div>
 	</div>
+
+	<script>
+		$(() => {
+			$('#myModal').modal("show");
+		});
+	</script>
 </body>
 
 </html>
