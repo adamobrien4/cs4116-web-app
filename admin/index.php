@@ -5,13 +5,35 @@ include_once('../vendor/autoload.php');
 
 include '../includes/db_conn.php';
 include '../includes/login_check.php';
-include '../includes/helper_functions.php';
+include '../includes/admin_helper_functions.php';
 
 // Allow only logged in users to visit this page
 login_check(1);
 
 
+
+$user_list = get_user_names($db_conn);
+
 ?>
+
+
+
+
+<script>
+
+var user_list = <?php echo json_encode($user_list)?>;
+
+</script>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -72,33 +94,10 @@ login_check(1);
                 </div>
       
             </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+        
 
-            <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a>
-            <p class="user-name"><a href="#">NAME</a>
-                <span>BIO</span>
-            </p>
-                <a class="user-delete" href="#">
-                    <i class="fa fa-remove"></i>
-                </a>
-            </div>
-    
-        </div>
 
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
 
-                <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a>
-                <p class="user-name"><a href="#">NAME</a>
-                    <span>BIO</span>
-                </p>
-                    <a class="user-delete" href="#">
-                        <i class="fa fa-remove"></i>
-                    </a>
-                </div>
-      
-            </div>
-
-        </div>
 
 
     <script src="..\assets/js/Sidebar-Menu.js"></script>
