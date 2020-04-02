@@ -23,6 +23,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 19px 0 0;
+    font-weight: bold;
   }
   
   .user-item p.user-name a {

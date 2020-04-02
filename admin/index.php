@@ -7,29 +7,16 @@ include '../includes/db_conn.php';
 include '../includes/login_check.php';
 include '../includes/admin_helper_functions.php';
 
+
+
 // Allow only logged in users to visit this page
 login_check(1);
 
 
 
-$user_list = get_user_names($db_conn);
+$user_list = get_user_name_bio($db_conn);
 
 ?>
-
-
-
-
-<script>
-
-var user_list = <?php echo json_encode($user_list)?>;
-
-</script>
-
-
-
-
-
-
 
 
 
@@ -58,9 +45,13 @@ var user_list = <?php echo json_encode($user_list)?>;
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
+    <script src = 'admin.js'></script>
 
+<script>
 
+var user_list = <?php echo json_encode($user_list)?>;
 
+</script>
 
 </head>
 
@@ -80,29 +71,37 @@ var user_list = <?php echo json_encode($user_list)?>;
         <h4>Maybe only have display 100 (x) at a time - might be easier on the sql queries</h4>
         <h4>Maybe have a basic search functionality</h4>
  -->
-        <div class="row user-list">
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
-
-                <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a>
-                <p class="user-name"><a href="#">NAME</a>
-                    <span>BIO </span>
-                </p>
-                    <a class="user-delete" href="#">
-                        <i class="fa fa-remove"></i>
-                    </a>
-                </div>
-      
-            </div>
         
+ <div class = "container" id = "user-container">
+    <div class="row user-list" id = "row-user">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">        
+                <!-- <div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="avatar.jpg" width="48" height="48" alt="Image" /></a> -->
+                    <p class="user-name" id = "name"> NAME
+                    <span id = "bio">BIO </span>
+                    </p>
+                </div>
+        
+            </div> 
+                
+    </div>
+</div>
+<script src="..\assets/js/Sidebar-Menu.js"></script>
 
-
-
-
-
-    <script src="..\assets/js/Sidebar-Menu.js"></script>
-
+                <script>
+                    var container = document.getElementById("user-container");
+                    var element = document.getElementById("row-user");
+                    for(var i = 0; var < user_list.length; i++){
+                        container.appendChild(row-user);
+                    }    
+                </script>
+</div>
+</div>
 </div>
 
 </body>
 </html>
+
+
+<!-- <a class="user-delete" href="#">
+                        <i class="fa fa-remove"></i>
+                    </a> -->
