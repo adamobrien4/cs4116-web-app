@@ -1,4 +1,5 @@
 <?php
+
 function get_user_name_bio($db_conn) {
     $r = array();
     $query = "SELECT user_id, firstname, lastname, email, admin FROM users";
@@ -14,3 +15,4 @@ function get_user_name_bio($db_conn) {
         }
     }
 }
+?>
