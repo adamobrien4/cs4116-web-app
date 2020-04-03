@@ -87,13 +87,7 @@ var user_list = <?php echo json_encode($user_list)?>;
 </div>
 <script src="..\assets/js/Sidebar-Menu.js"></script>
 
-                <script>
-                    var container = document.getElementById("user-container");
-                    var element = document.getElementById("row-user");
-                    for(var i = 0; var < user_list.length; i++){
-                        container.appendChild(row-user);
-                    }    
-                </script>
+
 </div>
 </div>
 </div>
