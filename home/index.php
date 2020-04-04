@@ -44,7 +44,6 @@ login_check(1);
     <!-- Fontawesome Icons -->
     <script src="https://kit.fontawesome.com/3aa3856778.js" crossorigin="anonymous"></script>
 
-
 </head>
 
 <body>
@@ -55,7 +54,15 @@ login_check(1);
         <div class="container-fluid">
             <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
 
-<div class="card text-center">
+            <div class="alert alert-warning" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Notice!</strong> You have 5 new potential matches and 2 unread messages!
+            </div>
+
+
+
+
+            <div class="card text-center">
     <div class="card-body"><img />
         <h4 class="card-title">Maggy, 34</h4>
         <h6 class="text-muted card-subtitle mb-2">Limerick</h6>
@@ -71,24 +78,19 @@ login_check(1);
         </div>
 
         <!--Might be funny to have a funny quotes from the dating sucks team on things not to say on a first date
-
         if you match with John dont bring up your third ex wife etc.. etc..
           -->
-
-
         <div class="container bio">
             <p>This is a big bio about me, my name is MM MM and I love dating however dating sucks for a woman like me and so I have enlisted the services of DatingSucks.</p>
         </div>
 
-
         <!--Highlight the interests and traits that are in common-->
-
         <div class="container">
             <div class="bg-c-green counter-block">
                 <div class="row">
                     <div class="col-sm">
-                        <i class="fa fa-comment"></i>
-                        <p>Coding</p>
+                        <i class="fa fa-comment iconMatch"></i>
+                        <p class="iconFontMatch">Coding</p>
                     </div>
                     <div class="col-sm">
                         <i class="fa fa-user"></i>
@@ -111,7 +113,7 @@ login_check(1);
 
                 </div>
             </div>
-        </div>
+        </div><!--End of interests section-->
 
         <div class="container">
             <div class="bg-c-yellow counter-block">
@@ -129,9 +131,10 @@ login_check(1);
                         <p>Roleplay</p>
                     </div>
 
+                    <!-- -->
                     <div class="col-sm">
-                        <i class="fa fa-suitcase"></i>
-                        <p>Fantasy</p>
+                        <i class="fa fa-suitcase iconMatch"></i>
+                        <p class="iconFontMatch">Fantasy</p>
                     </div>
 
                     <div class="col-sm">
@@ -141,17 +144,34 @@ login_check(1);
 
                 </div>
             </div>
+        </div><!--End of traits section-->
 
+        <!--should be a form to accept/reject // add color change on hover - space them approprietely -->
+        <div style="padding: 10px; margin-top: 20px;">
+        <a class="card-link" href="#"><i style="color:red" class="fas fa-heart fa-2x"></i></a>
+        <a class="card-link" href="#"><i class="fas fa-times-circle fa-2x"></i></a>
         </div>
 
-        <!--Maybe this should be a form to accept/reject-->
-        <a class="card-link" href="#"><i class="fas fa-heart fa-2x"></i></a><a class="card-link" href="#"><i class="fas fa-times-circle fa-2x"></i></a></div>
+    </div>
+
 </div>
 
 </div>
 </div>
 </div>
 <script src="../assets/js/Sidebar-Menu.js"></script>
+
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 4000);
+
+</script>
+
+
+
 
 
 </body>
