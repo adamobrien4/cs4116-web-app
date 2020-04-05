@@ -158,7 +158,7 @@ $user_traits = get_user_traits($db_conn);
                                 <input type="text" class="form-control form-control-sm" name="lastname" id="lastname" placeholder="Last Name">
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control form-control-sm" name="age" id="age" placeHolder="Age">
+                                <input type="number" class="form-control form-control-sm" name="age" id="age" min="18" max="75" placeHolder="Age">
                             </div>
                             <fieldset>
                                 <legend>I am a: </legend>
