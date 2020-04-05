@@ -103,7 +103,7 @@ if (isset($_GET['n'])) {
 		</div>
 	<?php } ?>
 
-	<div class="container-fluid">
+	<div class="main">
 		<div class="main">
 			<div id="login" class="contentbox">
 				<div class="loginbox">

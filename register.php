@@ -3,6 +3,8 @@
 include_once('./vendor/autoload.php');
 \Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
+//var_dump($_ENV);
+
 include './includes/db_conn.php';
 include "./includes/login_check.php";
 
@@ -126,13 +128,13 @@ if (isset($_GET['n'])) {
 		</div>
 	<?php } ?>
 
-	<div class="container-fluid">
+	<div class="content">
 		<div class="main">
 
 			<div id="login" class="contentbox">
 				<div class="loginbox">
 					<h1 class="headertext">DatingSucks</h1>
-					<form class="col-10 mx-auto" action="./handlers/register_handler.php" method="post">
+					<form class="ok" action="./handlers/register_handler.php" method="post">
 						<div class="pass">
 							<input type="name" class="field" name="firstname" placeholder="Firstname" required minlength="1">
 						</div>
