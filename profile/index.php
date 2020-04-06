@@ -110,7 +110,7 @@ $user_traits = get_user_traits($db_conn);
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="profile-image">
-                            <img id="profile-image-preview" onerror="this.onerror=null; this.src='http:\/\/100dayscss.com/codepen/upload.svg'" src="../assets/uploads/<?php echo $_SESSION['user_id'] ?>.jpg" />
+                            <img id="profile-image-preview" src="../assets/uploads/<?php echo $_SESSION['user_id'] ?>.jpg" />
                         </div>
 
                         <div class="input-group">

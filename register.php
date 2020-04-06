@@ -81,6 +81,16 @@ if (isset($_GET['n'])) {
 			$notification_title = "Password Mismatch";
 			$notification_type = "warning";
 		break;
+		case "email_taken":
+			$notification_message = "That email is already registered.";
+			$notification_title = "Email Taken";
+			$notification_type = "danger";
+			break;
+		case "sql_error":
+			$notification_message = "An error occurred, please try again.";
+			$notification_title = "Error occurred";
+			$notification_type = "danger";
+		break;
 	}
 }
 
