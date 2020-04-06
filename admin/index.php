@@ -82,15 +82,17 @@ if ($res) {
  -->
             <?php foreach($users as $user) {
                 echo "
-                <div class='container' id='user-container'>
-                    <div class='row user-list' id='row-user'>
+                <div class='container'>
+                    <div class='row user-list'>
                         <div class='col-12 col-sm-6 col-md-4 col-lg-3 user-item'>
-                            <!-- <div class='user-container'><a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='avatar.jpg' width='48' height='48' alt='Image' /></a> -->
-                            <p class='user-name' id='name'>{$user['firstname']}
-                                <span id='bio'>BIO </span>
+                        <div class='user-container'><a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='avatar.jpg' width='48' height='48' alt='Image' /></a>
+                        <p class='user-name' id='name'>{$user['firstname']}
+                        <span id='bio'>BIO </span>
                             </p>
+                            <a class='user-delete' href='#'><i class='fa fa-remove'></i></a>
                         </div>
                     </div>
+                </div>
                 </div>
                 ";
             } ?>
