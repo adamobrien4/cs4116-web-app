@@ -25,7 +25,7 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 		header('location: {$_ENV["site_home"]}login.php?n=invalid_seeking');
 		die();
 	}
-	if ($age < 18 || $age > 75) {
+	if ($age < 18 && $age > 75) {
 		header('location: {$_ENV["site_home"]}login.php?n=invalid_age');
 		die();
 	}
@@ -98,7 +98,7 @@ if (isset($_GET['n'])) {
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="webstyle.css">
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -130,47 +130,66 @@ if (isset($_GET['n'])) {
 
 	<div class="content">
 		<div class="main">
-
+		<div class="image-bg">
+			<div style="object-fit: contain; bottom:0">
+				<img src="https://i.imgur.com/EqeAKFz.png" alt=""width="100%" style="filter: opacity(0.2);">
+			</div>
+		
+		</div>	
 			<div id="login" class="contentbox">
-				<div class="loginbox">
+				<div class="loginbox center_y">
 					<h1 class="headertext">DatingSucks</h1>
-					<form class="ok" action="./handlers/register_handler.php" method="post">
-						<div class="pass">
+				
+
+					<form class="c" action="./handlers/register_handler.php" method="post">
+
+						<div class="form-group">
 							<input type="name" class="field" name="firstname" placeholder="Firstname" required minlength="1">
 						</div>
+
 						<div class="form-group">
 							<input type="name" class="field" name="lastname" placeholder="Lastname" required minlength="1">
 						</div>
+
 						<div class="form-group">
 							<input type="email" class="field" name="email" placeholder="Email" required minlength="5">
 						</div>
+
 						<div class="form-group">
 							<input type="password" class="field" name="psw1" placeholder="Password" required minlength="6">
 						</div>
+
 						<div class="form-group">
 							<input type="password" class="field" name="psw2" placeholder="Repeat password" required minlength="6">
 						</div>
+
 						<input type="submit" class="cbtn" value="Register">
+
 					</form>
-					<div class="registerinfo">
-						<label class="registertext">Already have an account? </label>
-						<a href="./login.php">Login</a>
-					</div>
+
+
+
+			<div class="registerinfo">
+				<label class="registertext">Already have an account? </label>
+				<a href="./login.php">Login</a>
+				<div class="center_y" style="width:100%;margin-top:80px" id="goDown">
+					<small>Browse Users</small>
+					<i class="fa fa-angle-down" style="text-align:center; font-size:30px; font-weight:bold; " ></i>
 				</div>
 			</div>
+		</div>
+			
 
-			<div id="formbox" class="contentbox">
-				<div class="browsebox">
-					<h1 class="headertext">Results</h1>
-					<div id="results-list">
-
-					</div>
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Please register to view these profiles</h5>
+		<div id="formbox" class="contentbox" style = "padding: 30px">
+			<div class="browsebox">
+				<h1 class="headertext">Results</h1>
+				<div id="results-list">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Please register to view these profiles</h5>
+							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 
 		</div>

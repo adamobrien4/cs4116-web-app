@@ -78,7 +78,7 @@ if (isset($_GET['n'])) {
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="webstyle.css">
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
@@ -103,60 +103,75 @@ if (isset($_GET['n'])) {
 		</div>
 	<?php } ?>
 
-	<div class="main">
-		<div class="main">
-			<div id="login" class="contentbox">
-				<div class="loginbox">
-					<h1 class="headertext">DatingSucks</h1>
-					<form class="col-10 mx-auto" action="./handlers/login_handler.php" method="post">
-						<div class="pass">
-							<input type="email" class="field" name="email" placeholder="Email" required minlength="5">
-						</div>
-						<div class="form-group">
-							<input type="password" class="field" name="password" placeholder="Password" required minlength="6">
-						</div>
-						<input type="submit" class="cbtn" value="Login">
-					</form>
-					<div class="registerinfo">
-						<label class="registertext">Don't have an account? </label>
-						<a href="./register.php">Sign Up</a>
+	<div class="main">	
+		<div class="image-bg">
+			<div style="object-fit: contain; bottom:0">
+				<img src="https://i.imgur.com/EqeAKFz.png" alt=""width="100%" style="filter: opacity(0.2);">
+			</div>
+		
+		</div>	
+		<div id="login" class="contentbox">
+			<div class="loginbox center_x">
+				<div class="center_y" style="width:100%">
+				<h1 class="headertext">DatingSucks</h1>
+				<form class="c" action="./handlers/login_handler.php" method="post">
+					<div class="form-group">
+						<input type="email" class="field" name="email" placeholder="Email" required minlength="5">
 					</div>
+					<div class="form-group">
+						<input type="password" class="field" name="password" placeholder="Password" required minlength="6">
+					</div>
+					<input type="submit" class="cbtn" value="Login">
+				</form>
+				<div class="registerinfo">
+					<label class="registertext">Don't have an account? </label>
+					<a href="./register.php">Sign Up</a>
+					<div class="center_y" style="width:100%;margin-top:80px" id="goDown">
+					<small>Browse Users</small>
+			<i class="fa fa-angle-down" style="text-align:center; font-size:30px; font-weight:bold; " ></i>
+		</div>
 				</div>
 			</div>
+		</div>
+		
+		
 
 			<div id="formbox" class="contentbox">
-				<div class="browsebox">
-					<h1 class="headertext">Browse</h1>
-					<form id="form" action="./handlers/register_handler.php" method="POST">
-						<div>
-							<label for="gender">I am a:</label>
-							<select class="optionbox" name="gender">
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-							</select>
-						</div>
+				<div class="loginbox center_x">
+					<div class="center_y fullpage">
+						<div class="browsebox">
+							<h1 class="headertext">Browse</h1>
+							<form id="form" action="./handlers/register_handler.php" method="POST">
+								<div>
+									<label for="gender">I am a:</label>
+									<select class="optionbox" name="gender">
+										<option value="male">Male</option>
+										<option value="female">Female</option>
+									</select>
+								</div>
 
-						<div>
-							<label for="seeking">Seeking a:</label>
-							<select class="optionbox" name="seeking">
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-							</select>
-						</div>
+							<div>
+								<label for="seeking">Seeking a:</label>
+								<select class="optionbox" name="seeking">
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+								</select>
+							</div>
 
-						<div>
-							<input class="field" type="text" placeholder="Age" id="age" name="age"><br>
-						</div>
+							<div>
+								<input class="optionbox" type="text" placeholder="Age" id="age" name="age"><br>
+							</div>
 
-						<div>
-							<button type="submit" class="cbtn" name="save">Find Users(no logic)</button>
+							<div>
+								<button type="submit" class="cbtn" name="save">Find Users</button>
+							</div>
+							</form>
 						</div>
-					</form>
+					</div>	
 				</div>
 			</div>
-
 		</div>
-	</div>
+	<div>
 </body>
 
 <script>
@@ -164,5 +179,6 @@ if (isset($_GET['n'])) {
 		$('#myModal').modal("show");
 	});
 </script>
+
 
 </html>
