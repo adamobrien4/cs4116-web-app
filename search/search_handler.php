@@ -194,7 +194,7 @@ if (isset($_POST['search_data'])) {
 
         if( count($users) > 0){
             // Get the data related to the resulting users
-            $query = "SELECT users.user_id, firstname, lastname, age, gender, seeking, photo FROM users LEFT JOIN profiles ON profiles.user_id=users.user_id WHERE users.user_id in (";
+            $query = "SELECT users.user_id, firstname, lastname, age, gender, seeking FROM users LEFT JOIN profiles ON profiles.user_id=users.user_id WHERE users.user_id in (";
 
             foreach($users as $key => $value){
                 $query .= "{$key},";
