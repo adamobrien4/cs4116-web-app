@@ -14,7 +14,7 @@ include '../includes/admin_helper_functions.php';
 
 $users = array();
 
-$query = "SELECT firstname, lastname, admin FROM users";
+$query = "SELECT users.firstname, users.lastname, profiles.description FROM users INNER JOIN profiles ON users.user_id = profiles.user_id";
 
 $res = mysqli_query($db_conn, $query);
 
@@ -25,6 +25,8 @@ if ($res) {
         }
     }
 }
+
+
 
 ?>
 
@@ -45,7 +47,7 @@ if ($res) {
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="..\assets/css/styles.css">
     <link rel="stylesheet" href="admin.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -86,8 +88,8 @@ if ($res) {
                     <div class='row user-list'>
                         <div class='col-12 col-sm-6 col-md-4 col-lg-3 user-item'>
                         <div class='user-container'><a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='avatar.jpg' width='48' height='48' alt='Image' /></a>
-                        <p class='user-name' id='name'>{$user['firstname']}
-                        <span id='bio'>BIO </span>
+                        <p class='user-name' id='name'>{$user['firstname']}, {$user['lastname']}
+                        <span id='bio'>{$user['description']} </span>
                             </p>
                             <a class='user-delete' href='#'><i class='fa fa-remove'></i></a>
                         </div>
