@@ -1,5 +1,15 @@
 $(function () {
+    window.scrollTo(0,0);
     populate_data_fields();
+
+    // Display account complete status
+    if (user_profile_data.completed == 0) {
+        $("#complete-status-alert").addClass('alert-warning');
+        $("#alert-content").text("Please fill out all aspects of your account to gain access to all features of this site.");
+    } else {
+        $("#complete-status-alert").addClass('alert-success');
+        $("#alert-content").text("Your account is complete. Please enjoy access to all features of this site.");
+    }
 
     // Enable sortable interests list
     var interestsList = document.getElementById('interests-list');

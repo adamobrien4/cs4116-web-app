@@ -8,7 +8,7 @@ include '../includes/login_check.php';
 include '../includes/helper_functions.php';
 
 // Allow only logged in users to visit this page
-login_check(1);
+login_check(3);
 
 
 // Retrieve profile data from current user
@@ -103,8 +103,14 @@ $user_traits = get_user_traits($db_conn);
     <div id="wrapper">
         <?php include_once('../navbar.php'); ?>
 
+        <div class="alert" role="alert" id="complete-status-alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>&times;</span></button>
+            <strong id="alert-content"></strong>
+        </div>
+
         <div class="page-content-wrapper">
             <div class="container-fluid">
+
                 <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
 
                 <div class="row">

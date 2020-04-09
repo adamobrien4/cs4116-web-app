@@ -23,7 +23,17 @@ function login_check($state) {
             }
         break;
         case 1:
-            // User must be logged in to visit this page
+            // User must be logged in and have a completed profile to visit this page
+            if( !isset($_SESSION['email']) || !isset($_SESSION['user_id']) ){
+                die("User must be logged in to visit this page : <a href='{$_ENV['site_home']}login.php'>click here</a>");
+            } else {
+                if($_SESSION['completed'] == 0){
+                    die("You need to complete your account before using this section of the site : <a href='{$_ENV['site_home']}profile'>click here</a>");
+                }
+            }
+        break;
+        case 3:
+            // User must be logged in but their profile can be uncomplete
             if( !isset($_SESSION['email']) || !isset($_SESSION['user_id']) ){
                 die("User must be logged in to visit this page : <a href='{$_ENV['site_home']}login.php'>click here</a>");
             }
