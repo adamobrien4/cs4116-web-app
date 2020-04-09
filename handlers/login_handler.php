@@ -16,7 +16,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $psw_encrypt = sha1($psw);
 
-    $query = "Select firstname, lastname, user_id, email, password, admin FROM users WHERE email = '{$_POST['email']}' AND password = '{$psw_encrypt}'";
+    $query = "SELECT users.email, users.firstname, users.lastname, users.user_id, users.admin, profiles.completed FROM users INNER JOIN profiles ON users.user_id = profiles.user_id WHERE users.email = '{$_POST['email']}' AND users.password = '{$psw_encrypt}'";
 
     $res = mysqli_query($db_conn, $query);
 
@@ -29,6 +29,7 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['admin'] = $user['admin'];
+        $_SESSION['completed'] = $user['completed'];
 
         header("location: {$_ENV['site_home']}profile/");
     } else {

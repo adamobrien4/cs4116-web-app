@@ -30,7 +30,7 @@ if(isset($_POST['gender']) && isset($_POST['seeking']) && isset($_POST['age'])) 
 if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['psw1']) && isset($_POST['psw2']) ) {
 
     $fn = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['firstname']);
-    $ln = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['lastname']);
+    $ln = addslashes(preg_replace("/[^a-zA-Z0-9']+/", "", $_POST['lastname']));
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $psw1 = $_POST['psw1'];
     $psw2 = $_POST['psw2'];

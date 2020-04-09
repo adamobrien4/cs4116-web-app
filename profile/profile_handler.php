@@ -75,7 +75,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
     $age = preg_replace("/[^0-9]+/", "", $_POST['age']);
     $gender = preg_replace("/[^a-z]+/", "", $_POST['gender']);
     $seeking = preg_replace("/[^a-z]+/", "", $_POST['seeking']);
-    $description = preg_replace("/[^a-zA-Z0-9 ]+/", "", $_POST['description']);
+    $description = addslashes(preg_replace("/[^a-zA-Z0-9 -,.']+/", "", $_POST['description']));
 
     $user_data = get_profile_data($db_conn, $_SESSION['user_id']);
 
@@ -89,8 +89,6 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
         $desc_check = $description != $user_data['description'];
 
         if ($fn_check || $ln_check) {
-
-            // TODO : I have no clue what the hell is going on here. It clears the firstname and lastname whenever you try and edit either the first or last name.
 
             $acc_query = "UPDATE users SET ";
             if ($fn_check) {
@@ -137,6 +135,56 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
                 die("User profile not updated");
             }
         }
+
+        // Check to see if the user is marked as complete
+        if ($_SESSION[['completed']] == 0) {
+            // Check to see if their account is completed now
+
+            // At least one interest
+            $i_count = 0;
+            $q = "SELECT interest_id FROM interests WHERE user_id = {$_SESSION['user_id']}";
+            $r = mysqli_query($db_conn, $q);
+
+            if ($r) {
+                $i_count = mysqli_num_rows($r);
+            }
+
+            // At least one trait
+            $t_count = 0;
+            $q = "SELECT trait_id FROM traits WHERE user_id = {$_SESSION['user_id']}";
+            $r = mysqli_query($db_conn, $q);
+
+            if ($r) {
+                $t_count = mysqli_num_rows($r);
+            }
+
+            // gender, seeking, description, age
+            $query = "SELECT gender, seeking, description, age FROM profiles WHERE user_id = {$_SESSION['user_id']}";
+            $res = mysqli_query($db_conn, $query);
+
+            if ($res) {
+                if (mysqli_num_rows($res) > 0) {
+                    $row = mysqli_fetch_assoc($res);
+
+                    echo (json_encode($row) . "<br>");
+                    echo $i_count . "<br>";
+                    echo $t_count . "<br>";
+
+                    if (($row['gender'] == "male" || $row['gender'] == "female") && ($row['seeking'] == "male" || $row['seeking'] == "female") && strlen($row['description']) > 0 && $row['age'] > 0 && $i_count > 0 && $t_count > 0) {
+                        $query = "UPDATE profiles SET completed = 1 WHERE user_id = {$_SESSION['user_id']}";
+                        $res = mysqli_query($db_conn, $query);
+
+                        if ($res) {
+                            if (mysqli_affected_rows($db_conn) > 0) {
+                                // Updated
+                                $_SESSION['completed'] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         header("location: {$_ENV['site_home']}profile?status=1");
         die();
     }
