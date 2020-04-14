@@ -81,8 +81,10 @@ if($res) {
             <div class="container-fluid">
                 <a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <h2>Filter Options</h2>
+
+                        <input type="button" class="btn btn-xl btn-primary col-12" style="margin:15px 0px;" value="Apply Filters" id="submit-search-button">
 
                         <div>
                             <label for="filter-age">Age Range:</label>
@@ -103,19 +105,19 @@ if($res) {
                                 <input type="radio" name="gender" id="gender-m" value="male" checked>
                                 <label for="gender-f">Female</label>
                                 <input type="radio" name="gender" id="gender-f" value="female">
-                                <label for="gender-b">Both</label>
+                                <label for="gender-b">Either</label>
                                 <input type="radio" name="gender" id="gender-b" value="both">
                             </fieldset>
                         </div>
 
                         <div class="form-group">
-                            <h2>Seeking a:</h2>
+                            <h2>I am seeking a:</h2>
                             <fieldset>
                                 <label for="seeking-m">Male</label>
                                 <input type="radio" name="seeking" id="seeking-m" value="male">
                                 <label for="seeking-f">Female</label>
                                 <input type="radio" name="seeking" id="seeking-f" value="female" checked>
-                                <label for="seeking-b">Both</label>
+                                <label for="seeking-b">Either</label>
                                 <input type="radio" name="seeking" id="seeking-b" value="both">
                             </fieldset>
                         </div>
@@ -124,8 +126,9 @@ if($res) {
                             <h1>Interests</h1>
                             <fieldset>
                                 <legend>Interests: </legend>
+                                <span class="badge badge-pill badge-info">Leave blank for all interests</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="interests-search" placeholder="Search Interests">
+                                    <input type="text" class="form-control" id="interests-search" placeholder="eg Football">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" id="interests-search-button">Search Interests</button>
                                     </div>
@@ -137,8 +140,9 @@ if($res) {
                             <h1>Traits</h1>
                             <fieldset>
                                 <legend>Traits: </legend>
+                                <span class="badge badge-pill badge-info">Leave blank for all traits</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="traits-search" placeholder="Search Traits">
+                                    <input type="text" class="form-control" id="traits-search" placeholder="eg Funny">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" id="traits-search-button">Search Traits</button>
                                     </div>
@@ -147,9 +151,6 @@ if($res) {
                                 <ul class="list-group clearfix" id="selected-traits-list"></ul>
                             </fieldset>
                         </div>
-
-                        <input type="button" class="btn btn-xl btn-primary" value="Search Users" id="submit-search-button">
-
                     </div>
                     <div class="col-6">
                         <ul class="list-group" id="search-results-list">

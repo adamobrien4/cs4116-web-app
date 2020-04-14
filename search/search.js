@@ -1,7 +1,7 @@
 $(() => {
 
     $("input[type='radio']").checkboxradio();
-    
+
     $('[name="gender"]').on('change', (e) => {
         gender = e.target.value;
     });
@@ -41,24 +41,26 @@ $(() => {
     $('#interests-search-button').on('click', () => {
         var searchTerm = $('#interests-search').val();
 
-        if (searchTerm.length > 0) {
-            $('#interests-search-button').prop('disabled', true);
-            $.ajax('search_handler.php', {
-                type: 'POST',
-                data: { 'search_interests': searchTerm },
-                success: (data, status, xhr) => {
-                    $('#interests-search-button').prop('disabled', false);
-                    if (data == "not_found") {
-                        return;
-                    }
-                    populate_available_interests_grid(JSON.parse(data));
-                },
-                error: (xhr, status, e) => {
-                    $('#interests-search-button').prop('disabled', false);
-                    alert("There was an error.");
-                }
-            });
+        if (searchTerm.length == 0) {
+            searchTerm = "*";
         }
+
+        $('#interests-search-button').prop('disabled', true);
+        $.ajax('search_handler.php', {
+            type: 'POST',
+            data: { 'search_interests': searchTerm },
+            success: (data, status, xhr) => {
+                $('#interests-search-button').prop('disabled', false);
+                if (data == "not_found") {
+                    return;
+                }
+                populate_available_interests_grid(JSON.parse(data));
+            },
+            error: (xhr, status, e) => {
+                $('#interests-search-button').prop('disabled', false);
+                alert("There was an error.");
+            }
+        });
     });
 
     // Populate traits/traits list whe user searches
@@ -66,29 +68,37 @@ $(() => {
     $('#traits-search-button').on('click', () => {
         var searchTerm = $('#traits-search').val();
 
-        if (searchTerm.length > 0) {
-            $('#traits-search-button').prop('disabled', true);
-            $.ajax('search_handler.php', {
-                type: 'POST',
-                data: { 'search_traits': searchTerm },
-                success: (data, status, xhr) => {
-                    $('#traits-search-button').prop('disabled', false);
-                    if (data == "not_found") {
-                        return;
-                    }
-                    populate_available_traits_grid(JSON.parse(data));
-                },
-                error: (xhr, status, e) => {
-                    $('#traits-search-button').prop('disabled', false);
-                    alert("There was an error.");
-                }
-            });
+        if (searchTerm.length == 0) {
+            searchTerm = "*";
         }
+
+        $('#traits-search-button').prop('disabled', true);
+        $.ajax('search_handler.php', {
+            type: 'POST',
+            data: { 'search_traits': searchTerm },
+            success: (data, status, xhr) => {
+                $('#traits-search-button').prop('disabled', false);
+                if (data == "not_found") {
+                    return;
+                }
+                populate_available_traits_grid(JSON.parse(data));
+            },
+            error: (xhr, status, e) => {
+                $('#traits-search-button').prop('disabled', false);
+                alert("There was an error.");
+            }
+        });
     });
 
     $('#submit-search-button').on('click', () => {
         submitSearch();
     });
+
+    setTimeout(()=>{
+        $('#interests-search-button').trigger('click');
+        $('#traits-search-button').trigger('click');
+    }, 500);
+        
 });
 
 // Interests related functions
@@ -214,11 +224,17 @@ function submitSearch() {
         data: { 'search_data': data },
         success: (data, status, xhr) => {
             $('#submit-search-button').prop('disabled', false);
-            if(data.substring(0,5) == "error"){
+            if (data.substring(0, 5) == "error") {
                 alert(data);
                 return;
             }
-            populate_results(JSON.parse(data));
+
+            try{
+                populate_results(JSON.parse(data));
+            } catch (err){
+                alert("An error occurred. Please try again.");
+            }
+            
         },
         error: (xhr, status, e) => {
             $('#submit-search-button').prop('disabled', false);
@@ -228,7 +244,7 @@ function submitSearch() {
 }
 
 function populate_results(d) {
-    d.sort(function(a, b){
+    d.sort(function (a, b) {
         return b.score - a.score;
     });
 
@@ -260,10 +276,10 @@ function requestConnection(user_id) {
         data: { 'request_connection': user_id },
         success: (data, status, xhr) => {
             btn.css("cursor", "default");
-            if(data == "success"){
+            if (data == "success") {
                 alert("Success");
                 btn.css("cursor", "not-allowed");
-            } else if(data == "exists") {
+            } else if (data == "exists") {
                 alert("You have already matches with this user.");
                 btn.css("cursor", "not-allowed");
             } else {
