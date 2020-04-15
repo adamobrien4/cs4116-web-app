@@ -1,19 +1,69 @@
 .bootstrap_chat {
-    background-color: #74EBD5;
-    min-height: 100vh;
-  }
-  
-  .text-small {
-    font-size: 0.9rem;
-  }
-  
-  .messages-box, .chat-box {
-    height: 510px;
-    overflow-y: scroll;
-  }
-  
-  .rounded-lg {
-    border-radius: 0.5rem;
-  }
-  
-  
+  background-color: #74EBD5;
+  min-height: 100vh;
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.messages-box, .chat-box {
+  height: 510px;
+  overflow-y: scroll;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+#messages-box {
+  background-color: lightcoral;
+}
+
+.outgoing_msg {
+  overflow: hidden;
+  margin: 26px 0 26px;
+}
+
+.sent_msg p {
+  background: #05728f none repeat scroll 0 0;
+  border-radius: 3px;
+  font-size: 14px;
+  margin: 0;
+  color: #fff;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+
+.sent_msg {
+  float: right;
+  width: 46%;
+}
+
+.time_date {
+  color: #747474;
+  display: block;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+
+.received_msg {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 92%;
+}
+
+.received_withd_msg p {
+  background: #ebebeb none repeat scroll 0 0;
+  border-radius: 3px;
+  color: #646464;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+
+.received_withd_msg {
+  width: 57%;
+}
