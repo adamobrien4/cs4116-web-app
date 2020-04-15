@@ -39,17 +39,14 @@ $(() => {
     // Populate interests/traits list whe user searches
     //$('#interests-search').on('input', () => {
     $('#interests-search-button').on('click', () => {
-        var searchTerm = $('#interests-search').val();
-
-        if (searchTerm.length == 0) {
-            searchTerm = "*";
-        }
+        $('#interests-search-button').text("Loading ...");
 
         $('#interests-search-button').prop('disabled', true);
         $.ajax('search_handler.php', {
             type: 'POST',
-            data: { 'search_interests': searchTerm },
+            data: { 'search_interests': "*" },
             success: (data, status, xhr) => {
+                $('#interests-search-button').text("Load Interests");
                 $('#interests-search-button').prop('disabled', false);
                 if (data == "not_found") {
                     return;
@@ -57,6 +54,7 @@ $(() => {
                 populate_available_interests_grid(JSON.parse(data));
             },
             error: (xhr, status, e) => {
+                $('#interests-search-button').text("Load Interests");
                 $('#interests-search-button').prop('disabled', false);
                 alert("There was an error.");
             }
@@ -66,18 +64,15 @@ $(() => {
     // Populate traits/traits list whe user searches
     //$('#traits-search').on('input', () => {
     $('#traits-search-button').on('click', () => {
-        var searchTerm = $('#traits-search').val();
-
-        if (searchTerm.length == 0) {
-            searchTerm = "*";
-        }
+        $('#traits-search-button').text("Loading ...");
 
         $('#traits-search-button').prop('disabled', true);
         $.ajax('search_handler.php', {
             type: 'POST',
-            data: { 'search_traits': searchTerm },
+            data: { 'search_traits': "*" },
             success: (data, status, xhr) => {
                 $('#traits-search-button').prop('disabled', false);
+                $('#traits-search-button').text("Load Traits");
                 if (data == "not_found") {
                     return;
                 }
@@ -85,6 +80,7 @@ $(() => {
             },
             error: (xhr, status, e) => {
                 $('#traits-search-button').prop('disabled', false);
+                $('#traits-search-button').text("Load Traits");
                 alert("There was an error.");
             }
         });
@@ -253,7 +249,7 @@ function populate_results(d) {
         $('#search-results-list').append(`
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 <div class="col-4">
-                    <img src="${user.photo}" class="img-fluid rounded" alt="Profile Picture">
+                    <img src="../assets/uploads/${user.user_id}.jpg" class="img-fluid rounded" alt="Profile Picture">
                 </div>
                 <div class="col-4">
                     ${user.firstname} - ${user.age}

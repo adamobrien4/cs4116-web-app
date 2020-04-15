@@ -19,26 +19,28 @@ $(() => {
                         'chat_id': current_active_chat
                     },
                     success: (data, status, xhr) => {
-                        if(data == "success"){
+                        if (data == "success") {
                             $('#send-chat-field').val('');
                             getMessages(current_active_chat, current_active_chat);
                         } else {
                             console.log(data);
-                            alert(data + " fix this");
+                            $('#send-chat-button').effect("shake");
                         }
                     },
                     error: (xhr, status, e) => {
-                        alert("There was an error. Please try sending the chat again.");
+                        $('#send-chat-button').effect("shake");
                     }
                 });
             } else {
-                alert("Message is empty");
+                $("#send-chat-field").effect("shake");
             }
         }
     });
 });
 
 function getMessages(chat_id) {
+    $('#chat-box').empty();
+    $('#chat-box').html("<img src='https://static.collectui.com/shots/3678774/dash-loader-large' style='width:100%;'/>");
     // Update to let the page know which chat the user is currently interacting with
     current_active_chat = chat_id;
     $.ajax('chat_handler.php', {
@@ -48,16 +50,19 @@ function getMessages(chat_id) {
             'user_type': chats[chat_id]['you_are_user']
         },
         success: (data, status, xhr) => {
-            console.log(data);
-
             try {
                 displayMessages(JSON.parse(data), chat_id);
             } catch (err) {
                 console.log(err);
+                $("#chat_" + chat_id).effect("shake");
+                $("#chat-box").empty();
+                $("#chat-box").html("<img src='https://img.icons8.com/clouds/100/000000/error.png' width='200px;'/>");
             }
         },
         error: (xhr, status, e) => {
-            alert("There was an error. Please try updating your interests again.");
+            $("#chat_" + chat_id).effect("shake");
+            $("#chat-box").empty();
+            $("#chat-box").html("<img src='https://img.icons8.com/clouds/100/000000/error.png' width='200px;'/>");
         }
     });
 }
@@ -117,5 +122,5 @@ function displayMessages(data, index) {
         mBox.append(element);
     });
 
-    mBox.animate({ scrollTop:mBox.prop("scrollHeight")}, 500);
+    mBox.animate({ scrollTop: mBox.prop("scrollHeight") }, 500);
 }

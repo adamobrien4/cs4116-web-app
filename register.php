@@ -42,13 +42,13 @@ if (isset($_GET['g']) && isset($_GET['s']) && isset($_GET['a'])) {
 			while ($row = mysqli_fetch_assoc($res)) {
 				array_push($user_ids, $row['user_id']);
 			}
-			$query = "SELECT firstname FROM users WHERE user_id in (" . implode(",", $user_ids) . ")";
+			$query = "SELECT firstname, user_id FROM users WHERE user_id in (" . implode(",", $user_ids) . ")";
 			$res = mysqli_query($db_conn, $query);
 
 			if ($res) {
 				if (mysqli_num_rows($res) > 0) {
 					while ($row = mysqli_fetch_assoc($res)) {
-						array_push($user_data, $row['firstname']);
+						array_push($user_data, $row);
 					}
 				}
 			} else {

@@ -56,7 +56,7 @@ if(isset($_POST['chat_id_request']) && isset($_POST['user_type'])) {
 if(isset($_POST['message']) && isset($_POST['chat_id'])){
     // Add new message
 
-    $m = $_POST['message'];
+    $m = addslashes($_POST['message']);
     $cid = preg_replace('/[^0-9]/', '', $_POST['chat_id']);
 
     $sql = "INSERT INTO messages (chat_id, user_id, timestamp, message) VALUES ({$cid}, {$_SESSION['user_id']}, NOW(), '{$m}')";

@@ -129,8 +129,6 @@ $user_traits = get_user_traits($db_conn);
                             </div>
                         </div>
 
-                        <h1>Interests</h1>
-                        <h2>Checkbox</h2>
                         <fieldset>
                             <legend>Interests: </legend>
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addInterestsMenu" aria-expanded="false" aria-controls="addInterestsMenu">
@@ -141,8 +139,6 @@ $user_traits = get_user_traits($db_conn);
                         </fieldset>
                         <button type="button" class="btn btn-outline-primary" onclick='submitInterests()'>Submit Interests</button>
 
-                        <h1>Traits</h1>
-                        <h2>Checkbox</h2>
                         <fieldset>
                             <legend>Traits: </legend>
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addTraitsMenu" aria-expanded="false" aria-controls="addTraitsMenu">

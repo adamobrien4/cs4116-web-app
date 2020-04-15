@@ -43,8 +43,6 @@ if($res) {
 
 			$sql .= " AND chat_id = {$row['chat_id']} ORDER BY TIMESTAMP DESC LIMIT 1) AS T2";
 
-			echo $sql;
-
 			$rsp = mysqli_query($db_conn, $sql);
 			if($rsp){
 				if(mysqli_num_rows($rsp) > 0){
@@ -63,22 +61,8 @@ if($res) {
         }
 	}
 }
-
-echo(json_encode($chats));
-
-/*
-$query = "SELECT chat_id FROM chats WHERE userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}";
-$res = mysqli_query($db_conn, $query);
-
-if($res) { //handles errors if the query failed
-    if(mysqli_num_rows($res) > 0) {
-        while($row = mysqli_fetch_assoc($res)){
-            array_push($chats, $row);
-        }
-	}
-}
-*/
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,6 +82,7 @@ if($res) { //handles errors if the query failed
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="../assets/js/moment.js"></script>
 	<script src="../assets/js/moment-tz.js"></script>
 	<script src="./chat.js"></script>
@@ -127,10 +112,6 @@ if($res) { //handles errors if the query failed
 
 				<div>
 					<div class="container py-5 px-4">
-						<!-- For demo purpose-->
-						<header class="text-center">
-							<h1 class="display-4 text-white">Chat -- only works visually for now entering data on the db to see on the ui</h1>
-						</header>
 
 						<div class="row rounded-lg overflow-hidden shadow">
 							<!-- Users conversations box-->
@@ -160,14 +141,13 @@ if($res) { //handles errors if the query failed
 													}
 												}
 
-												echo ("<div class='list-group-item list-group-item-action rounded-0' onclick='getMessages({$chat['chat_id']})'>
-														<div class='media'><img src='https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg' alt='user' width='50' class='rounded-circle'>
+												echo ("<div class='list-group-item list-group-item-action rounded-0' id='chat_{$chat['chat_id']}' onclick='getMessages({$chat['chat_id']})'>
+														<div class='media'><img src='{$_ENV['site_home']}assets/uploads/{$chat['other_user_id']}.jpg' alt='user' width='50' class='rounded'>
 															<div class='media-body ml-4'>
 																<div class='d-flex align-items-center justify-content-between mb-1'>
 																{$notification}
 																<h6 class='mb-0'>" . $chat['chat_id'] . "</h6><small class='small font-weight-bold'>Last message from them: ". $timestamp ."</small>
 																</div>
-																<p class='font-italic mb-0 text-small'>Havent decided if I am going to include partial message text here or not.</p>
 															</div>
 														</div>
 													  </div>");
@@ -183,28 +163,6 @@ if($res) { //handles errors if the query failed
 								<div class="px-4 py-5 chat-box bg-white" id="chat-box">
 
 									<h3>Select a chat to start chatting</h3>
-
-
-									<?php /*
-
-									// error somewhere - only putting some values into the chat box
-									//call the messages function based on the toggle switch that happens somehwere above
-
-									foreach ($messages as $message) {
-										echo ("
-											<div class='media w-50 mb-3'> 
-												<div class='media-body'>
-													<div class='rounded py-2 px-3 mb-2'>
-														<p class='text-small mb-0'>" . $message['message'] . "</p>
-													</div>
-												</div>
-											</div>
-										");
-									}  */ ?>
-
-
-
-
 								</div>
 
 								<!-- Typing area -->

@@ -126,13 +126,7 @@ if($res) {
                             <h1>Interests</h1>
                             <fieldset>
                                 <legend>Interests: </legend>
-                                <span class="badge badge-pill badge-info">Leave blank for all interests</span>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="interests-search" placeholder="eg Football">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary" id="interests-search-button">Search Interests</button>
-                                    </div>
-                                </div>
+                                <button class="btn btn-outline-primary" id="interests-search-button">Load Interests</button>
                                 <div id="interests-grid"></div>
                                 <ul class="list-group clearfix" id="selected-interests-list"></ul>
                             </fieldset>
@@ -140,13 +134,7 @@ if($res) {
                             <h1>Traits</h1>
                             <fieldset>
                                 <legend>Traits: </legend>
-                                <span class="badge badge-pill badge-info">Leave blank for all traits</span>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="traits-search" placeholder="eg Funny">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary" id="traits-search-button">Search Traits</button>
-                                    </div>
-                                </div>
+                                <button class="btn btn-outline-primary" id="traits-search-button">Load Traits</button>
                                 <div id="traits-grid"></div>
                                 <ul class="list-group clearfix" id="selected-traits-list"></ul>
                             </fieldset>

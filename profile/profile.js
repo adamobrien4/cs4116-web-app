@@ -5,7 +5,7 @@ $(function () {
     // Display account complete status
     if (user_profile_data.completed == 0) {
         $("#complete-status-alert").addClass('alert-warning');
-        $("#alert-content").text("Please fill out all aspects of your account to gain access to all features of this site.");
+        $("#alert-content").html("<span>Please fill out all aspects of your account to gain access to all features of this site.</span><ul><li>At least one interest</li><li>At least one trait</li><li>Firstname</li><li>Lastname</li><li>Age</li><li>Gender</li><li>Seeking</li><li>Description</li></ul><span>Click <strong>submit changes</strong> below description to check for these changes.</span>");
     } else {
         $("#complete-status-alert").addClass('alert-success');
         $("#alert-content").text("Your account is complete. Please enjoy access to all features of this site.");
