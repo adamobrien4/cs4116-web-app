@@ -73,21 +73,3 @@ if(isset($_POST['message']) && isset($_POST['chat_id'])){
     }
     exit();
 }
-
-$messages = [
-    [
-        "message_id" => 22,
-        "chat_id" => 5,
-        "user_id" => 19,
-        "message" => "Hello World!",
-        "user_type" => "a"
-    ]
-];
-
-
-function messageCall($db_conn, $chat_id){
-    $messages = array();
-    
-    
-    return $messages;
-}
