@@ -131,12 +131,12 @@ if($res) {
 												$notification = "";
 												if($chat['you_are_user'] == "A"){
 													$timestamp = $chat['B_last_viewed'];
-													if($chat['tstmpB'] > $chat['A_last_viewed']){
+													if($chat['tstmpB'] >= $chat['A_last_viewed']){
 														$notification = "<span class='badge badge-pill badge-danger'>!</span>";
 													}
 												} else {
 													$timestamp = $chat['A_last_viewed'];
-													if($chat['tstmpA'] > $chat['B_last_viewed']){
+													if($chat['tstmpA'] >= $chat['B_last_viewed']){
 														$notification = "<span class='badge badge-pill badge-danger'>!</span>";
 													}
 												}

@@ -81,12 +81,12 @@ function displayMessages(data, index) {
             // This message is from the other user
 
             if (chats[index].you_are_user == "A") {
-                if (val.timestamp > chats[index].A_last_viewed) {
+                if (val.timestamp >= chats[index].A_last_viewed) {
                     // This is a new unread message
                     cls = "<sup><span class='badge badge-success'>1</span></sup>";
                 }
             } else {
-                if (val.timestamp > chats[index].B_last_viewed) {
+                if (val.timestamp >= chats[index].B_last_viewed) {
                     // This is a new unread message
                     cls = "<sup><span class='badge badge-success'>1</span></sup>";
                 }
