@@ -168,7 +168,7 @@ if (isset($_GET['n'])) {
 								</div>
 
 								<div>
-									<input class="optionbox" type="text" placeholder="Age" id="age" name="age"><br>
+									<input class="optionbox" type="text" placeholder="Age" id="age" name="age" required/><br>
 								</div>
 
 								<div>
