@@ -183,7 +183,7 @@ if (isset($_GET['n'])) {
 				<label class="registertext">Already have an account? </label>
 				<a href="./login.php">Login</a>
 				<div class="center_y" style="width:100%;margin-top:80px" id="goDown">
-					<small>Browse Users</small>
+					<small onclick="scrollWin()">Browse Users</small>
 					<i class="fa fa-angle-down" style="text-align:center; font-size:30px; font-weight:bold; " ></i>
 				</div>
 			</div>

@@ -135,7 +135,7 @@ if (isset($_GET['n'])) {
 						<a href="./register.php">Sign Up</a>
 						<a href="#browsebox" id="goDownLink">
 							<div class="center_y" style="width:100%;margin-top:80px;" id="goDown">
-								<small>Browse Users</small>
+								<small onclick="scrollWin()">Browse Users</small>
 								<i class="fa fa-angle-down" style="text-align:center; font-size:30px; font-weight:bold; "></i>
 							</div>
 						</a>
@@ -196,7 +196,10 @@ if (isset($_GET['n'])) {
 	}
 	console.log(document.cookie);
 
-	
+	function scrollWin() 
+		{
+			window.scrollTo(0,document.body.scrollHeight);
+		}
 </script>
 
 
