@@ -26,6 +26,8 @@ if ($res) {
     }
 }
 
+$blacklist;
+$q = "INSERT "
 
 ?>
 
@@ -51,7 +53,7 @@ if ($res) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
+    <link rel="stylesheet" href="bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -97,16 +99,16 @@ if ($res) {
 
             foreach($users as $user) {
                 echo "
-                <div class='container'>
-                    <div class='row user-list'>
-                        <div class='col-12 col-sm-6 col-md-4 col-lg-3 user-item'>
+                <div class='list-group'>
+                    <li class='list-group-item'>
                         <div class='user-container'><a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='../assets/uploads/{$user['user_id']}.jpg' width='48' height='48' alt='Image' /></a>
                         <p class='user-name' id='name' contentEditable='true'>{$user['firstname']}, {$user['lastname']}
-                        <ul id='bio'>{$user['description']} </ul>
-                            </p>
-                            <a class='user-delete' href='#'><i class='fa fa-remove'></i></a>
-                        </div>
-                    </div>
+                        <ul id='bio'>{$user['description']} </ul></p>
+                        <label class='switch'>
+                        <input type='checkbox'>
+                        <span class='slider round'></span>
+                        </label>
+                    
                 </div>
                 </div>
                 ";
