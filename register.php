@@ -219,7 +219,7 @@ if (isset($_GET['n'])) {
 
 		function scrollWin() 
 		{
-  			window.scrollBy(0, 900);
+			window.scrollTo(0,document.body.scrollHeight);
 		}
 
 		window.addEventListener('scroll', () => {
