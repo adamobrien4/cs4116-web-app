@@ -14,9 +14,58 @@ select message_id, timestamp, message from messages where chat_id = 1
 //session_start();//allows me to use session data on this page - doesnt create a new session tho
 //dont need it anymore as this page is being included somewhere else
 
-if(isset($_POST['chat_id_request']) && isset($_POST['user_type'])) {
+
+if( isset($_POST['chat_id_request']) && isset($_POST['messageTimestamp']) && isset($_POST['user_type']) ) {
     $chat_id = preg_replace('/[^0-9]/', '', $_POST['chat_id_request']);
-    $user_type = preg_replace('/[^a-z]/i', '', $_POST['user_type']);
+    $tstmp = preg_replace('/[^0-9 -:]/', '', $_POST['messageTimestamp']);
+
+    $sql = "SELECT timestamp FROM messages WHERE chat_id = {$chat_id} ORDER BY timestamp DESC LIMIT 1";
+
+    $r = mysqli_query($db_conn, $sql);
+
+    if($r){
+        if(mysqli_num_rows($r) > 0) {
+            $row = mysqli_fetch_assoc($r);
+
+            if($row['timestamp'] == $tstmp){
+                echo "no_new";
+            } else {
+                echo getChatMessages($db_conn, $chat_id, $_POST['user_type']);
+            }
+        }
+    }
+    exit();
+}
+
+if(isset($_POST['chat_id_request']) && isset($_POST['user_type'])) {
+    echo getChatMessages($db_conn, $_POST['chat_id_request'], $_POST['user_type']);
+    exit();
+}
+
+if(isset($_POST['message']) && isset($_POST['chat_id'])){
+    // Add new message
+
+    $m = addslashes($_POST['message']);
+    $cid = preg_replace('/[^0-9]/', '', $_POST['chat_id']);
+
+    $sql = "INSERT INTO messages (chat_id, user_id, timestamp, message) VALUES ({$cid}, {$_SESSION['user_id']}, NOW(), '{$m}')";
+
+    $r = mysqli_query($db_conn, $sql);
+    if($r){
+        if(mysqli_affected_rows($db_conn) > 0) {
+            echo "success";
+        } else {
+            echo "failure";
+        }
+    } else {
+        echo "failure";
+    }
+    exit();
+}
+
+function getChatMessages($db_conn, $chat_id_param, $user_type_param) {
+    $chat_id = preg_replace('/[^0-9]/', '', $chat_id_param);
+    $user_type = preg_replace('/[^a-z]/i', '', $user_type_param);
 
     $messages = array();
 
@@ -46,30 +95,8 @@ if(isset($_POST['chat_id_request']) && isset($_POST['user_type'])) {
     }
 
     if(count($messages) > 0){
-        echo json_encode($messages);
+        return json_encode($messages);
     } else {
-        echo "empty";
+        return "empty";
     }
-    exit();
-}
-
-if(isset($_POST['message']) && isset($_POST['chat_id'])){
-    // Add new message
-
-    $m = addslashes($_POST['message']);
-    $cid = preg_replace('/[^0-9]/', '', $_POST['chat_id']);
-
-    $sql = "INSERT INTO messages (chat_id, user_id, timestamp, message) VALUES ({$cid}, {$_SESSION['user_id']}, NOW(), '{$m}')";
-
-    $r = mysqli_query($db_conn, $sql);
-    if($r){
-        if(mysqli_affected_rows($db_conn) > 0) {
-            echo "success";
-        } else {
-            echo "failure";
-        }
-    } else {
-        echo "failure";
-    }
-    exit();
 }

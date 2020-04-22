@@ -1,3 +1,6 @@
+var checkMessageInterval;
+var mostRecentMessageTimestamp;
+
 $(() => {
     console.log("ready");
 
@@ -39,6 +42,9 @@ $(() => {
 });
 
 function getMessages(chat_id) {
+
+    clearInterval(checkMessageInterval);
+
     $('#chat-box').empty();
     $('#chat-box').html("<img src='https://static.collectui.com/shots/3678774/dash-loader-large' style='width:100%;'/>");
     // Update to let the page know which chat the user is currently interacting with
@@ -76,6 +82,7 @@ function displayMessages(data, index) {
 
         var element = "";
         var messageWhen = moment(val.timestamp, "YYYY-MM-DD hh:ii:ss").from(moment(new Date()));
+        mostRecentMessageTimestamp = val.timestamp;
 
         if (val.user_id == chats[index].other_user_id) {
             // This message is from the other user
@@ -123,4 +130,30 @@ function displayMessages(data, index) {
     });
 
     mBox.animate({ scrollTop: mBox.prop("scrollHeight") }, 500);
+
+    checkMessageInterval = setInterval(checkForNewMessages, 4000);
+}
+
+function checkForNewMessages(){
+    console.log("Checking for new messages on chat " + current_active_chat + " -> " + mostRecentMessageTimestamp);
+    $.ajax('chat_handler.php', {
+        type: 'POST',
+        data: {
+            'chat_id_request': current_active_chat,
+            'messageTimestamp': mostRecentMessageTimestamp,
+            'user_type': chats[current_active_chat]['you_are_user']
+        },
+        success: (data, status, xhr) => {
+            if(data == "no_new"){
+                console.log('No new messages');
+            } else {
+                try {
+                    displayMessages(JSON.parse(data), current_active_chat);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            
+        }
+    });
 }
