@@ -40,6 +40,12 @@ login_check(1);
 
     <link rel="stylesheet" href="chat.css" />
 
+    <style>
+        .chat { /*CSS to highlight when on current page for navbar*/
+            background-color:#e94b3cff;
+            color:white !important;
+        }
+
 
 </head>
 

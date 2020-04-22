@@ -97,6 +97,14 @@ if($res) {
 		var current_active_chat = -1;
 
 	</script>
+
+    <style>
+        .chat { /*CSS to highlight when on current page for navbar*/
+            background-color:#e94b3cff;
+            color:white !important;
+        }
+    </style>
+
 </head>
 
 

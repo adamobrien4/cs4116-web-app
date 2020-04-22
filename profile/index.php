@@ -96,6 +96,14 @@ $user_traits = get_user_traits($db_conn);
         <?php } ?>
     </script>
 
+    <style>
+        .profile { /*CSS to highlight when on current page for navbar*/
+            background-color:#e94b3cff;
+            color:white !important;
+        }
+
+    </style>
+
 </head>
 
 <body>

@@ -72,6 +72,13 @@ if($res) {
     </script>
 
     <title>Document</title>
+
+    <style>
+        .search { /*CSS to highlight when on current page for navbar*/
+            background-color:#e94b3cff;
+            color:white !important;
+        }
+    </style>
 </head>
 
 <body>

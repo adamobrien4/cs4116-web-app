@@ -61,13 +61,13 @@ body {
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: #999999; /*regular text color of items on navbar*/
 }
 
 .sidebar-nav li a:hover {
   text-decoration: none;
-  color: #fff;
-  background: rgba(255,255,255,0.2);
+  color: #fff;   /*color text items change to on hover*/
+  background: rgba(255,255,255,0.2);  /*background color when hovered over an item*/
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {

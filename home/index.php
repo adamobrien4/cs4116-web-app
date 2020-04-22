@@ -105,6 +105,13 @@ if ($r) {
 		var connections = <?php echo (json_encode($connections)); ?>;
 	</script>
 
+
+    <style>
+        .home { /*CSS to highlight when on current page for navbar*/
+            background-color:#e94b3cff;
+            color:white !important;
+        }
+
 </head>
 
 <body>
