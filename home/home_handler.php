@@ -20,8 +20,6 @@ if(isset($_POST['connection_id']) && isset($_POST['status']) && isset($_POST['ot
     }
 
     $sql .= " WHERE connection_id = {$conn_id} AND result = 'pending' AND (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) LIMIT 1";
-
-    echo "1: " . $sql;
     
     $r = mysqli_query($db_conn, $sql);
 
@@ -30,7 +28,6 @@ if(isset($_POST['connection_id']) && isset($_POST['status']) && isset($_POST['ot
             
             // Create new chat between users
             $csql = "INSERT INTO chats (userA_id, userB_id, A_last_viewed, B_last_viewed) VALUES ({$_SESSION['user_id']}, {$other_user}, NOW(), NOW())";
-            echo "2: " . $csql;
             $r2 = mysqli_query($db_conn, $csql);
             if($r2){
                 if(mysqli_affected_rows($db_conn) > 0){
@@ -41,7 +38,6 @@ if(isset($_POST['connection_id']) && isset($_POST['status']) && isset($_POST['ot
                     $sql = "INSERT INTO messages (chat_id, user_id, timestamp, message) VALUES 
                             ({$chat_id}, {$_SESSION['user_id']}, NOW(), 'Chat Started!'),
                             ({$chat_id}, {$other_user}, NOW(), 'Chat Started!')";
-                    echo "3: " . $sql;
                     $r3 = mysqli_query($db_conn, $sql);
 
                     if($r3){

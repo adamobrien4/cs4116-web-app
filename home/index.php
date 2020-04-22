@@ -111,6 +111,7 @@ if ($r) {
             background-color:#e94b3cff;
             color:white !important;
         }
+	</style>
 
 </head>
 
