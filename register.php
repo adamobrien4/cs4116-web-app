@@ -209,6 +209,26 @@ if (isset($_GET['n'])) {
 		$(() => {
 			$('#myModal').modal("show");
 		});
+
+		if(document.cookie.includes("true"))
+		{
+			scrollWin();
+		}
+
+		console.log(document.cookie);
+
+		function scrollWin() 
+		{
+  			window.scrollBy(0, 900);
+		}
+
+		window.addEventListener('scroll', () => {
+		const scrolled = window.scrollY;
+		document.cookie = "false";
+		
+		console.log(document.cookie);
+	
+	})
 	</script>
 </body>
 

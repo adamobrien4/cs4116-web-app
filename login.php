@@ -172,7 +172,7 @@ if (isset($_GET['n'])) {
 								</div>
 
 								<div>
-									<button type="submit" class="cbtn" name="save">Find Users</button>
+									<button type="submit" class="cbtn" name="save" id="search123" onclick="scrollie()">Find Users</button>
 								</div>
 							</form>
 						</div>
@@ -187,6 +187,16 @@ if (isset($_GET['n'])) {
 	$(() => {
 		$('#myModal').modal("show");
 	});
+
+	function scrollie()
+	{
+		fiveseconds = 1000*5
+		var expires = new Date((new Date()).valueOf() + fiveseconds);
+		document.cookie = "true; expires=fiveseconds";
+	}
+	console.log(document.cookie);
+
+	
 </script>
 
 
