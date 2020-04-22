@@ -108,7 +108,7 @@ if ($r) {
 
     <style>
         .home { /*CSS to highlight when on current page for navbar*/
-            background-color:#e94b3cff;
+            background-color:#ec335a;
             color:white !important;
         }
 	</style>

@@ -25,7 +25,6 @@
         <li><a class = "profile" href="<?php echo $_ENV['site_home'] ?>profile">PROFILE </a></li>
 
         <?php if (isset($_SESSION['user_id'])) {
-            echo '<li><a href="' . $_ENV['site_home'] . 'connections.php">CONNECTIONS</a></li>';
             echo '<li><a href="' . $_ENV['site_home'] . 'logout.php">LOGOUT</a></li>';
         } ?>
 
@@ -33,5 +32,9 @@
             echo '<li><a style="color:pink" href="' . $_ENV['site_home'] . 'admin ">ADMIN</a></li>';
         } ?>
 
+
+
+        <li style="margin-left:0px; margin-top: 50px;" class="sidebar-brand"><a href="#"><img src="https://i.imgur.com/yFSkW1L.png" width="150px" height="150px"> </a></li>
     </ul>
+
 </div>

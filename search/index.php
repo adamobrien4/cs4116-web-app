@@ -75,7 +75,7 @@ if($res) {
 
     <style>
         .search { /*CSS to highlight when on current page for navbar*/
-            background-color:#e94b3cff;
+            background-color:#ec335a;
             color:white !important;
         }
     </style>

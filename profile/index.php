@@ -98,7 +98,7 @@ $user_traits = get_user_traits($db_conn);
 
     <style>
         .profile { /*CSS to highlight when on current page for navbar*/
-            background-color:#e94b3cff;
+            background-color:#ec335a;
             color:white !important;
         }
 
@@ -193,7 +193,61 @@ $user_traits = get_user_traits($db_conn);
                         </form>
                     </div>
                 </div>
-            </div>
+
+                <!-- Footer -->
+                <footer style="background: rgb(91,91,110);
+background: radial-gradient(circle, rgba(91,91,110,1) 0%, rgba(115,115,125,1) 34%, rgba(154,154,162,1) 58%, rgba(174,174,180,1) 77%, rgba(202,202,206,1) 87%, rgba(218,218,221,1) 93%, rgba(234,234,236,1) 96%, rgba(255,255,255,1) 100%); margin-top:25px;" class="page-footer font-small teal pt-4">
+
+                    <!-- Footer Text -->
+                    <div class="container-fluid text-center text-md-left">
+
+                        <!-- Grid row -->
+                        <div class="row">
+
+                            <!-- Grid column -->
+                            <div class="col-md-6 mt-md-0 mt-3">
+
+                                <!-- Content -->
+                                <h5 style="color:#ec335a" class="text-uppercase font-weight-bold">Dating Sucks</h5>
+                                <p style="color: #4b2638">Dating Sucks, the world is getting busier, people are getting busier and quite frankly online dating sites suck. Here at Dating Sucks we will make your life
+                                easier; when you look for someone our proprietary artificial intelligence enabled matching algorithm is going to find someone you match up with. It doesn't suck, it works.</p>
+
+                            </div>
+                            <!-- Grid column -->
+
+                            <hr class="clearfix w-100 d-md-none pb-3">
+
+                            <!-- Grid column -->
+                            <div class="col-md-6 mb-md-0 mb-3">
+
+                                <!-- Content -->
+                                <h5 style="color:#ec335a"  class="text-uppercase font-weight-bold">About</h5>
+                                <p style="color: #4b2638">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
+                                    commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
+                                    excepturi hic.</p>
+                                <!--<img src="../logo.png" width="100" height="100">-->
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                    </div>
+                    <!-- Footer Text -->
+
+                    <!-- Copyright -->
+                    <div style="color:#d9d5d6" class="footer-copyright text-center py-3">© 2020 Copyright:
+                        <a style="color:#d9d5d6" href="http://hive.csis.ul.ie/cs4116/group02/index.php"> DatingSucks</a>
+                    </div>
+                    <!-- Copyright -->
+
+                </footer>
+                <!-- Footer -->
+
+
+
+            </div> <!--All page content must go inside the container-fluid-->
         </div>
     </div>
     <script src="..\assets/js/Sidebar-Menu.js"></script>
