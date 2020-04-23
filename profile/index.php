@@ -194,6 +194,12 @@ $user_traits = get_user_traits($db_conn);
                     </div>
                 </div>
 
+                <div class = "row justify-content-center"><!--Update / Complete Profile-->
+                    <div class="col-2">
+                        <button style="background-color: #EF5B7A; color: #242434" type="" class="btn btn-outline-primary">Update Entire Profile</button>
+                    </div>
+                </div>
+
                 <!-- Footer -->
                 <footer style="background: rgb(91,91,110);
 background: radial-gradient(circle, rgba(91,91,110,1) 0%, rgba(115,115,125,1) 34%, rgba(154,154,162,1) 58%, rgba(174,174,180,1) 77%, rgba(202,202,206,1) 87%, rgba(218,218,221,1) 93%, rgba(234,234,236,1) 96%, rgba(255,255,255,1) 100%); margin-top:25px;" class="page-footer font-small teal pt-4">
