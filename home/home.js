@@ -34,8 +34,8 @@ $(() => {
                 'other_user': connections[0].other_user_id
             },
             success: (data, status, xhr) => {
-                //alert(data);
-                console.log(data);
+                alert(data);
+                //console.log(data);
             }
         });
     });

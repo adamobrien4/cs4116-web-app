@@ -130,7 +130,7 @@ if ($r) {
 
 				<?php if(count($connections) > 0) { ?>
 					<div class="card text-center">
-						<div class="card-body"><img />
+						<div class="card-body"><img style="width: 125px; height: 125px"src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png"/> <!--get this off the images for users-->
 							<h4 class="card-title" id="card-user-title">Maggy, 34</h4>
 							<h6 class="text-muted card-subtitle mb-2">Limerick</h6>
 							<hr />

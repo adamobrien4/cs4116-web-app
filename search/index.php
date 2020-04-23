@@ -99,11 +99,11 @@ if($res) {
                             <div id="age-slider-range"></div>
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="filter-distance">Distance Range:</label>
                             <input type="text" id="filter-distance" readonly style="border:0; color:#f6931f; font-weight:bold;">
                             <div id="distance-slider-range"></div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <h2>I am a:</h2>
