@@ -129,20 +129,24 @@ if ($r) {
 				</div>
 
 				<?php if(count($connections) > 0) { ?>
-					<div class="card text-center">
-						<div class="card-body"><img style="width: 125px; height: 125px"src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png"/> <!--get this off the images for users-->
+                    <div class="row justify-content-center">
+					<div class="card text-center col-10"> <!---->
+						<div class="card-body ">
+                            <img style="width: 125px; height: 125px"src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png"/> <!--get this off the images for users-->
 							<h4 class="card-title" id="card-user-title">Maggy, 34</h4>
 							<h6 class="text-muted card-subtitle mb-2">Limerick</h6>
 							<hr />
 							<h6 class="text-muted card-subtitle mb-2">DatingSuck's proprietary algorithm says: 87% chance ye two match up well hai</h6>
 
 							<!-- Might look nice to have a circular progress bar-->
-							<div class="project-progress">
+                            <div class="row justify-content-center">
+							<div class="project-progress col-8">
 								<div class="progress">
 									<div role="progressbar" style="width: 87%; height: 16px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red">
 									</div>
 								</div>
 							</div>
+                            </div>
 
 							<!--Might be funny to have a funny quotes from the dating sucks team on things not to say on a first date
 			if you match with John dont bring up your third ex wife etc.. etc..
@@ -173,6 +177,7 @@ if ($r) {
 							</div>
 
 						</div>
+                    </div>
 
 					</div>
 				<?php } else { ?>
