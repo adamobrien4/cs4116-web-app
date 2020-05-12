@@ -1,5 +1,7 @@
 $(() => {
-    $('#results-list').empty();
+    if(user_data.length > 0){
+        $('#results-list').empty();
+    }
     jQuery.each(user_data, (index, val) => {
         $('#results-list').append(`
             <div class="text-center">

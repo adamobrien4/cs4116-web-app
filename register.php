@@ -228,12 +228,9 @@ if (isset($_GET['n'])) {
 		}
 
 		window.addEventListener('scroll', () => {
-		const scrolled = window.scrollY;
-		document.cookie = "false";
-		
-		console.log(document.cookie);
-	
-	})
+			const scrolled = window.scrollY;
+			document.cookie = "false";	
+		})
 	</script>
 </body>
 

@@ -23,12 +23,12 @@ $(function () {
 
     // Populate available interests grid
     jQuery.each(available_interests, function (index, el) {
-        $('#addInterestsMenu').append(`<div class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addInterest(${index})'><i class='fas ${el.icon}'></i></div>`);
+        $('#addInterestsMenu').append(`<div style="cursor: pointer" class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addInterest(${index})'><i class='fas ${el.icon}'></i></div>`);
     });
 
     // Populate available traits grid
     jQuery.each(available_traits, function (index, el) {
-        $('#addTraitsMenu').append(`<div class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addTrait(${index})'><i class='fas ${el.icon}'></i></div>`);
+        $('#addTraitsMenu').append(`<div style="cursor: pointer" class='grid-square' data-toggle='tooltip' data-placement='right' title='${el.name}' onclick='addTrait(${index})'><i class='fas ${el.icon}'></i></div>`);
     });
     $('[data-toggle="tooltip"]').tooltip();
 

@@ -139,23 +139,17 @@ $user_traits = get_user_traits($db_conn);
 
                         <fieldset>
                             <legend>Interests: </legend>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addInterestsMenu" aria-expanded="false" aria-controls="addInterestsMenu">
-                                Add an interest
-                            </button>
-                            <div id="addInterestsMenu" class="collapse"></div>
+                            <div id="addInterestsMenu"></div>
                             <ul class="list-group clearfix" id="interests-list"></ul>
                         </fieldset>
-                        <button type="button" class="btn btn-outline-primary" onclick='submitInterests()'>Submit Interests</button>
+                        <button style="margin: 15px 0px" type="button" class="btn sbmt-btn" onclick='submitInterests()'>Submit Interests</button>
 
                         <fieldset>
                             <legend>Traits: </legend>
-                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#addTraitsMenu" aria-expanded="false" aria-controls="addTraitsMenu">
-                                Add a Trait
-                            </button>
-                            <div id="addTraitsMenu" class="collapse"></div>
+                            <div id="addTraitsMenu"></div>
                             <ul class="list-group clearfix" id="traits-list"></ul>
                         </fieldset>
-                        <button type="button" class="btn btn-outline-primary" onclick='submitTraits()'>Submit Traits</button>
+                        <button style="margin: 15px 0px" type="button" class="btn sbmt-btn" onclick='submitTraits()'>Submit Traits</button>
                     </div>
 
                     <div class="col-lg-6">
@@ -189,14 +183,8 @@ $user_traits = get_user_traits($db_conn);
                                 <textarea name="description" class="form-control" id="description" rows="5"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-outline-primary">Submit Changes</button>
+                            <button type="submit" class="btn btn-sm sbmt-btn">Submit Changes</button>
                         </form>
-                    </div>
-                </div>
-
-                <div class = "row justify-content-center"><!--Update / Complete Profile-->
-                    <div class="col-2">
-                        <button style="background-color: #EF5B7A; color: #242434" type="" class="btn btn-outline-primary">Update Entire Profile</button>
                     </div>
                 </div>
 

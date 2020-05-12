@@ -62,3 +62,8 @@
 .profile-image > img {
 	width: 100%;
 }
+
+.sbmt-btn {
+	background-color: #EF5B7A;
+	color: #242434
+}
