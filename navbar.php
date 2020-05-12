@@ -11,7 +11,7 @@
 
         <!--TO DO retrieve image per user -->
 
-        <li class="sidebar-brand"><a href="#"><img style="word-break: break-all;"src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png" width="50px" height="50px" alt="Icon" />&nbsp;<?php echo ($_SESSION['fullname']); ?></a></li>
+        <li class="sidebar-brand"><a href="#"><img style="border-radius: 4px; word-break: break-all;"src="../assets/uploads/<?php echo $_SESSION['user_id'] ?>.jpg" width="50px" height="50px" alt="Icon" />&nbsp;<?php echo ($_SESSION['fullname']); ?></a></li>
 
         <li><a class= "home" href=" <?php echo $_ENV['site_home'] ?>home">HOME</a></li>
         <li><a class="search" href="<?php echo $_ENV['site_home'] ?>search">SEARCH </a></li>
