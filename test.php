@@ -14,6 +14,7 @@ $traits = array();
 
 $matching_users = array();
 $matching_user_ids = array();
+$already_connected_user_ids = array();
 
 // Get users interests
 $interests_q = "SELECT interest_id FROM interests WHERE user_id = {$_SESSION['user_id']}";
@@ -77,6 +78,22 @@ if($r){
 echo("<h2>Matching Users</h2>");
 echo(json_encode($matching_user_ids));
 
+// Get list of users who the current user is already matched with
+$sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.connection_id FROM ( SELECT connection_id, userA_id, userB_id FROM connections WHERE (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2";
+$query = mysqli_query($db_conn, $sql);
+
+if($query) {
+    if(mysqli_num_rows($query) > 0) {
+        // User has connections linked to their account
+        while($row = mysqli_fetch_assoc($query)) {
+            array_push($already_connected_user_ids, $row['other_user_id']);
+        }
+    }
+}
+
+// Stop user from sending match to themselves
+array_push($already_connected_user_ids, $_SESSION['user_id']);
+
 
 // Find users who have matching interests
 $sql = "SELECT user_id FROM interests WHERE interest_id IN (" . implode(",", $interests) . ")";
@@ -115,14 +132,18 @@ if($res){
 echo("<h2>Matching Users</h2>");
 echo(json_encode($matching_users));
 
+echo("<h2>Already Connected Users</h2>");
+echo(json_encode($already_connected_user_ids));
+
 $matching_user_ids = array();
 
 // Sort users by score
 arsort($matching_users);
 
 // Remove users with low matching scores, not many interests/traits similiar
+// Remove users who the user is already connected / pending connection with
 foreach($matching_users as $index => $user){
-    if($user < 25){
+    if(in_array($index, $already_connected_user_ids) || $user < 45){
         unset($matching_users[$index]);
     } else {
         array_push($matching_user_ids, $index);
@@ -131,6 +152,22 @@ foreach($matching_users as $index => $user){
 
 echo "<h1>Sorted Users</h1>";
 var_dump($matching_users);
+
+// Create connections
+$conn_sql = "INSERT INTO potential_matches (userA_id, userB_id, weight) VALUES";
+foreach ($matching_users as $user_id => $weight) {
+    $conn_sql .= " ('{$_SESSION['user_id']}', '{$user_id}', {$weight}),";
+}
+
+$conn_sql = rtrim($conn_sql, ",");
+
+$conn_q = mysqli_query($db_conn, $conn_sql);
+
+if($conn_q){
+    if(mysqli_affected_rows($db_conn) > 0){
+        echo "Done";
+    }
+}
 
 ?>
 
