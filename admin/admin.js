@@ -15,8 +15,6 @@ function toggle_user_ban(user_id) {
     data: {
       'toggle_user_ban_id': user_id
     },
-    contentType: false,
-    processData: false,
     success: function (response) {
       console.log(response);
         if(response == "success") {

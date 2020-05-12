@@ -115,9 +115,9 @@ if ($res) {
                         
                         <label class='switch'>
                             <input type='checkbox' name='banuser' onchange='toggle_user_ban({$user['user_id']})' ";
-                            if($user['banned'] == 1) {
-                                echo "checked";
-                            }
+                    if($user['banned'] == 1) {
+                        echo "checked";
+                    }
                 echo ">
                             <span class='slider round'> 
                             </span>
