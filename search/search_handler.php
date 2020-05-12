@@ -8,7 +8,7 @@ include '../includes/login_check.php';
 include '../includes/helper_functions.php';
 
 // Allow only logged in users to visit this page
-login_check(1);
+//login_check(1);
 
 if (isset($_POST['search_interests'])) {
     $r = array();
@@ -192,11 +192,43 @@ if (isset($_POST['search_data'])) {
             }
         }
 
+
+
+        //this is where you should check for other users youve already tried to connect with // ppl declined you , already matched with you or pending
+        $already_connected_user_ids = array();
+        // Get list of users who the current user is already 'interacted' with
+        $sqlT = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.connection_id FROM ( SELECT connection_id, userA_id, userB_id FROM connections WHERE (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2";
+        $queryT = mysqli_query($db_conn, $sqlT);
+
+        if ($queryT) {
+            if (mysqli_num_rows($queryT) > 0) {
+                // User has connections linked to their account
+                while ($row = mysqli_fetch_assoc($queryT)) {
+                    array_push($already_connected_user_ids, $row['other_user_id']);
+                }
+            }
+        }
+
+        //by adding this it means your name shouldnt show up as someone to connect with
+        array_push($already_connected_user_ids, $_SESSION['user_id']);
+
+
+        foreach ($users as $userID => $weight) {
+
+            foreach ($already_connected_user_ids as $key => $matched_userID){
+                if ($userID == $matched_userID){
+                    unset($users[$userID]);
+                }
+            }
+        }
+
+
+
         if( count($users) > 0){
             // Get the data related to the resulting users
             $query = "SELECT users.user_id, firstname, lastname, age, gender, seeking FROM users LEFT JOIN profiles ON profiles.user_id=users.user_id WHERE users.user_id in (";
 
-            foreach($users as $key => $value){
+            foreach($users as $key => $value){ //users
                 $query .= "{$key},";
             }
 
@@ -207,7 +239,7 @@ if (isset($_POST['search_data'])) {
                 $result = [];
                 if(mysqli_num_rows($res) > 0){
                     while($row = mysqli_fetch_assoc($res)){
-                        $row['score'] = $users[$row['user_id']];
+                        $row['score'] = $users[$row['user_id']];  // users
                         array_push($result, $row);
                     }
                 } else {

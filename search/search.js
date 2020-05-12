@@ -228,7 +228,7 @@ function submitSearch() {
             try{
                 populate_results(JSON.parse(data));
             } catch (err){
-                alert("An error occurred. Please try again.");
+                alert("There are no users matching your search parameters.");
             }
             
         },
