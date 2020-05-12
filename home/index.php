@@ -160,21 +160,16 @@ if ($r) {
                                 <p style="text-align: left; text-decoration: underline"><b>Interests</b></p>
 								<div class="bg-c-green counter-block">
 									<div class="row" id="interests-row">
-                                    <div class="col-sm">
-                                        <p style="text-decoration: underline"><b>Interests</b></p>
-                                    </div>
+
                                     </div>
                                 </div>
 							</div>
 							<!--End of interests section-->
 
 							<div class="container">
-                                <p style="text-align: left"><b>Traits</b></p>
+                                <p style="text-align: left; text-decoration: underline"><b>Traits</b></p>
 								<div class="bg-c-yellow counter-block">
 									<div class="row" id="traits-row"><!--I can add the word interests here and it wont be affected as it will append-->
-                                        <div class="col-sm">
-                                            <p style="text-decoration: underline"><b>Traits</b></p>
-                                        </div>
 
                                     </div>
 								</div>
