@@ -216,9 +216,9 @@ background: radial-gradient(circle, rgba(91,91,110,1) 0%, rgba(115,115,125,1) 34
 
                                 <!-- Content -->
                                 <h5 style="color:#ec335a"  class="text-uppercase font-weight-bold">About</h5>
-                                <p style="color: #4b2638">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-                                    commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-                                    excepturi hic.</p>
+                                <p style="color: #4b2638">DatingSucks is developed by a team of top rated developers who are studying in the University of Limerick, Computer Systems course. Learning most of their web development skills in
+                                    Module CS4116.
+                                Four engineers stumbled upon a revolutionary algorithm to match users after observings sapians attract each other in nature. Using these fundamental principles Dating Sucks was born.</p>
                                 <!--<img src="../logo.png" width="100" height="100">-->
 
                             </div>
