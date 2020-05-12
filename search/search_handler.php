@@ -8,7 +8,7 @@ include '../includes/login_check.php';
 include '../includes/helper_functions.php';
 
 // Allow only logged in users to visit this page
-//login_check(1);
+login_check(1);
 
 if (isset($_POST['search_interests'])) {
     $r = array();
@@ -228,7 +228,7 @@ if (isset($_POST['search_data'])) {
             // Get the data related to the resulting users
             $query = "SELECT users.user_id, firstname, lastname, age, gender, seeking FROM users LEFT JOIN profiles ON profiles.user_id=users.user_id WHERE users.user_id in (";
 
-            foreach($users as $key => $value){ //users
+            foreach($users as $key => $value){
                 $query .= "{$key},";
             }
 
@@ -239,7 +239,7 @@ if (isset($_POST['search_data'])) {
                 $result = [];
                 if(mysqli_num_rows($res) > 0){
                     while($row = mysqli_fetch_assoc($res)){
-                        $row['score'] = $users[$row['user_id']];  // users
+                        $row['score'] = $users[$row['user_id']];
                         array_push($result, $row);
                     }
                 } else {
