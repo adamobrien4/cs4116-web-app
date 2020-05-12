@@ -10,11 +10,11 @@ include '../includes/admin_helper_functions.php';
 
 
 // Allow only logged in users to visit this page
-//login_check(1);
+// login_check(1);
 
 $users = array();
 
-$query = "SELECT users.firstname, users.lastname, users.user_id, profiles.description FROM users INNER JOIN profiles ON users.user_id = profiles.user_id";
+$query = "SELECT users.email, users.firstname, users.lastname, users.user_id, profiles.description, profiles.banned FROM users INNER JOIN profiles ON users.user_id = profiles.user_id";
 
 $res = mysqli_query($db_conn, $query);
 
@@ -25,9 +25,6 @@ if ($res) {
         }
     }
 }
-
-$blacklist;
-$q = "INSERT "
 
 ?>
 
@@ -62,7 +59,7 @@ $q = "INSERT "
     <script src='admin.js'></script>
 
     <script>
-        var user_list = <?php echo json_encode($user_list) ?>;
+        var user_list = <?php echo json_encode($users) ?>;
     </script>
 
 </head>
@@ -97,22 +94,43 @@ $q = "INSERT "
             } 
              */
 
+
             foreach($users as $user) {
+
                 echo "
                 <div class='list-group'>
                     <li class='list-group-item'>
-                        <div class='user-container'><a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='../assets/uploads/{$user['user_id']}.jpg' width='48' height='48' alt='Image' /></a>
-                        <p class='user-name' id='name' contentEditable='true'>{$user['firstname']}, {$user['lastname']}
-                        <ul id='bio'>{$user['description']} </ul></p>
+                        <div class='user-container'>
+                        <form action='' method = 'POST'>
+                        <a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='../assets/uploads/{$user['user_id']}.jpg' width='48' height='48' alt='Image' />
+                        </a>
+
+                        <label class='user-name' id='name' contentEditable='true'>{$user['firstname']}, {$user['lastname']}</label> 
+                        <br>
+                        <br>
+                        <label>{$user['email']}</label>
+
+                        <ul id='bio'>{$user['description']} </ul>
+                        
+                        
                         <label class='switch'>
-                        <input type='checkbox'>
-                        <span class='slider round'></span>
+                            <input type='checkbox' name='banuser' onchange='toggle_user_ban({$user['user_id']})' ";
+                            if($user['banned'] == 1) {
+                                echo "checked";
+                            }
+                echo ">
+                            <span class='slider round'> 
+                            </span>
+                            <br>
+                            Ban 
                         </label>
-                    
+                        <form>                    
                 </div>
                 </div>
                 ";
-            } ?>
+            }
+                        
+            ?>
                 </div>
             </div>
             <script src="..\assets/js/Sidebar-Menu.js"></script>
@@ -120,8 +138,8 @@ $q = "INSERT "
     </div>
 
 </body>
-
 </html>
+
 
 
 <!-- <a class="user-delete" href="#">
