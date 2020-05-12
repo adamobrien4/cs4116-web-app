@@ -16,13 +16,19 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $psw_encrypt = sha1($psw);
 
-    $query = "SELECT users.email, users.firstname, users.lastname, users.user_id, users.admin, profiles.completed FROM users INNER JOIN profiles ON users.user_id = profiles.user_id WHERE users.email = '{$_POST['email']}' AND users.password = '{$psw_encrypt}'";
+    $query = "SELECT users.email, users.firstname, users.lastname, users.user_id, users.admin, profiles.completed, profiles.banned FROM users INNER JOIN profiles ON users.user_id = profiles.user_id WHERE users.email = '{$_POST['email']}' AND users.password = '{$psw_encrypt}'";
 
     $res = mysqli_query($db_conn, $query);
 
     if( mysqli_num_rows($res) > 0 ) {
         // Found user
         $user = mysqli_fetch_assoc($res);
+
+        if($user['banned'] == true) {
+            // This user is banned
+            header("location: {$_ENV['site_home']}login.php?n=account_banned");
+            exit();
+        }
 
         // Set SESSION variables
         $_SESSION['fullname'] = $user['firstname'] . ' ' . $user['lastname'];

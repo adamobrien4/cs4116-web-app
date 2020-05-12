@@ -58,6 +58,18 @@ if( isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['ema
             die();
         }
 
+        // Check if email is blacklisted
+        $query = "SELECT email FROM blacklist WHERE email = '{$email}' LIMIT 1";
+        $r = mysqli_query($db_conn, $query);
+
+        if($r) {
+            if(mysqli_num_rows($r) > 0){
+                // User is blacklisted
+                header("location: {$_ENV['site_home']}register.php?n=account_blacklisted");
+                exit();
+            }
+        }
+
         $query = "INSERT INTO users (firstname, lastname, email, password) VALUES ('{$fn}', '{$ln}', '{$email}', '{$psw_encrypt}')";
         $res = mysqli_query($db_conn, $query);
         $insert_id = mysqli_insert_id($db_conn);

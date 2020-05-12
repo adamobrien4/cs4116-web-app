@@ -91,6 +91,11 @@ if (isset($_GET['n'])) {
 			$notification_title = "Error occurred";
 			$notification_type = "danger";
 		break;
+		case "account_blacklisted":
+			$notification_message = "The email address you used is currently blacklisted and cannot be used to create an account.";
+			$notification_title = "Email Blacklisted";
+			$notification_type = "danger";
+		break;
 	}
 }
 

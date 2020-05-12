@@ -63,6 +63,11 @@ if (isset($_GET['n'])) {
 			$notification_title = "Password Mismatch";
 			$notification_type = "warning";
 			break;
+		case "account_banned":
+			$notification_message = "Your account is currently under a temporary ban.";
+			$notification_title = "Account Banned";
+			$notification_type = "danger";
+		break;
 	}
 }
 
