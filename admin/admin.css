@@ -24,6 +24,7 @@
     text-overflow: ellipsis;
     margin: 19px 0 0;
     font-weight: bold;
+    padding-top: 100px;
   }
   
   .user-item p.user-name a {

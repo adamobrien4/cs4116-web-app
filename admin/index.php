@@ -44,7 +44,7 @@ if ($res) {
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu-1.css">
     <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="..\assets/css/styles.css">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -100,7 +100,7 @@ if ($res) {
                 echo "
                 <div class='list-group'>
                     <li class='list-group-item'>
-                        <div class='user-container'>
+                        <div class='user-item'>
                         <form action='' method = 'POST'>
                         <a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='../assets/uploads/{$user['user_id']}.jpg' width='48' height='48' alt='Image' />
                         </a>
@@ -122,8 +122,11 @@ if ($res) {
                             <span class='slider round'> 
                             </span>
                             <br>
-                            Ban 
+                            <br>
+                            <label class='user-name'>Ban</label>
                         </label>
+
+                        <label class='
                         <form>                    
                 </div>
                 </div>
