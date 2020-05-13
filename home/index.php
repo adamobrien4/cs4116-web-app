@@ -89,7 +89,6 @@ function get_user_card_data($db_conn, $user_id, $connection)
 }
 
 $u = get_next_potential_match($db_conn);
-echo json_encode($u['connection']);
 ?>
 
 <!DOCTYPE html>
@@ -160,21 +159,19 @@ echo json_encode($u['connection']);
 								<hr />";
 								if($u['weight'] > 0) {
 									echo "<h6 class='text-muted card-subtitle mb-2'>Your DatingSucks's&reg; match score : {$u['weight']}%</h6>";
-								} else {
-									echo "<h6 class='text-muted card-subtitle mb-2'>Request to match</h6>";
-								}
-								
-								echo "
-								<div class='row justify-content-center'>
-									<div class='project-progress col-8'>
-										<div class='progress'>
-											<div role='progressbar' style='width: {$u['weight']}%; height: 16px;' aria-valuenow='{$u['weight']}' aria-valuemin='0' aria-valuemax='100' class='progress-bar bg-red'>
+									echo "<div class='row justify-content-center'>
+											<div class='project-progress col-8'>
+												<div class='progress'>
+													<div role='progressbar' style='width: {$u['weight']}%; height: 16px;' aria-valuenow='{$u['weight']}' aria-valuemin='0' aria-valuemax='100' class='progress-bar bg-red'>
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-								</div>
+										</div>";
+								} else {
+									echo "<h6 class='text-muted card-subtitle mb-2'>Has requested to connect with you <strong>DIRECTLY</strong></h6>";
+								}
 
-								<!--Might be funny to have a funny quotes from the dating sucks team on things not to say on a first date
+								echo "<!--Might be funny to have a funny quotes from the dating sucks team on things not to say on a first date
 			if you match with John dont bring up your third ex wife etc.. etc..
 			-->
 								<div class='container bio' id='user-bio'>
