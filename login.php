@@ -122,6 +122,13 @@ if (isset($_GET['n'])) {
 			</div>
 
 		</div>
+
+		<div id="notify">
+		<h5><strong>COVID-19<strong></h5>
+		<a id="linkCoro" href="https://www2.hse.ie/coronavirus/">Click the here to get the latest information from Health Service Executive about <strong>COVID-19<strong></a>
+			<button  onclick="closeNotify()">Close</button>
+		</div>
+
 		<div id="login" class="contentbox">
 			<div class="loginbox center_x">
 				<div class="center_y" style="width:100%">
@@ -205,6 +212,15 @@ if (isset($_GET['n'])) {
 		{
 			window.scrollTo(0,document.body.scrollHeight);
 		}
+
+	
+	function closeNotify() 
+	{
+  		var x = document.getElementById("notify");
+
+    	x.style.display = "none";
+  	}
+
 </script>
 
 
