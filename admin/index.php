@@ -81,18 +81,6 @@ if ($res) {
         <h4>Maybe have a basic search functionality</h4>
  -->
             <?php
-           /*  $dir = "../assets/uploads/";
-            open directory and read what's inside
-            testing
-             if (is_dir($dir)){
-              if ($dh = opendir($dir)){
-                while (($file = readdir($dh)) !== false){
-                  echo "filename:" . $file . "<br>";
-                }
-                closedir($dh);
-              }
-            } 
-             */
 
 
             foreach($users as $user) {
@@ -101,30 +89,43 @@ if ($res) {
                 <div class='list-group'>
                     <li class='list-group-item'>
                         <div class='user-container'>
-                        <form action='' method = 'POST'>
                         <a class='user-avatar' href='#'><img class='rounded-circle img-fluid' src='../assets/uploads/{$user['user_id']}.jpg' width='48' height='48' alt='Image' />
                         </a>
 
-                        <label class='user-name' id='name' contentEditable='true'>{$user['firstname']}, {$user['lastname']}</label> 
-                        <br>
-                        <br>
-                        <label>{$user['email']}</label>
+                        <label id='user-firstname-{$user['user_id']}' contentEditable='true'>{$user['firstname']}</label>
+                        <label id='user-lastname-{$user['user_id']}' contentEditable='true'>{$user['lastname']}</label>
 
-                        <ul id='bio'>{$user['description']} </ul>
+                        <br>
+
+                        <label id='user-email-{$user['user_id']}'>{$user['email']}</label>
+
+                        <br>
+
+                        <textarea id='user-bio-{$user['user_id']}' class='form-control'>{$user['description']}</textarea>
                         
+                        <br>
                         
+                        <span>Ban User</span>
                         <label class='switch'>
-                            <input type='checkbox' name='banuser' onchange='toggle_user_ban({$user['user_id']})' ";
-                    if($user['banned'] == 1) {
-                        echo "checked";
-                    }
+                            <input id='user-banned-{$user['user_id']}' type='checkbox' onchange='toggle_user_ban({$user['user_id']})' ";
+                                if($user['banned'] == 1) {
+                                    echo "checked";
+                                }
                 echo ">
-                            <span class='slider round'> 
-                            </span>
-                            <br>
-                            Ban 
+                            <span class='slider round'>
+                            </span> 
                         </label>
-                        <form>                    
+                        
+                        <span>Delete User</span>
+                        <label class='switch'>
+                            <input id='user-deleted-{$user['user_id']}' type='checkbox' onchange='delete_user({$user['user_id']})'>
+                            <span class='slider round'>
+                            </span> 
+                        </label>
+
+                        <br>
+
+                        <button type='button' class='btn btn-primary' onclick='update_user({$user['user_id']})'>Update Profile</button>
                 </div>
                 </div>
                 ";

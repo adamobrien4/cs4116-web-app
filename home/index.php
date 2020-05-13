@@ -13,7 +13,7 @@ login_check(1);
 function get_next_potential_match($db_conn)
 {
 	// Get a pending connection request for the current user
-	$sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.connection_id FROM ( SELECT connection_id, userA_id, userB_id FROM connections WHERE result = 'pending' AND (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2 LIMIT 1";
+	$sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.connection_id FROM ( SELECT connection_id, userA_id, userB_id FROM connections WHERE result = 'pending' AND userB_id = {$_SESSION['user_id']} ) AS TABLE2 LIMIT 1";
 	$r = mysqli_query($db_conn, $sql);
 
 	if ($r) {
@@ -35,6 +35,7 @@ function get_next_potential_match($db_conn)
 			}
 		}
 	}
+	return false;
 }
 
 function get_user_card_data($db_conn, $user_id, $connection)
