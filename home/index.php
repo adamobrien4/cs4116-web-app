@@ -209,8 +209,8 @@ $u = get_next_potential_match($db_conn);
 								</div>
 
 								<div style='padding: 10px; margin-top: 20px;'>
-									<a class='card-link' id='accept-request'><i style='color:red' class='fas fa-heart fa-2x'></i></a>
-									<a class='card-link' id='decline-request'><i class='fas fa-times-circle fa-2x'></i></a>
+									<a class='card-link connect-button' id='accept-request'><i style='color:red' class='fas fa-heart fa-2x grow'></i></a>
+									<a class='card-link connect-button' id='decline-request'><i class='fas fa-times-circle fa-2x grow'></i></a>
 								</div>
 							</div>
 						</div>
