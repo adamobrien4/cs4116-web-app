@@ -253,8 +253,8 @@ function populate_results(d) {
                 </div>
                 <div class="col-4">
                     ${user.firstname} - ${user.age}
-                    <p><small>${user.gender} -> ${user.seeking}</small></p>
-                    <span class="badge badge-info badge-pill">${user.score}</span>
+                    <p><small>${user.gender} seeking a ${user.seeking}</small></p>
+                    <span class="badge badge-info badge-pill">DatingSucks match score : <strong>${user.score}</strong></span>
                 </div>
                     <input type="button" value="Connect!" class="btn btn-primary" id="request-connect-button-${user.user_id}" onclick="requestConnection(${user.user_id})"/> 
             </li>

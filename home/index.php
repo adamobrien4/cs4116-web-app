@@ -144,21 +144,15 @@ $u = get_next_potential_match($db_conn);
 			<div class="container-fluid">
 				<a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> MENU</a>
 
-				<div class="alert alert-warning" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Notice!</strong> You have 5 new potential matches and 2 unread messages!
-				</div>
-
 				<?php if ($u) {
 					echo "<div class='row justify-content-center'>
 						<div class='card text-center col-10'>
 							<div class='card-body'>
 								<img style='width: 125px; height: 125px' src='{$_ENV['site_home']}assets/uploads/{$u['user_id']}.jpg'/>
 								<h4 class='card-title' id='card-user-title'>{$u['firstname']}, {$u['age']}</h4>
-								<h6 class='text-muted card-subtitle mb-2'> USER LOCATION UNAVAILABLE </h6>
 								<hr />";
 								if($u['weight'] > 0) {
-									echo "<h6 class='text-muted card-subtitle mb-2'>Your DatingSucks's&reg; match score : {$u['weight']}%</h6>";
+									echo "<h6 class='text-muted card-subtitle mb-2'>Your DatingSucks&reg; match score : {$u['weight']}%</h6>";
 									echo "<div class='row justify-content-center'>
 											<div class='project-progress col-8'>
 												<div class='progress'>
@@ -171,10 +165,7 @@ $u = get_next_potential_match($db_conn);
 									echo "<h6 class='text-muted card-subtitle mb-2'>Has requested to connect with you <strong>DIRECTLY</strong></h6>";
 								}
 
-								echo "<!--Might be funny to have a funny quotes from the dating sucks team on things not to say on a first date
-			if you match with John dont bring up your third ex wife etc.. etc..
-			-->
-								<div class='container bio' id='user-bio'>
+								echo "<div class='container bio' id='user-bio'>
 									<p>{$u['description']}</p>
 								</div>
 
@@ -192,7 +183,6 @@ $u = get_next_potential_match($db_conn);
 								echo "</div>
 									</div>
 								</div>
-								<!--End of interests section-->
 
 								<div class='container'>
 									<p style='text-align: left; text-decoration: underline'><b>Traits</b></p>

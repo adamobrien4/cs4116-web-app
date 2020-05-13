@@ -1,6 +1,4 @@
 $(() => {
-    console.log(conn_data);
-
     $('#accept-request').click(()=>{
         $.ajax('home_handler.php', {
             type: 'POST',

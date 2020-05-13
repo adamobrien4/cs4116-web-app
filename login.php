@@ -67,7 +67,7 @@ if (isset($_GET['n'])) {
 			$notification_message = "Your account is currently under a temporary ban.";
 			$notification_title = "Account Banned";
 			$notification_type = "danger";
-		break;
+			break;
 	}
 }
 
@@ -120,13 +120,12 @@ if (isset($_GET['n'])) {
 			<div style="object-fit: contain; bottom:0">
 				<img src="https://i.imgur.com/EqeAKFz.png" alt="" width="100%" style="filter: opacity(0.2);">
 			</div>
-
 		</div>
 
-		<div id="notify">
-		<h5><strong>COVID-19<strong></h5>
-		<a id="linkCoro" href="https://www2.hse.ie/coronavirus/">Click the here to get the latest information from Health Service Executives about <strong>COVID-19<strong></a>
-			<button  onclick="closeNotify()">Close</button>
+		<div id="notify" onclick="closeNotify()">
+			<h5><strong>COVID-19<strong></h5>
+			<a id="linkCoro" href="https://www2.hse.ie/coronavirus/">Click the here to get the latest information from Health Service Executives about <strong>COVID-19<strong></a>
+			<i class="fa fa-window-close" style="cursor:pointer;" onclick="closeNotify()"></i>
 		</div>
 
 		<div id="login" class="contentbox">
@@ -180,7 +179,7 @@ if (isset($_GET['n'])) {
 								</div>
 
 								<div>
-									<input class="optionbox" type="text" placeholder="Age" id="age" name="age" required/><br>
+									<input class="optionbox" type="text" placeholder="Age" id="age" name="age" required /><br>
 								</div>
 
 								<div>
@@ -200,27 +199,23 @@ if (isset($_GET['n'])) {
 		$('#myModal').modal("show");
 	});
 
-	function scrollie()
-	{
-		fiveseconds = 1000*5
+	function scrollie() {
+		fiveseconds = 1000 * 5
 		var expires = new Date((new Date()).valueOf() + fiveseconds);
 		document.cookie = "true; expires=fiveseconds";
 	}
 	console.log(document.cookie);
 
-	function scrollWin() 
-		{
-			window.scrollTo(0,document.body.scrollHeight);
-		}
+	function scrollWin() {
+		window.scrollTo(0, document.body.scrollHeight);
+	}
 
-	
-	function closeNotify() 
-	{
-  		var x = document.getElementById("notify");
 
-    	x.style.display = "none";
-  	}
+	function closeNotify() {
+		var x = document.getElementById("notify");
 
+		x.style.display = "none";
+	}
 </script>
 
 
