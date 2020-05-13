@@ -7,6 +7,23 @@ include_once('./vendor/autoload.php');
 
 include('./includes/db_conn.php');
 
+$potential_matches = array();
+
+$pot_sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id FROM ( SELECT userA_id, userB_id FROM potential_matches WHERE (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2";
+$q = mysqli_query($db_conn, $pot_sql);
+
+if($q){
+    if(mysqli_num_rows($q)) {
+        while($row = mysqli_fetch_assoc($q)){
+            array_push($potential_matches, $row);
+        }
+    }
+}
+
+echo json_encode($potential_matches);
+
+exit();
+
 var_dump($_SESSION);
 
 $interests = array();
