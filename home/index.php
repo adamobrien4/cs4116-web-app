@@ -208,7 +208,7 @@ $u = get_next_potential_match($db_conn);
 					</div>";
 				 } else {
 					echo "<div class='text-center'>
-						<h1>You have no match requests!<br><a href='../search/'>Go get <strong>some</strong>.</a></h1>
+						<h1>You have no match requests!<br>Please come back to the site later to find some potential matches!<br>OR<br><a href='../search/'>Go get <strong>some</strong>.</a></h1>
 					</div>";
 				} ?>
 

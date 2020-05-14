@@ -31,6 +31,7 @@ if (isset($_POST['interests'])) {
 
         if (mysqli_affected_rows($db_conn) > 0) {
             // Successful insert
+            complete_profile_check($db_conn);
             die("ok");
         } else {
             die("error: not inserted");
@@ -61,6 +62,7 @@ if (isset($_POST['traits'])) {
 
         if (mysqli_affected_rows($db_conn) > 0) {
             // Successful insert
+            complete_profile_check($db_conn);
             die("ok");
         } else {
             die("error: not inserted");
@@ -136,56 +138,56 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
             }
         }
 
-        // Check to see if the user is marked as complete
-        if ($_SESSION[['completed']] == 0) {
-            // Check to see if their account is completed now
+        complete_profile_check($db_conn);
 
-            // At least one interest
-            $i_count = 0;
-            $q = "SELECT interest_id FROM interests WHERE user_id = {$_SESSION['user_id']}";
-            $r = mysqli_query($db_conn, $q);
+        header("location: {$_ENV['site_home']}profile");
+        die();
+    }
+}
 
-            if ($r) {
-                $i_count = mysqli_num_rows($r);
-            }
+function complete_profile_check($db_conn)
+{
+    // Check to see if the user is marked as complete
+    if ($_SESSION[['completed']] == 0) {
+        // Check to see if their account is completed now
 
-            // At least one trait
-            $t_count = 0;
-            $q = "SELECT trait_id FROM traits WHERE user_id = {$_SESSION['user_id']}";
-            $r = mysqli_query($db_conn, $q);
+        // At least one interest
+        $i_count = 0;
+        $q = "SELECT interest_id FROM interests WHERE user_id = {$_SESSION['user_id']}";
+        $r = mysqli_query($db_conn, $q);
 
-            if ($r) {
-                $t_count = mysqli_num_rows($r);
-            }
+        if ($r) {
+            $i_count = mysqli_num_rows($r);
+        }
 
-            // gender, seeking, description, age
-            $query = "SELECT gender, seeking, description, age FROM profiles WHERE user_id = {$_SESSION['user_id']}";
-            $res = mysqli_query($db_conn, $query);
+        // At least one trait
+        $t_count = 0;
+        $q = "SELECT trait_id FROM traits WHERE user_id = {$_SESSION['user_id']}";
+        $r = mysqli_query($db_conn, $q);
 
-            if ($res) {
-                if (mysqli_num_rows($res) > 0) {
-                    $row = mysqli_fetch_assoc($res);
+        if ($r) {
+            $t_count = mysqli_num_rows($r);
+        }
 
-                    echo (json_encode($row) . "<br>");
-                    echo $i_count . "<br>";
-                    echo $t_count . "<br>";
+        // gender, seeking, description, age
+        $query = "SELECT gender, seeking, description, age FROM profiles WHERE user_id = {$_SESSION['user_id']}";
+        $res = mysqli_query($db_conn, $query);
 
-                    if (($row['gender'] == "male" || $row['gender'] == "female") && ($row['seeking'] == "male" || $row['seeking'] == "female") && strlen($row['description']) > 0 && $row['age'] > 0 && $i_count > 0 && $t_count > 0) {
-                        $query = "UPDATE profiles SET completed = 1 WHERE user_id = {$_SESSION['user_id']}";
-                        $res = mysqli_query($db_conn, $query);
+        if ($res) {
+            if (mysqli_num_rows($res) > 0) {
+                $row = mysqli_fetch_assoc($res);
+                if (($row['gender'] == "male" || $row['gender'] == "female") && ($row['seeking'] == "male" || $row['seeking'] == "female") && strlen($row['description']) > 0 && $row['age'] > 0 && $i_count > 0 && $t_count > 0) {
+                    $query = "UPDATE profiles SET completed = 1 WHERE user_id = {$_SESSION['user_id']}";
+                    $res = mysqli_query($db_conn, $query);
 
-                        if ($res) {
-                            if (mysqli_affected_rows($db_conn) > 0) {
-                                // Updated
-                                $_SESSION['completed'] = 1;
-                            }
+                    if ($res) {
+                        if (mysqli_affected_rows($db_conn) > 0) {
+                            // Updated
+                            $_SESSION['completed'] = 1;
                         }
                     }
                 }
             }
         }
-
-        header("location: {$_ENV['site_home']}profile?status=1");
-        die();
     }
 }

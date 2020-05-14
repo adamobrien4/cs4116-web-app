@@ -41,9 +41,9 @@ if ($res) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 
-    <link rel="stylesheet" href="..\assets/css/Sidebar-Menu-1.css">
-    <link rel="stylesheet" href="..\assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="..\assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="admin.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -68,7 +68,7 @@ if ($res) {
 <body>
 
     <div id="wrapper">
-        <?php include('..\navbar.php'); ?>
+        <?php include('../navbar.php'); ?>
 
         <div class="page-content-wrapper">
             <div class="container-fluid">
@@ -134,7 +134,7 @@ if ($res) {
             ?>
                 </div>
             </div>
-            <script src="..\assets/js/Sidebar-Menu.js"></script>
+            <script src="../assets/js/Sidebar-Menu.js"></script>
         </div>
     </div>
 

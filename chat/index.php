@@ -111,7 +111,7 @@ if($res) {
 <body>
 
 	<div id="wrapper">
-		<?php include('..\navbar.php'); ?>
+		<?php include('../navbar.php'); ?>
 
 		<div class="page-content-wrapper">
 			<div class="container-fluid bootstrap_chat">
@@ -134,31 +134,36 @@ if($res) {
 										<div class="list-group rounded-0">
 
 											<?php
-											foreach ($chats as $index => $chat) {
-												$timestamp = null;
-												$notification = "";
-												if($chat['you_are_user'] == "A"){
-													$timestamp = $chat['B_last_viewed'];
-													if($chat['tstmpB'] >= $chat['A_last_viewed']){
-														$notification = "<span class='badge badge-pill badge-danger'>!</span>";
-													}
-												} else {
-													$timestamp = $chat['A_last_viewed'];
-													if($chat['tstmpA'] >= $chat['B_last_viewed']){
-														$notification = "<span class='badge badge-pill badge-danger'>!</span>";
-													}
-												}
 
-												echo ("<div class='list-group-item list-group-item-action rounded-0' id='chat_{$chat['chat_id']}' onclick='getMessages({$chat['chat_id']})'>
-														<div class='media'><img src='{$_ENV['site_home']}assets/uploads/{$chat['other_user_id']}.jpg' alt='user' width='50' class='rounded'>
-															<div class='media-body ml-4'>
-																<div class='d-flex align-items-center justify-content-between mb-1'>
-																{$notification}
-																<h6 class='mb-0'>" . $chat['chat_id'] . "</h6><small class='small font-weight-bold'>Last message from them: ". $timestamp ."</small>
+											if(count($chats) == 0){
+												echo "<div style='background: #fff;'><h3>You have no open chats. Connect with someone to start chatting.</h3></div>";
+											} else {
+												foreach ($chats as $index => $chat) {
+													$timestamp = null;
+													$notification = "";
+													if($chat['you_are_user'] == "A"){
+														$timestamp = $chat['B_last_viewed'];
+														if($chat['tstmpB'] >= $chat['A_last_viewed']){
+															$notification = "<span class='badge badge-pill badge-danger'>!</span>";
+														}
+													} else {
+														$timestamp = $chat['A_last_viewed'];
+														if($chat['tstmpA'] >= $chat['B_last_viewed']){
+															$notification = "<span class='badge badge-pill badge-danger'>!</span>";
+														}
+													}
+
+													echo ("<div class='list-group-item list-group-item-action rounded-0' id='chat_{$chat['chat_id']}' onclick='getMessages({$chat['chat_id']})'>
+															<div class='media'><img src='{$_ENV['site_home']}assets/uploads/{$chat['other_user_id']}.jpg' alt='user' width='50' class='rounded'>
+																<div class='media-body ml-4'>
+																	<div class='d-flex align-items-center justify-content-between mb-1'>
+																	{$notification}
+																	<h6 class='mb-0'>" . $chat['chat_id'] . "</h6><small class='small font-weight-bold'>Last message from them: ". $timestamp ."</small>
+																	</div>
 																</div>
 															</div>
-														</div>
-													  </div>");
+														</div>");
+												}
 											} ?>
 
 										</div>

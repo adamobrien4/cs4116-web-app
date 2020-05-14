@@ -10,7 +10,7 @@ include '../includes/admin_helper_functions.php';
 // Allow only logged out users to visit this page
 login_check(0);
 
-if( isset($_POST['email']) && isset($_POST['password']) ) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
 
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $psw = $_POST['password'];
@@ -21,11 +21,11 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 
     $res = mysqli_query($db_conn, $query);
 
-    if( mysqli_num_rows($res) > 0 ) {
+    if (mysqli_num_rows($res) > 0) {
         // Found user
         $user = mysqli_fetch_assoc($res);
 
-        if($user['banned'] == true) {
+        if ($user['banned'] == true) {
             // This user is banned
             header("location: {$_ENV['site_home']}login.php?n=account_banned");
             exit();
@@ -38,16 +38,18 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
         $_SESSION['admin'] = $user['admin'];
         $_SESSION['completed'] = $user['completed'];
 
-        // Check whether the user needs more potential matches
-        $c_sql = "SELECT IF(TABLE2.userA_id = {$user['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.id FROM ( SELECT id, userA_id, userB_id FROM potential_matches WHERE (userA_id = {$user['user_id']} OR userB_id = {$user['user_id']}) ) AS TABLE2";
-        $c_query = mysqli_query($db_conn, $c_sql);
+        if ($user['completed'] == 1) {
+            // Check whether the user needs more potential matches
+            $c_sql = "SELECT IF(TABLE2.userA_id = {$user['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.id FROM ( SELECT id, userA_id, userB_id FROM potential_matches WHERE (userA_id = {$user['user_id']} OR userB_id = {$user['user_id']}) ) AS TABLE2";
+            $c_query = mysqli_query($db_conn, $c_sql);
 
-        if($c_query) {
-            if(mysqli_num_rows($c_query) > 0){
-                // User has remaining potential_matches
-            } else {
-                // User has no remaining potential matches
-                generate_possible_connections($db_conn);
+            if ($c_query) {
+                if (mysqli_num_rows($c_query) > 0) {
+                    // User has remaining potential_matches
+                } else {
+                    // User has no remaining potential matches
+                    generate_possible_connections($db_conn);
+                }
             }
         }
 
@@ -58,5 +60,3 @@ if( isset($_POST['email']) && isset($_POST['password']) ) {
 } else {
     header("location: {$_ENV['site_home']}login.php?n=login_error");
 }
-
-?>

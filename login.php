@@ -123,10 +123,10 @@ if (isset($_GET['n'])) {
 
 		</div>
 
-		<div id="notify">
-		<h5><strong>COVID-19<strong></h5>
-		<a id="linkCoro" href="https://www2.hse.ie/coronavirus/">Click the here to get the latest information from Health Service Executives about <strong>COVID-19<strong></a>
-			<button  onclick="closeNotify()">Close</button>
+		<div id="notify" onclick="closeNotify()">
+			<h5><strong>COVID-19<strong></h5>
+			<a id="linkCoro" href="https://www2.hse.ie/coronavirus/">Click the here to get the latest information from Health Service Executives about <strong>COVID-19<strong></a>
+			<i class="fa fa-window-close" style="cursor:pointer;" onclick="closeNotify()"></i>
 		</div>
 
 		<div id="login" class="contentbox">

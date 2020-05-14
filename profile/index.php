@@ -14,18 +14,6 @@ login_check(3);
 // Retrieve profile data from current user
 $user_profile_data = get_profile_data($db_conn, $_SESSION['user_id']);
 
-if ($user_profile_data == null) {
-    // User profile not found
-    echo "User profile not found";
-} else {
-    //var_dump($user_profile_data);
-}
-
-$status = false;
-if (isset($_GET['status'])) {
-    $status = true;
-}
-
 // Get interest information
 $available_interests = get_available_interests($db_conn);
 $user_interests = get_user_interests($db_conn);
@@ -90,10 +78,6 @@ $user_traits = get_user_traits($db_conn);
         if (user_traits_php.length > 0) {
             user_traits = user_traits_php.map(Number);
         }
-
-        <?php if ($status) { ?>;
-            show_updated_notification();
-        <?php } ?>
     </script>
 
     <style>
@@ -183,7 +167,7 @@ $user_traits = get_user_traits($db_conn);
                                 <textarea name="description" class="form-control" id="description" rows="5"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-sm sbmt-btn">Submit Changes</button>
+                            <button type="submit" class="btn btn-sm sbmt-btn">Submit Changes / Refresh Profile</button>
                         </form>
                     </div>
                 </div>

@@ -52,8 +52,9 @@ $(function () {
                 console.log(response);
                 if (response != "failure") {
                     $("#profile-image-preview").attr("src", response);
+                    $("#navbar-profile-img").attr("src", response);
                 } else {
-                    alert('file not uploaded');
+                    alert('File not uploaded, please try again.');
                 }
             }
         });
@@ -168,8 +169,6 @@ function removeTrait(trait_id) {
 }
 
 function submitInterests() {
-    alert("Submitting Interests");
-
     $.ajax('profile_handler.php', {
         type: 'POST',
         data: { 'interests': user_interests },
@@ -183,8 +182,6 @@ function submitInterests() {
 }
 
 function submitTraits() {
-    alert("Submitting Traits");
-
     $.ajax('profile_handler.php', {
         type: 'POST',
         data: { 'traits': user_traits },

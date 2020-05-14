@@ -28,6 +28,10 @@ if (isset($_POST['connection_id']) && isset($_POST['status']) && isset($_POST['o
         if ($r) {
             if (mysqli_affected_rows($db_conn) > 0) {
 
+                // Delete any potential matches that were generated between the users
+                $p_q = "DELETE FROM potential_matches WHERE (userA_id = {$_SESSION['user_id']} AND userB_id = {$other_user}) OR (userB_id = {$_SESSION['user_id']} AND userA_id = {$other_user})";
+                $p_r = mysqli_query($db_conn, $p_q);
+
                 // Check if user declined request
                 if ($status == 1) {
                     // Create new chat between users
