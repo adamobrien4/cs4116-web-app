@@ -19,20 +19,18 @@ function get_next_potential_match($db_conn)
 	if ($r) {
 		if (mysqli_num_rows($r) > 0) {
 			$row = mysqli_fetch_assoc($r);
-
 			return get_user_card_data($db_conn, $row['other_user_id'], $row);
-		} else {
-			// Return potential_match made from algorithm
-			$p_sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.id as connection_id, TABLE2.weight FROM ( SELECT id, userA_id, userB_id, weight FROM potential_matches WHERE (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2 LIMIT 1";
-			$p_query = mysqli_query($db_conn, $p_sql);
+		}
+	}
 
-			if ($p_query) {
-				if (mysqli_num_rows($p_query) > 0) {
-					$p_row = mysqli_fetch_assoc($p_query);
+	// Return potential_match made from algorithm
+	$p_sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.id as connection_id, TABLE2.weight FROM ( SELECT id, userA_id, userB_id, weight FROM potential_matches WHERE (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2 LIMIT 1";
+	$p_query = mysqli_query($db_conn, $p_sql);
 
-					return get_user_card_data($db_conn, $p_row['other_user_id'], $p_row);
-				}
-			}
+	if ($p_query) {
+		if (mysqli_num_rows($p_query) > 0) {
+			$p_row = mysqli_fetch_assoc($p_query);
+			return get_user_card_data($db_conn, $p_row['other_user_id'], $p_row);
 		}
 	}
 	return false;
