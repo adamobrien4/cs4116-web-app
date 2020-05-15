@@ -126,14 +126,14 @@ $user_traits = get_user_traits($db_conn);
                             <div id="addInterestsMenu"></div>
                             <ul class="list-group clearfix" id="interests-list"></ul>
                         </fieldset>
-                        <button style="margin: 15px 0px" type="button" class="btn sbmt-btn" onclick='submitInterests()'>Submit Interests</button>
+                        <button id="submit-interests-button" style="margin: 15px 0px" type="button" class="btn sbmt-btn" onclick='submitInterests()'>Submit Interests</button>
 
                         <fieldset>
                             <legend>Traits: </legend>
                             <div id="addTraitsMenu"></div>
                             <ul class="list-group clearfix" id="traits-list"></ul>
                         </fieldset>
-                        <button style="margin: 15px 0px" type="button" class="btn sbmt-btn" onclick='submitTraits()'>Submit Traits</button>
+                        <button id="submit-traits-button" style="margin: 15px 0px" type="button" class="btn sbmt-btn" onclick='submitTraits()'>Submit Traits</button>
                     </div>
 
                     <div class="col-lg-6">

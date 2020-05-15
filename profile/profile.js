@@ -169,27 +169,41 @@ function removeTrait(trait_id) {
 }
 
 function submitInterests() {
+
+    $('#submit-interests-button').html('Submit Interests&#9;<i class="fa fa-spinner spins"></i>');
+
     $.ajax('profile_handler.php', {
         type: 'POST',
         data: { 'interests': user_interests },
         success: (data, status, xhr) => {
-            alert("Interests have been sucessfully updated!");
+            if(data == "ok") {
+                $('#submit-interests-button').html('Submit Interests&#9;<i class="fa fa-check-square"></i>');
+            } else {
+                $('#submit-interests-button').html('Submit Interests&#9;<i class="fa fa-window-close"></i>');
+            }
         },
         error: (xhr, status, e) => {
-            alert("There was an error. Please try updating your interests again.");
+            $('#submit-traits-button').html('Submit Interests&#9;<i class="fa fa-window-close"></i>');
         }
     });
 }
 
 function submitTraits() {
+
+    $('#submit-traits-button').html('Submit Traits&#9;<i class="fa fa-spinner spins"></i>');
+
     $.ajax('profile_handler.php', {
         type: 'POST',
         data: { 'traits': user_traits },
         success: (data, status, xhr) => {
-            alert("Traits have been sucessfully updated!");
+            if(data == "ok") {
+                $('#submit-traits-button').html('Submit Traits&#9;<i class="fa fa-check-square"></i>');
+            } else {
+                $('#submit-traits-button').html('Submit Traits&#9;<i class="fa fa-window-close"></i>');
+            }
         },
         error: (xhr, status, e) => {
-            alert("There was an error. Please try updating your traits again.");
+            $('#submit-traits-button').html('Submit Traits&#9;<i class="fa fa-window-close"></i>');
         }
     });
 }

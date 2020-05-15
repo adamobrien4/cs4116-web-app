@@ -7,6 +7,7 @@ include_once('../vendor/autoload.php');
 
 include "../includes/db_conn.php";
 include "../includes/helper_functions.php";
+include "../includes/admin_helper_functions.php";
 
 if (isset($_POST['interests'])) {
     $interests = $_POST['interests'];
@@ -148,7 +149,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['age
 function complete_profile_check($db_conn)
 {
     // Check to see if the user is marked as complete
-    if ($_SESSION[['completed']] == 0) {
+    if ($_SESSION['completed'] == 0) {
         // Check to see if their account is completed now
 
         // At least one interest
@@ -184,6 +185,19 @@ function complete_profile_check($db_conn)
                         if (mysqli_affected_rows($db_conn) > 0) {
                             // Updated
                             $_SESSION['completed'] = 1;
+
+                            // Check whether the user needs more potential matches
+                            $c_sql = "SELECT IF(TABLE2.userA_id = {$_SESSION['user_id']}, TABLE2.userB_id, TABLE2.userA_id) AS other_user_id, TABLE2.id FROM ( SELECT id, userA_id, userB_id FROM potential_matches WHERE (userA_id = {$_SESSION['user_id']} OR userB_id = {$_SESSION['user_id']}) ) AS TABLE2";
+                            $c_query = mysqli_query($db_conn, $c_sql);
+
+                            if ($c_query) {
+                                if (mysqli_num_rows($c_query) > 0) {
+                                    // User has remaining potential_matches
+                                } else {
+                                    // User has no remaining potential matches
+                                    generate_possible_connections($db_conn);
+                                }
+                            }
                         }
                     }
                 }

@@ -16,9 +16,9 @@ function toggle_user_ban(user_id) {
     success: function (response) {
       console.log(response);
       if (response == "success") {
-
-      } else {
         
+      } else {
+        $('#user-deleted-' + user_id).prop('checked', false);
       }
     }
   });
@@ -38,6 +38,7 @@ function delete_user(user_id) {
       console.log(response);
       if (response == "success") {
         // Do success stuff
+        location.reload();
       } else {
         $('#user-deleted-' + user_id).prop('checked', false);
       }
@@ -46,6 +47,8 @@ function delete_user(user_id) {
 }
 
 function update_user(user_id) {
+
+  $('#update-user-button-' + user_id).html('Submit Changes&#9;<i class="fa fa-spinner spins"></i>');
 
   var data = {
     'user_id': user_id,
@@ -63,9 +66,9 @@ function update_user(user_id) {
     success: function (response) {
       console.log(response);
       if (response == "success") {
-        // Do success stuff
+        $('#update-user-button-' + user_id).html('Submit Changes&#9;<i class="fa fa-check-square"></i>');
       } else {
-        
+        $('#update-user-button-' + user_id).html('Submit Changes&#9;<i class="fa fa-window-close"></i>');
       }
     }
   });

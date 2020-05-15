@@ -125,7 +125,7 @@ if ($res) {
 
                         <br>
 
-                        <button type='button' class='btn btn-primary' onclick='update_user({$user['user_id']})'>Update Profile</button>
+                        <button type='button' id='update-user-button-{$user['user_id']}' class='btn btn-primary' onclick='update_user({$user['user_id']})'>Submit Changes</button>
                 </div>
                 </div>
                 ";
